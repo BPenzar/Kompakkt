@@ -166,7 +166,7 @@ export class AnnotationvrService {
     });
     label.onPointerEnterObservable.add(() => {
       console.log("5");
-      this.previousAnnotation();
+      // this.previousAnnotation();
     });
     
     
@@ -186,9 +186,9 @@ export class AnnotationvrService {
     
     // ?  // VIELLEICHT HIER DER TRICK  // -- IDEE -- marked as dirty?
     // label.onDirtyObservable.add(() => {
-    label.onPointerMoveObservable.add(() => {
+    label.onPointerEnterObservable.add(() => {
       console.log("blablabla");
-      this.nextAnnotation();
+      // this.nextAnnotation();
     });
 
 
