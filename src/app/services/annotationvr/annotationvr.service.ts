@@ -94,6 +94,7 @@ export class AnnotationvrService {
   // Function -- Create Annotation-Controls -- Mesh_Plane + Aktive_Camera-Connection + Label_Clickable -- Next-Annotation + Previous-Annotation
   public createVRAnnotationControls() {
 
+    // Previous Control
     this.controlPrevious = BABYLON.MeshBuilder.CreatePlane('controlPrevious', {height: 1, width: 1}, this.babylonService.getScene());
     this.controlPrevious.parent = this.babylonService.getScene().activeCamera;
     this.controlPrevious.position.x = this.posXcontrolPrevious;
@@ -108,19 +109,7 @@ export class AnnotationvrService {
     const label = this.createLabel();
     GUI.AdvancedDynamicTexture.CreateForMesh(this.controlPrevious).addControl(label);
     
-    // ACTION_MANAGER -- Create Action for that acts on Trigger-Event 
-    // this.controlPrevious.actionManager = new BABYLON.ActionManager(this.babylonService.getScene());
-    // this.controlPrevious.actionManager.registerAction(
-    //   new BABYLON.ExecuteCodeAction(
-    //     {
-    //       trigger: BABYLON.ActionManager.OnPickDownTrigger
-    //     },
-    //     function () { 
-    //       console.log('Trigger-Action'); 
-    //     }
-    //   )
-    // );
-
+    // Next Control
     this.controlNext = BABYLON.MeshBuilder.CreatePlane('controlNext', {height: 1, width: 1}, this.babylonService.getScene());
     this.controlNext.parent = this.babylonService.getScene().activeCamera;
     this.controlNext.position.x = this.posXcontrolNext;
@@ -134,8 +123,6 @@ export class AnnotationvrService {
     
     const label2 = this.createLabel2();
     GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(label2);
-
-    
   }
 
   private createLabel() {
@@ -148,13 +135,13 @@ export class AnnotationvrService {
     label.background = 'black';
     label.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_TOP;
 
+    // DER TRICK
     label.onPointerMoveObservable.add(() => {
       if(this.controlPrevious.metadata){
         console.log("WOW");
         this.controlPrevious.metadata = null;
+        this.previousAnnotation();
       }
-      // =>
-      // this.previousAnnotation();
     });
     
     
@@ -177,9 +164,8 @@ export class AnnotationvrService {
       if(this.controlNext.metadata){
         console.log("WOW");
         this.controlNext.metadata = null;
+        this.nextAnnotation();
       }
-      // =>
-      // this.nextAnnotation();
     });
 
 

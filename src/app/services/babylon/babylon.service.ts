@@ -70,8 +70,6 @@ export class BabylonService {
           '#111111', 'assets/img/kompakkt-icon.png', this.loadingScreenHandler);
 
 
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // ------------------------------------------------------------------------------------------------------------------------------------------------------------
         this.scene.registerBeforeRender(() => {
 
           if (this.actualControl && this.selectingControl && !this.selectedControl) {
@@ -86,8 +84,6 @@ export class BabylonService {
           }
 
           if (this.selectedControl) {
-
-            // console.log('Dont stare at me this way. I should be clicked.'); 
 
             // ACTION_MANAGER -- Create Action for that acts on Trigger-Event 
             // this.actualControl.actionManager = new BABYLON.ActionManager(this.getScene());
@@ -111,14 +107,11 @@ export class BabylonService {
             this.selectedControl = false;
             this.actualControl = false;
             
-
             // const material = new BABYLON.StandardMaterial('meshMaterial', this.scene);
             // material.diffuseColor = BABYLON.Color3.Purple();
             // this.actualControl.material = material;
           }
         });
-        // ------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 
         this.engine.runRenderLoop(() => {
