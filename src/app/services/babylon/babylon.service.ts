@@ -100,7 +100,7 @@ export class BabylonService {
                 },
                 function () { 
                   console.log('Trigger-Action1-2');
-                  this. metadata = "1";
+                  this.actualControl.metadata = "1";
                   console.log(this.actualControl.metadata);
                   // this.actualControl._initClickEvent();
                   // this.actualControl._delayedSimpleClick();
