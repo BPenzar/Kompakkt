@@ -95,11 +95,12 @@ export class BabylonService {
             this.actualControl.actionManager = new BABYLON.ActionManager(this.getScene());
             this.actualControl.actionManager.registerAction(
               new BABYLON.ExecuteCodeAction({
-                    trigger: BABYLON.ActionManager.OnPickDownTrigger
+                    trigger: BABYLON.ActionManager.OnPickDownTrigger,
+                    parameter: this.actualControl
                 },
                 function () { 
                   console.log('Trigger-Action1-2');
-                  this.actualControl.metadata = "1";
+                  this. metadata = "1";
                   console.log(this.actualControl.metadata);
                   // this.actualControl._initClickEvent();
                   // this.actualControl._delayedSimpleClick();
