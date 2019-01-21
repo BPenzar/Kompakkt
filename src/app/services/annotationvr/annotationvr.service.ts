@@ -135,6 +135,7 @@ export class AnnotationvrService {
     const label2 = this.createLabel2();
     GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(label2);
 
+    
   }
 
   private createLabel() {
@@ -149,23 +150,9 @@ export class AnnotationvrService {
 
     // ?  // VIELLEICHT HIER DER TRICK
     label.onPointerMoveObservable.add(() => {
-      console.log("1");
-      // this.previousAnnotation();
-    });
-    label.onPointerDownObservable.add(() => {
-      console.log("2");
-      this.previousAnnotation();
-    });
-    label.onPointerUpObservable.add(() => {
-      console.log("3");
-      this.previousAnnotation();
-    });
-    label.onPointerClickObservable.add(() => {
-      console.log("4");
-      this.previousAnnotation();
-    });
-    label.onPointerEnterObservable.add(() => {
-      console.log("5");
+      console.log("1_P");
+      // + TRIGGER ACTION
+      // =>
       // this.previousAnnotation();
     });
     
@@ -185,9 +172,15 @@ export class AnnotationvrService {
 
     
     // ?  // VIELLEICHT HIER DER TRICK  // -- IDEE -- marked as dirty?
-    // label.onDirtyObservable.add(() => {
-    label.onPointerEnterObservable.add(() => {
-      console.log("blablabla");
+    label.onPointerMoveObservable.add(() => {
+      console.log("1_N");
+      console.log(this.controlNext.metadata);
+      // + TRIGGER ACTION
+      if(this.controlNext.metadata){
+        console.log("WOW");
+        this.controlNext.metadata = null;
+      }
+      // =>
       // this.nextAnnotation();
     });
 
