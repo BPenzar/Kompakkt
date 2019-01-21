@@ -96,12 +96,12 @@ export class BabylonService {
             this.actualControl.actionManager.registerAction(
               new BABYLON.ExecuteCodeAction({
                     trigger: BABYLON.ActionManager.OnPickDownTrigger,
-                    parameter: this.actualControl
+                    // parameter: this.actualControl
                 },
                 function () { 
                   console.log('Trigger-Action1-2');
-                  this.actualControl.metadata = "1";
-                  console.log(this.actualControl.metadata);
+                  // this.actualControl.metadata = "1";
+                  // console.log(this.actualControl.metadata);
                   // this.actualControl._initClickEvent();
                   // this.actualControl._delayedSimpleClick();
                   // this.actualControl._onKeyDown();
@@ -112,7 +112,7 @@ export class BabylonService {
             );
 
             // this.actualControl.actionManager.processTrigger(BABYLON.ActionManager.OnPickDownTrigger);
-            this.actualControl.actionManager.processTrigger(BABYLON.ActionManager.OnPickDownTrigger, ActionEvent.CreateNew(this.actualControl));
+            this.actualControl.actionManager.processTrigger(BABYLON.ActionManager.OnPickDownTrigger, this.actualControl._initClickEvent());
 
 
             this.actualControl.scaling.x = 1;
