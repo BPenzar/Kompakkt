@@ -90,29 +90,18 @@ export class BabylonService {
             // console.log('Dont stare at me this way. I should be clicked.'); 
             console.log(this.actualControl); 
 
-
             // ACTION_MANAGER -- Create Action for that acts on Trigger-Event 
             this.actualControl.actionManager = new BABYLON.ActionManager(this.getScene());
             this.actualControl.actionManager.registerAction(
               new BABYLON.ExecuteCodeAction({
                     trigger: BABYLON.ActionManager.OnPickDownTrigger,
-                    // parameter: this.actualControl
                 },
                 function () { 
-                  console.log('Trigger-Action1-2');
-                  // this.actualControl.metadata = "1";
-                  // console.log(this.actualControl.metadata);
-                  // this.actualControl._initClickEvent();
-                  // this.actualControl._delayedSimpleClick();
-                  // this.actualControl._onKeyDown();
-                  // this.actualControl._onPointerDown();
-                  // this.actualControl._doubleClickOccured = true;
+                  console.log('Trigger-Action');
                 }
               )
             );
-
-            // this.actualControl.actionManager.processTrigger(BABYLON.ActionManager.OnPickDownTrigger);
-            this.actualControl.actionManager.processTrigger(BABYLON.ActionManager.OnPickDownTrigger, this.actualControl._initClickEvent());
+            this.actualControl.actionManager.processTrigger(BABYLON.ActionManager.OnPickDownTrigger);
 
 
             this.actualControl.scaling.x = 1;

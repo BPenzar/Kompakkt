@@ -107,10 +107,6 @@ export class AnnotationvrService {
 
     const label = this.createLabel();
     GUI.AdvancedDynamicTexture.CreateForMesh(this.controlPrevious).addControl(label);
-
-    this.controlPrevious.onMaterialChangedObservable.add(() => {
-      console.log("blablabla");
-    });
     
     // ACTION_MANAGER -- Create Action for that acts on Trigger-Event 
     // this.controlPrevious.actionManager = new BABYLON.ActionManager(this.babylonService.getScene());
@@ -124,7 +120,6 @@ export class AnnotationvrService {
     //     }
     //   )
     // );
-
 
     this.controlNext = BABYLON.MeshBuilder.CreatePlane('controlNext', {height: 1, width: 1}, this.babylonService.getScene());
     this.controlNext.parent = this.babylonService.getScene().activeCamera;
@@ -140,24 +135,6 @@ export class AnnotationvrService {
     const label2 = this.createLabel2();
     GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(label2);
 
-    
-    this.controlNext.onRebuildObservable.add(() => {
-      console.log("123");
-    });
-
-    // // ACTION_MANAGER -- Create Action for that acts on Trigger-Event 
-    // this.controlNext.actionManager = new BABYLON.ActionManager(this.babylonService.getScene());
-    // this.controlNext.actionManager.registerAction(
-    //   new BABYLON.ExecuteCodeAction({
-    //         trigger: BABYLON.ActionManager.OnPickDownTrigger
-    //     },
-    //     function () { 
-    //       console.log('Trigger-Action2');
-    //     }
-    //   )
-    // );
-
-
   }
 
   private createLabel() {
@@ -171,11 +148,39 @@ export class AnnotationvrService {
     label.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_TOP;
 
     // ?  // VIELLEICHT HIER DER TRICK
-    // label.onDirtyObservable.add(() => {
-    label.onPointerDownObservable.add(() => {
-      console.log("blablabla");
+    label.onPointerMoveObservable.add(() => {
+      console.log("1");
       this.previousAnnotation();
     });
+    label.onPointerDownObservable.add(() => {
+      console.log("2");
+      this.previousAnnotation();
+    });
+    label.onPointerUpObservable.add(() => {
+      console.log("3");
+      this.previousAnnotation();
+    });
+    label.onPointerClickObservable.add(() => {
+      console.log("4");
+      this.previousAnnotation();
+    });
+    label.onPointerEnterObservable.add(() => {
+      console.log("5");
+      this.previousAnnotation();
+    });
+    label.onDirtyObservable.add(() => {
+      console.log("6");
+      this.previousAnnotation();
+    });
+    label.onBeforeDrawObservable.add(() => {
+      console.log("7");
+      this.previousAnnotation();
+    });
+    label.onAfterDrawObservable.add(() => {
+      console.log("8");
+      this.previousAnnotation();
+    });
+    
     
     return label;
   }
@@ -193,7 +198,7 @@ export class AnnotationvrService {
     
     // ?  // VIELLEICHT HIER DER TRICK  // -- IDEE -- marked as dirty?
     // label.onDirtyObservable.add(() => {
-    label.onPointerDownObservable.add(() => {
+    label.onPointerMoveObservable.add(() => {
       console.log("blablabla");
       this.nextAnnotation();
     });
