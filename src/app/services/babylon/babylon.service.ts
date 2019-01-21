@@ -99,6 +99,13 @@ export class BabylonService {
                 },
                 function () { 
                   console.log('Trigger-Action1-2');
+                  this.actualControl.metadata = "1";
+                  console.log(this.actualControl.metadata);
+                  // this.actualControl._initClickEvent();
+                  // this.actualControl._delayedSimpleClick();
+                  // this.actualControl._onKeyDown();
+                  // this.actualControl._onPointerDown();
+                  // this.actualControl._doubleClickOccured = true;
                 }
               )
             );
