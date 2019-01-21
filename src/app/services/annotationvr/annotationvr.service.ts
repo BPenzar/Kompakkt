@@ -148,10 +148,11 @@ export class AnnotationvrService {
     label.background = 'black';
     label.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_TOP;
 
-    // ?  // VIELLEICHT HIER DER TRICK
     label.onPointerMoveObservable.add(() => {
-      console.log("1_P");
-      // + TRIGGER ACTION
+      if(this.controlPrevious.metadata){
+        console.log("WOW");
+        this.controlPrevious.metadata = null;
+      }
       // =>
       // this.previousAnnotation();
     });
@@ -171,11 +172,8 @@ export class AnnotationvrService {
     label.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_TOP;
 
     
-    // ?  // VIELLEICHT HIER DER TRICK  // -- IDEE -- marked as dirty?
+    // DER TRICK
     label.onPointerMoveObservable.add(() => {
-      console.log("1_N");
-      console.log(this.controlNext.metadata);
-      // + TRIGGER ACTION
       if(this.controlNext.metadata){
         console.log("WOW");
         this.controlNext.metadata = null;
