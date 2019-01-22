@@ -96,7 +96,7 @@ export class BabylonService {
 
             
             // Annotation-Marker-Size
-            this.getActiveCamera().onProjectionMatrixChangedObservable.add(() => {
+            this.getActiveCamera().onViewMatrixChangedObservable.add(() => {
               
               // this.scene.getMeshesByTags('label', mesh => console.log(mesh.scalingDeterminant));
               // this.scene.getMeshesByTags('label', mesh => console.log(mesh.scaling));
