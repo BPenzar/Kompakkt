@@ -50,7 +50,6 @@ export class AnnotationmarkerService {
     // GUI.AdvancedDynamicTexture.CreateForMesh(plane1).addControl(label1);
     const advancedTexture1 = GUI.AdvancedDynamicTexture.CreateForMesh(plane1);
     advancedTexture1.addControl(label1);
-    BABYLON.Tags.AddTagsTo(advancedTexture1, 'advancedTexture');
 
     label1.addControl(this.createRankingNumber(annotation._id, annotation.ranking));
     plane1.material.alpha = 1;
@@ -62,7 +61,6 @@ export class AnnotationmarkerService {
     // GUI.AdvancedDynamicTexture.CreateForMesh(plane2).addControl(label2);
     const advancedTexture2 = GUI.AdvancedDynamicTexture.CreateForMesh(plane2);
     advancedTexture2.addControl(label2);
-    BABYLON.Tags.AddTagsTo(advancedTexture2, 'advancedTexture');
 
     label2.addControl(this.createRankingNumber(annotation._id, annotation.ranking));
     plane2.material.alpha = 0.5;
