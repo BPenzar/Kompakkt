@@ -44,7 +44,7 @@ export class AnnotationmarkerService {
 
     // two Labels: one is for isOccluded true, one for false -> alpha 0.5 for transparancy
 
-    const plane1 = this.createPlane(annotation._id + '_pick', '100%', '100%', annotation._id, positionVector, normalVector);
+    const plane1 = this.createPlane(annotation._id + '_pick', 1, 1, annotation._id, positionVector, normalVector);
     const label1 = this.createClickLabel(annotation._id, '100%', '100%', annotation._id, 'White', 'black', cameraVector);
 
     // GUI.AdvancedDynamicTexture.CreateForMesh(plane1).addControl(label1);
@@ -55,7 +55,7 @@ export class AnnotationmarkerService {
     plane1.material.alpha = 1;
     plane1.renderingGroupId = 0;
 
-    const plane2 = this.createPlane(annotation._id + '_pick', '100%', '100%', annotation._id, positionVector, normalVector);
+    const plane2 = this.createPlane(annotation._id + '_pick', 1, 1, annotation._id, positionVector, normalVector);
     const label2 = this.createClickLabel(annotation._id, '100%', '100%', annotation._id, 'White', 'black', cameraVector);
 
     // GUI.AdvancedDynamicTexture.CreateForMesh(plane2).addControl(label2);
@@ -68,7 +68,7 @@ export class AnnotationmarkerService {
     plane2.renderingGroupId = 1;
   }
 
-  private createPlane(name: string, height: string, width: string, tag: string, position: BABYLON.Vector3, normal: BABYLON.Vector3) {
+  private createPlane(name: string, height: number, width: number, tag: string, position: BABYLON.Vector3, normal: BABYLON.Vector3) {
     const plane = BABYLON.MeshBuilder.CreatePlane(name,
       {height: height, width: width}, this.babylonService.getScene());
     BABYLON.Tags.AddTagsTo(plane, tag + ' plane');
