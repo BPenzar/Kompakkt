@@ -96,12 +96,12 @@ export class BabylonService {
 
             
             // Annotation-Marker-Size
-            this.getActiveCamera().onViewMatrixChangedObservable.add(() => {
+            this.getActiveCamera().onProjectionMatrixChangedObservable.add(() => {
               
               // this.scene.getMeshesByTags('label', mesh => console.log(mesh.scalingDeterminant));
-              this.scene.getMeshesByTags('label', mesh => console.log(mesh.scaling));
+              // this.scene.getMeshesByTags('label', mesh => console.log(mesh.scaling));
               this.scene.getMeshesByTags('plane', mesh => console.log(mesh.scaling));
-              // console.log(this.getActiveCamera().interaxialDistance);
+              console.log(this.getActiveCamera().interaxialDistance);
               // console.log(this.getActiveCamera().position);
               // console.log(this.getActiveCamera().viewport);
               // console.log(this.getActiveCamera().upVector);
