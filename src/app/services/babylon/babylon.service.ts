@@ -95,7 +95,8 @@ export class BabylonService {
             }
 
             // Annotation-Marker-Size
-            this.scene.getMeshesByTags('advancedTexture', mesh => console.log(mesh));
+            this.scene.getMeshesByTags('label', mesh => console.log(mesh));
+            this.scene.getMeshesByTags('tag', mesh => console.log(mesh));
 
           });
 
