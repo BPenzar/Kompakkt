@@ -41,10 +41,11 @@ export class CatalogueService {
         this.isFirstLoad = false;
         this.loadModelService.loadDefaultModelData();
 
-        this.mongohandlerService.isAuthorized().toPromise().then(result => {
+        this.mongohandlerService.isAuthorized().then(result => {
           if (result.status === 'ok') {
             this.fetchCollectionsData();
             this.fetchModelsData();
+            this.loadModelService.getUserData();
             this.isLoggedIn = true;
             this.loggedIn.emit(true);
           } else {
@@ -70,11 +71,13 @@ export class CatalogueService {
             case 'model':
               this.loadModelService.fetchModelData(query);
               this.isFirstLoad = false;
+              this.loadModelService.getUserData();
               break;
 
             case 'compilation':
               this.isFirstLoad = false;
               this.loadModelService.fetchCollectionData(query);
+              this.loadModelService.getUserData();
               break;
 
             default:
@@ -90,10 +93,11 @@ export class CatalogueService {
       }
     } else {
       console.log('Page has already been initially loaded.');
-      this.mongohandlerService.isAuthorized().toPromise().then(result => {
+      this.mongohandlerService.isAuthorized().then(result => {
         if (result.status === 'ok') {
           this.fetchCollectionsData();
           this.fetchModelsData();
+          this.loadModelService.getUserData();
           this.isLoggedIn = true;
           this.loggedIn.emit(true);
         } else {
@@ -107,7 +111,7 @@ export class CatalogueService {
   }
 
   public fetchCollectionsData() {
-    this.mongohandlerService.getAllCompilations().subscribe(compilation => {
+    this.mongohandlerService.getAllCompilations().then(compilation => {
       this.Subjects.collections.next(compilation);
     }, error => {
       this.message.error('Connection to object server refused.');
@@ -115,7 +119,7 @@ export class CatalogueService {
   }
 
   public fetchModelsData() {
-    this.mongohandlerService.getAllModels().subscribe(model => {
+    this.mongohandlerService.getAllModels().then(model => {
       this.Subjects.models.next(model);
     }, error => {
       this.message.error('Connection to object server refused.');
@@ -143,7 +147,7 @@ export class CatalogueService {
     // If collection has not been loaded during initial load
     if (collection === undefined) {
       // try to find it on the server
-      this.mongohandlerService.getCompilation(identifierCollection).subscribe(compilation => {
+      this.mongohandlerService.getCompilation(identifierCollection).then(compilation => {
         // collection is available on server
         if (compilation['_id']) {
           // add it to collections
@@ -169,7 +173,7 @@ export class CatalogueService {
   public selectModelbyID(identifierModel: string): boolean {
     const model = this.Observables.models.source['value'].find(i => i._id === identifierModel);
     if (model === undefined) {
-      this.mongohandlerService.getModel(identifierModel).subscribe(actualModel => {
+      this.mongohandlerService.getModel(identifierModel).then(actualModel => {
         if (actualModel['_id']) {
           this.Subjects.models.next(actualModel);
           this.selectModel(actualModel, false);

@@ -69,49 +69,45 @@ export class BabylonService {
         this.engine.loadingScreen = new LoadingScreen(newCanvas, '',
           '#111111', 'assets/img/kompakkt-icon.png', this.loadingScreenHandler);
 
+          this.scene.registerBeforeRender(() => {
 
-        this.scene.registerBeforeRender(() => {
-
-          if (this.actualControl && this.selectingControl && !this.selectedControl) {
-            
-            this.actualControl.scaling.x += 0.005;
-            this.actualControl.scaling.y += 0.005;
-            this.actualControl.material.diffuseColor = BABYLON.Color3.Red();
-
-            if (this.actualControl.scaling.x >= 1.5) {
-              this.selectedControl = true;
+            if (this.actualControl && this.selectingControl && !this.selectedControl) {
+              
+              this.actualControl.scaling.x += 0.005;
+              this.actualControl.scaling.y += 0.005;
+              this.actualControl.material.diffuseColor = BABYLON.Color3.Red();
+  
+              if (this.actualControl.scaling.x >= 1.5) {
+                this.selectedControl = true;
+              }
             }
-          }
-
-          if (this.selectedControl) {
-
-            // ACTION_MANAGER -- Create Action for that acts on Trigger-Event 
-            // this.actualControl.actionManager = new BABYLON.ActionManager(this.getScene());
-            // this.actualControl.actionManager.registerAction(
-            //   new BABYLON.ExecuteCodeAction({
-            //         trigger: BABYLON.ActionManager.OnPickDownTrigger,
-            //     },
-            //     function () { 
-            //       console.log('Trigger-Action');
-            //     }
-            //   )
-            // );
-            // this.actualControl.actionManager.processTrigger(BABYLON.ActionManager.OnPickDownTrigger);
-
-            this.actualControl.metadata = "1";
-
-            this.actualControl.scaling.x = 1;
-            this.actualControl.scaling.y = 1;
-            this.actualControl.material.diffuseColor = BABYLON.Color3.Black();
-
-            this.selectedControl = false;
-            this.actualControl = false;
-            
-            // const material = new BABYLON.StandardMaterial('meshMaterial', this.scene);
-            // material.diffuseColor = BABYLON.Color3.Purple();
-            // this.actualControl.material = material;
-          }
-        });
+  
+            if (this.selectedControl) {
+  
+              // ACTION_MANAGER -- Create Action for that acts on Trigger-Event 
+              // this.actualControl.actionManager = new BABYLON.ActionManager(this.getScene());
+              // this.actualControl.actionManager.registerAction(
+              //   new BABYLON.ExecuteCodeAction({
+              //         trigger: BABYLON.ActionManager.OnPickDownTrigger,
+              //     },
+              //     function () { 
+              //       console.log('Trigger-Action');
+              //     }
+              //   )
+              // );
+              // this.actualControl.actionManager.processTrigger(BABYLON.ActionManager.OnPickDownTrigger);
+  
+              this.actualControl.metadata = "1";
+  
+              this.actualControl.scaling.x = 1;
+              this.actualControl.scaling.y = 1;
+              this.actualControl.material.diffuseColor = BABYLON.Color3.Black();
+  
+              this.selectedControl = false;
+              this.actualControl = false;
+              
+            }
+          });
 
 
         this.engine.runRenderLoop(() => {
@@ -151,6 +147,7 @@ export class BabylonService {
     const vrButton: HTMLButtonElement = this.document.getElementById('vrbutton');
 
     this.VRHelper = this.scene.createDefaultVRExperience({
+      // Camera für VR ohne Cardboard!
       createDeviceOrientationCamera: false,
       useCustomVRButton: true,
       customVRButton: vrButton
@@ -158,6 +155,7 @@ export class BabylonService {
 
     this.VRHelper.enableInteractions();
 
+    // funktioniert nicht...
     this.VRHelper.displayGaze = true;
 
     this.VRHelper.onNewMeshSelected.add((mesh) => {
