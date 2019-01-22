@@ -55,7 +55,7 @@ export class AnnotationmarkerService {
     plane1.material.alpha = 1;
     plane1.renderingGroupId = 0;
 
-    const plane2 = this.createPlane(annotation._id + '_pick', 1, 1, annotation._id, positionVector, normalVector);
+    const plane2 = this.createPlane(annotation._id + '_pick', '100%', '100%', annotation._id, positionVector, normalVector);
     const label2 = this.createClickLabel(annotation._id, '100%', '100%', annotation._id, 'White', 'black', cameraVector);
 
     // GUI.AdvancedDynamicTexture.CreateForMesh(plane2).addControl(label2);
