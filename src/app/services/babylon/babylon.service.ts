@@ -94,14 +94,15 @@ export class BabylonService {
               
             }
 
-            // Annotation-Marker-Size
-            // this.scene.getMeshesByTags('label', mesh => console.log(mesh.scalingDeterminant));
-            this.scene.getMeshesByTags('plane', mesh => console.log(mesh.scaling));
-            console.log(this.getActiveCamera().interaxialDistance);
-            console.log(this.getActiveCamera().onViewMatrixChangedObservable);
-            console.log(this.getActiveCamera().position);
-            console.log(this.getActiveCamera().viewport);
-            console.log(this.getActiveCamera().upVector);
+            this.getActiveCamera().onViewMatrixChangedObservable.add(() => {
+              // Annotation-Marker-Size
+              // this.scene.getMeshesByTags('label', mesh => console.log(mesh.scalingDeterminant));
+              this.scene.getMeshesByTags('plane', mesh => console.log(mesh.scaling));
+              console.log(this.getActiveCamera().interaxialDistance);
+              console.log(this.getActiveCamera().position);
+              console.log(this.getActiveCamera().viewport);
+              console.log(this.getActiveCamera().upVector);
+            });
 
           });
 
