@@ -71,6 +71,7 @@ export class BabylonService {
 
           this.scene.registerBeforeRender(() => {
 
+            // VR-Annotation-Text-Walk
             if (this.actualControl && this.selectingControl && !this.selectedControl) {
               
               this.actualControl.scaling.x += 0.005;
@@ -84,29 +85,18 @@ export class BabylonService {
   
             if (this.selectedControl) {
   
-              // ACTION_MANAGER -- Create Action for that acts on Trigger-Event 
-              // this.actualControl.actionManager = new BABYLON.ActionManager(this.getScene());
-              // this.actualControl.actionManager.registerAction(
-              //   new BABYLON.ExecuteCodeAction({
-              //         trigger: BABYLON.ActionManager.OnPickDownTrigger,
-              //     },
-              //     function () { 
-              //       console.log('Trigger-Action');
-              //     }
-              //   )
-              // );
-              // this.actualControl.actionManager.processTrigger(BABYLON.ActionManager.OnPickDownTrigger);
-  
               this.actualControl.metadata = "1";
-  
               this.actualControl.scaling.x = 1;
               this.actualControl.scaling.y = 1;
               this.actualControl.material.diffuseColor = BABYLON.Color3.Black();
-  
               this.selectedControl = false;
               this.actualControl = false;
               
             }
+
+            // Annotation-Marker-Size
+            this.scene.getMeshesByTags('advancedTexture', mesh => console.log(mesh));
+
           });
 
 

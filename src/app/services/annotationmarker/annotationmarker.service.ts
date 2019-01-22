@@ -47,7 +47,11 @@ export class AnnotationmarkerService {
     const plane1 = this.createPlane(annotation._id + '_pick', 1, 1, annotation._id, positionVector, normalVector);
     const label1 = this.createClickLabel(annotation._id, '100%', '100%', annotation._id, 'White', 'black', cameraVector);
 
-    GUI.AdvancedDynamicTexture.CreateForMesh(plane1).addControl(label1);
+    // GUI.AdvancedDynamicTexture.CreateForMesh(plane1).addControl(label1);
+    const advancedTexture1 = GUI.AdvancedDynamicTexture.CreateForMesh(plane1);
+    advancedTexture1.addControl(label1);
+    BABYLON.Tags.AddTagsTo(advancedTexture1, 'advancedTexture');
+
     label1.addControl(this.createRankingNumber(annotation._id, annotation.ranking));
     plane1.material.alpha = 1;
     plane1.renderingGroupId = 0;
@@ -55,7 +59,11 @@ export class AnnotationmarkerService {
     const plane2 = this.createPlane(annotation._id + '_pick', 1, 1, annotation._id, positionVector, normalVector);
     const label2 = this.createClickLabel(annotation._id, '100%', '100%', annotation._id, 'White', 'black', cameraVector);
 
-    GUI.AdvancedDynamicTexture.CreateForMesh(plane2).addControl(label2);
+    // GUI.AdvancedDynamicTexture.CreateForMesh(plane2).addControl(label2);
+    const advancedTexture2 = GUI.AdvancedDynamicTexture.CreateForMesh(plane2);
+    advancedTexture2.addControl(label2);
+    BABYLON.Tags.AddTagsTo(advancedTexture2, 'advancedTexture');
+
     label2.addControl(this.createRankingNumber(annotation._id, annotation.ranking));
     plane2.material.alpha = 0.5;
     // TODO: click is not working if renderingGroup == 1 and Object is behind another object
