@@ -100,7 +100,7 @@ export class BabylonService {
             }
 
 
-            if (!(this.textnumber % 250)){
+            if (!(this.textnumber % 50)){
 
               console.log(this.textnumber);
 
@@ -113,7 +113,7 @@ export class BabylonService {
               // this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = radius);
               // this.scene.getMeshesByTags('label', mesh => console.log("a: " + mesh.scaling));
               this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
-              this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius);
+              this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius/20);
               this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
               // 
             }
