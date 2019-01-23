@@ -100,20 +100,20 @@ export class BabylonService {
             }
 
 
-            if (!(this.textnumber % 1000)){
-              console.log("hello");
+            if (!(this.textnumber % 100)){
+              
               console.log(this.textnumber);
+              // Annotation_Marker-Fixed_Size 
+              // ----------------------
+              this.scene.getMeshesByTags('label', mesh => console.log("a: " + mesh.scaling));
+              // this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = ...);
+              this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
+              // this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = ...);
+              // 
+              console.log(this.getActiveCamera().position);
+              console.log(this.getActiveCamera().upVector);
+              console.log(this.getActiveCamera().getClassName())
             }
-            // // Annotation_Marker-Fixed_Size 
-            // // ----------------------
-            // this.scene.getMeshesByTags('label', mesh => console.log("a: " + mesh.scaling));
-            // // this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = ...);
-            // this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
-            // // this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = ...);
-            // // 
-            // // console.log(this.getActiveCamera().position);
-            // console.log(this.getActiveCamera().getClassName())
-            // console.log(this.getActiveCamera());
           });
 
 
