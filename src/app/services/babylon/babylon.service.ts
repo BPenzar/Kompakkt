@@ -63,7 +63,8 @@ export class BabylonService {
               private loadingScreenHandler: LoadingscreenhandlerService,
               @Inject(DOCUMENT) private document: any) {
 
-    this.textnumber = 0;
+    // 
+    this.textnumber = 1;
 
     this.CanvasObservable.subscribe(newCanvas => {
 
@@ -98,6 +99,7 @@ export class BabylonService {
               this.actualControl = false;
             }
 
+
             if (!(this.textnumber % 1000)){
               console.log("hello");
               console.log(this.textnumber);
@@ -117,6 +119,7 @@ export class BabylonService {
 
         this.engine.runRenderLoop(() => {
           this.scene.render();
+          this.textnumber += 1;
         });
 
       }
