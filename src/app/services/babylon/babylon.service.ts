@@ -103,17 +103,19 @@ export class BabylonService {
             if (!(this.textnumber % 250)){
 
               console.log(this.textnumber);
+
+              let radius = Math.abs(this.scene.getCameraByName('arcRotateCamera')['radius']);
+              console.log(radius);
+
               // Annotation_Marker-Fixed_Size 
               // ----------------------
-              this.scene.getMeshesByTags('label', mesh => console.log("a: " + mesh.scaling));
-              // this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = ...);
+              // this.scene.getMeshesByTags('label', mesh => console.log("a: " + mesh.scaling));
+              // this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = radius);
+              // this.scene.getMeshesByTags('label', mesh => console.log("a: " + mesh.scaling));
               this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
-              // this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = ...);
+              this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius);
+              this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
               // 
-              // console.log(this.scene.getCameraByName('arcRotateCamera').radius);
-              console.log(this.scene.getCameraByName('arcRotateCamera')['radius']);
-              // console.log(Math.abs(this.getActiveCamera().position.x) + Math.abs(this.getActiveCamera().position.y) + Math.abs(this.getActiveCamera().position.z));
-              console.log(this.getActiveCamera().getClassName());
             }
           });
 
