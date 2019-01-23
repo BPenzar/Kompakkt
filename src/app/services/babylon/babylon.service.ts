@@ -99,21 +99,9 @@ export class BabylonService {
               this.actualControl = false;
             }
 
-
-            // if (!(this.textnumber % 50)){
-
-              //  console.log(this.textnumber);
-
-              // Annotation_Marker-Fixed_Size 
-              // ----------------------
-              let radius = Math.abs(this.scene.getCameraByName('arcRotateCamera')['radius']);
-              console.log(radius);
-              this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
-              this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius/25);
-              this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
-              // 
-            // }
-
+            // Annotation_Marker-Fixed_Size     
+            let radius = Math.abs(this.scene.getCameraByName('arcRotateCamera')['radius']);
+            this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius/35);
           });
 
 
