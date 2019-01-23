@@ -100,8 +100,8 @@ export class BabylonService {
             }
 
 
-            if (!(this.textnumber % 100)){
-              
+            if (!(this.textnumber % 250)){
+
               console.log(this.textnumber);
               // Annotation_Marker-Fixed_Size 
               // ----------------------
@@ -110,9 +110,14 @@ export class BabylonService {
               this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
               // this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = ...);
               // 
-              console.log(this.getActiveCamera().position);
-              console.log(this.getActiveCamera().upVector);
-              console.log(this.getActiveCamera().getClassName())
+              console.log(this.getActiveCamera().viewport);
+              console.log(this.getActiveCamera().interaxialDistance);
+              console.log(this.getActiveCamera().getViewMatrix());
+              console.log(this.getActiveCamera().getWorldMatrix());
+              // console.log(this.getActiveCamera().getProjectionMatrix());
+              // console.log(this.getActiveCamera().getTransformationMatrix());
+              console.log(this.getActiveCamera().getClassName());
+              // console.log(this.getActiveCamera().getActiveMeshes());
             }
           });
 
