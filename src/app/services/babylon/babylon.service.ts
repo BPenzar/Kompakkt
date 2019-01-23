@@ -110,10 +110,9 @@ export class BabylonService {
               this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
               // this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = ...);
               // 
-              console.log(this.getActiveCamera().getProjectionMatrix());
-              console.log(this.getActiveCamera().getTransformationMatrix());
+              console.log(this.getActiveCamera().position);
+              console.log(this.getActiveCamera().getActiveMeshes());
               console.log(this.getActiveCamera().getClassName());
-              // console.log(this.getActiveCamera().getActiveMeshes());
             }
           });
 
