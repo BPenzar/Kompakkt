@@ -98,8 +98,9 @@ export class BabylonService {
               this.actualControl = false;
             }
 
-            if (!(this.textnumber % 100)){
+            if (!(this.textnumber % 1000)){
               console.log("hello");
+              console.log(this.textnumber);
             }
             // // Annotation_Marker-Fixed_Size 
             // // ----------------------
