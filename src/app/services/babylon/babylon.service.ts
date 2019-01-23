@@ -56,9 +56,14 @@ export class BabylonService {
   private background: BABYLON.Layer;
   private isBackground: boolean;
 
+  // 
+  private textnumber: number;
+
   constructor(private message: MessageService,
               private loadingScreenHandler: LoadingscreenhandlerService,
               @Inject(DOCUMENT) private document: any) {
+
+    this.textnumber = 0;
 
     this.CanvasObservable.subscribe(newCanvas => {
 
@@ -91,23 +96,21 @@ export class BabylonService {
               this.actualControl.material.diffuseColor = BABYLON.Color3.Black();
               this.selectedControl = false;
               this.actualControl = false;
-              
             }
 
-            
-            // Annotation-Marker-Size
-            this.getActiveCamera().onViewMatrixChangedObservable.add(() => {
-              
-              // this.scene.getMeshesByTags('label', mesh => console.log(mesh.scalingDeterminant));
-              // this.scene.getMeshesByTags('label', mesh => console.log(mesh.scaling));
-              this.scene.getMeshesByTags('plane', mesh => console.log("a: " + mesh.scaling));
-              // console.log(this.getActiveCamera().position);
-              console.log(this.getActiveCamera().state);
-              console.log(this.getActiveCamera().upVector);
-              console.log(this.getActiveCamera().worldMatrixFromCache);              
-            });
-
-
+            if (!(this.textnumber % 100)){
+              console.log("hello");
+            }
+            // // Annotation_Marker-Fixed_Size 
+            // // ----------------------
+            // this.scene.getMeshesByTags('label', mesh => console.log("a: " + mesh.scaling));
+            // // this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = ...);
+            // this.scene.getMeshesByTags('plane', mesh => console.log("b: " + mesh.scaling));
+            // // this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = ...);
+            // // 
+            // // console.log(this.getActiveCamera().position);
+            // console.log(this.getActiveCamera().getClassName())
+            // console.log(this.getActiveCamera());
           });
 
 
