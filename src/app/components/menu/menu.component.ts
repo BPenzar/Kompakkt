@@ -103,6 +103,8 @@ export class MenuComponent implements OnInit {
   public pressVrButton() {
     this.cameraService.createVrHelperButton();
   }
+
+
   
   public enterFullscreen(): void {
 
