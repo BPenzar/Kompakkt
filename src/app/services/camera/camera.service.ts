@@ -58,11 +58,13 @@ export class CameraService {
 
         this.arcRotateCamera.attachControl(newCanvas, false);
 
+        // VR BUTTON
         // this.vrHelper = this.babylonService.createVRHelper();
       }
     });
   }
 
+  // VR BUTTON
   public createVrHelperButton(): void {
     this.vrHelper = this.babylonService.createVRHelper();
   }

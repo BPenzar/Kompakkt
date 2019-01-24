@@ -97,6 +97,13 @@ export class MenuComponent implements OnInit {
     this.fullscreen = false;
   }
 
+
+  
+  // VR BUTTON
+  public pressVrButton() {
+    this.cameraService.createVrHelperButton();
+  }
+  
   public enterFullscreen(): void {
 
     // BabylonJS' this.engine.switchFullscreen(false); creates a fullscreen without our menu.
@@ -126,12 +133,6 @@ export class MenuComponent implements OnInit {
 
   public saveScene() {
     console.log(this.babylonService.saveScene());
-  }
-
-  
-  // VR BUTTON
-  public pressVrButton() {
-    this.cameraService.createVrHelperButton();
   }
 
   public editScene(): void {
