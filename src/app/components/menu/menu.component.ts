@@ -98,10 +98,12 @@ export class MenuComponent implements OnInit {
   }
 
   public enterVrMode(): void {
-    this.babylonService.vrModeIsActive.emit(true);
+    // this.babylonService.vrModeIsActive.emit(true);
+    this.babylonService.getVRHelper().enterVR();
+    // this.babylonService.getVRHelper().onEnteringVR;
   }
 
-  
+
   public enterFullscreen(): void {
 
     // BabylonJS' this.engine.switchFullscreen(false); creates a fullscreen without our menu.
