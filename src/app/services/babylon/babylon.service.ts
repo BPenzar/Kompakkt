@@ -91,15 +91,15 @@ export class BabylonService {
   
             if (this.selectedControl) {
   
-              this.actualControl.metadata = "1";
+              this.actualControl.metadata = "1";  
               this.actualControl.scaling.x = 1;
               this.actualControl.scaling.y = 1;
               this.actualControl.material.diffuseColor = BABYLON.Color3.Black();
               this.selectedControl = false;
-              this.actualControl = false;
+              this.actualControl = false;         
             }
 
-            // Annotation_Marker-Fixed_Size     
+            // Annotation_Marker -- Fixed_Size_On_Zoom
             let radius = Math.abs(this.scene.getCameraByName('arcRotateCamera')['radius']);
             this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius/35);
           });
