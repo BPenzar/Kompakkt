@@ -193,6 +193,9 @@ export class BabylonService {
 
     });
 
+    // // VR BUTTON
+    // this.VRHelper.enterVR();
+    
     this.VRHelper.onEnteringVRObservable.add(() => {
       this.vrModeIsActive.emit(true);
     });
