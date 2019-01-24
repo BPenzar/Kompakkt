@@ -58,9 +58,13 @@ export class CameraService {
 
         this.arcRotateCamera.attachControl(newCanvas, false);
 
-        this.vrHelper = this.babylonService.createVRHelper();
+        // this.vrHelper = this.babylonService.createVRHelper();
       }
     });
+  }
+
+  public createVrHelperButton(): void {
+    this.vrHelper = this.babylonService.createVRHelper();
   }
 
   public setCamArcRotate(): void {
