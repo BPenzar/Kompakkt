@@ -4,9 +4,9 @@ import {CatalogueService} from '../../services/catalogue/catalogue.service';
 import {Model} from '../../interfaces/model/model.interface';
 import {LoadModelService} from '../../services/load-model/load-model.service';
 import {MessageService} from '../../services/message/message.service';
-import {MongohandlerService} from '../../services/mongohandler/mongohandler.service';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {LoginComponent} from '../login/login.component';
+import {PasswordComponent} from '../password/password.component';
 
 
 @Component({
@@ -39,7 +39,6 @@ export class CollectionsOverviewComponent implements OnInit {
               public catalogueService: CatalogueService,
               private loadModelService: LoadModelService,
               private message: MessageService,
-              private mongohandlerService: MongohandlerService,
               public dialog: MatDialog,
   ) {
   }
@@ -60,6 +59,9 @@ export class CollectionsOverviewComponent implements OnInit {
 
     this.loadModelService.singleCollection.subscribe(singleCollection => {
       this.isSingleCollection = singleCollection;
+      if (this.isSingleCollection) {
+        this.overlayService.toggleCollectionsOverview();
+      }
     });
 
     this.loadModelService.Observables.actualCollection.subscribe(actualCollection => {
@@ -87,6 +89,7 @@ export class CollectionsOverviewComponent implements OnInit {
   }
 
   handleCollectionChoice(event) {
+    console.log('Ausgewählt: ', event.value);
     this.singleCollectionSelected = true;
     this.singleModelSelected = true;
     this.catalogueService.selectCollection(event.value);
@@ -98,14 +101,31 @@ export class CollectionsOverviewComponent implements OnInit {
     this.catalogueService.selectModel(event.value, this.collectionSelected);
   }
 
-  searchCollectionByID() {
-    const isloadable = this.catalogueService.selectCollectionByID(this.identifierCollection);
-    if (isloadable) {
-      this.singleCollectionSelected = true;
-      this.singleModelSelected = true;
-    } else {
-      this.message.error('Can not find Collection with ID ' + this.identifierCollection + '.');
-    }
+  async searchCollectionByID() {
+
+
+    this.catalogueService.selectCollectionByID(this.identifierCollection).then(result => {
+      switch (result) {
+        case 'loaded':
+          this.singleCollectionSelected = true;
+          this.singleModelSelected = true;
+          break;
+
+        case 'missing':
+          this.message.error('Can not find Collection with ID ' + this.identifierCollection + '.');
+          break;
+
+        case 'password':
+          console.log('password');
+          this.passwordDialog();
+          break;
+
+        default:
+          this.message.error('Can not find Collection with ID ' + this.identifierCollection + '.');
+      }
+    }, error => {
+      this.message.error('Connection to object server refused.');
+    });
   }
 
   searchModelByID() {
@@ -125,6 +145,28 @@ export class CollectionsOverviewComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     this.dialog.open(LoginComponent, dialogConfig);
+  }
+
+  public passwordDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      id: this.identifierCollection
+    };
+    console.log('password');
+
+    const dialogRef = this.dialog.open(PasswordComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data === true) {
+        this.singleCollectionSelected = true;
+        this.singleModelSelected = true;
+        this.identifierCollection = '';
+      }
+    });
+
   }
 
 }
