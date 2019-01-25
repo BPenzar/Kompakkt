@@ -56,15 +56,9 @@ export class BabylonService {
   private background: BABYLON.Layer;
   private isBackground: boolean;
 
-  // 
-  private textnumber: number;
-
   constructor(private message: MessageService,
               private loadingScreenHandler: LoadingscreenhandlerService,
               @Inject(DOCUMENT) private document: any) {
-
-    // 
-    this.textnumber = 1;
 
     this.CanvasObservable.subscribe(newCanvas => {
 
@@ -102,12 +96,11 @@ export class BabylonService {
             // Annotation_Marker -- Fixed_Size_On_Zoom
             let radius = Math.abs(this.scene.getCameraByName('arcRotateCamera')['radius']);
             this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius/35);
+            this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = radius/35);
           });
-
 
         this.engine.runRenderLoop(() => {
           this.scene.render();
-          this.textnumber += 1;
         });
 
       }
