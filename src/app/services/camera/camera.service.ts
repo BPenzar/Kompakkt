@@ -65,7 +65,7 @@ export class CameraService {
   }
 
   // VR BUTTON
-  public createVrHelperButton(): void {
+  public createVrHelperInCamera(): void {
     this.vrHelper = this.babylonService.createVRHelper();
     this.babylonService.getVRHelper().enterVR();
   }

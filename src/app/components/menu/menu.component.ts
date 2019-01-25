@@ -96,15 +96,11 @@ export class MenuComponent implements OnInit {
     this.babylonService.getEngine().switchFullscreen(false);
     this.fullscreen = false;
   }
-
-
   
   // VR BUTTON
   public pressVrButton() {
-    this.cameraService.createVrHelperButton();
+    this.cameraService.createVrHelperInCamera();
   }
-
-
   
   public enterFullscreen(): void {
 
