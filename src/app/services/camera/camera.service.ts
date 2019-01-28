@@ -305,6 +305,11 @@ export class CameraService {
 
 
     this.scene.activeCamera = this.vrHelper.webVRCamera;
+    
+    console.log(positionVector);
+    console.log(this.scene.activeCamera);
+    console.log(this.vrHelper.webVRCamera);
+
     this.vrHelper.webVRCamera.attachControl(this.canvas, false);
 
     const name = 'animCam',

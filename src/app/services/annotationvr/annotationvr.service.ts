@@ -138,7 +138,6 @@ export class AnnotationvrService {
     // DER TRICK
     label.onPointerMoveObservable.add(() => {
       if(this.controlPrevious.metadata){
-        console.log("WOW");
         this.controlPrevious.metadata = null;
         this.previousAnnotation();
       }
@@ -162,7 +161,6 @@ export class AnnotationvrService {
     // DER TRICK
     label.onPointerMoveObservable.add(() => {
       if(this.controlNext.metadata){
-        console.log("WOW");
         this.controlNext.metadata = null;
         this.nextAnnotation();
       }
@@ -263,8 +261,8 @@ export class AnnotationvrService {
     const test = this.annotationService.annotations[index];
     const test2 = this.annotationService.annotations.length;
 
-    console.log('annotation an der Stelle ' + index + ' ist ' + test + 'Array länge ' + test2);
-    console.log('annotationen: ' + this.annotationService.annotations);
+    // console.log('annotation an der Stelle ' + index + ' ist ' + test + 'Array länge ' + test2);
+    // console.log('annotationen: ' + this.annotationService.annotations);
     
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
