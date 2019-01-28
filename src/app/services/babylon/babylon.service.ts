@@ -137,10 +137,17 @@ export class BabylonService {
 
     this.VRHelper = this.scene.createDefaultVRExperience({
       // Camera für VR ohne Cardboard!
-      createDeviceOrientationCamera: false,
+      createDeviceOrientationCamera: true,
+      // createDeviceOrientationCamera: false,
       useCustomVRButton: true,
       customVRButton: vrButton
     });
+
+
+    // Create DeviceOrientationCamera
+    // ------------------------------
+    // // Parameters: name, alpha, beta, radius, target, scene, compensateDistortion, vrCameraMetrics
+    // const camera = new BABYLON.VRDeviceOrientationArcRotateCamera ("Camera", Math.PI/2, Math.PI/4, 25, new BABYLON.Vector3 (0, 0, 0), scene);   
 
     // this.VRHelper.gazeTrackerMesh = BABYLON.Mesh.CreateSphere("sphere1", 32, 0.1, this.scene);
     this.VRHelper.enableInteractions();
