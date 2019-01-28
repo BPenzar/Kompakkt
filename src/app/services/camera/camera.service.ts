@@ -309,6 +309,10 @@ export class CameraService {
     console.log(this.scene.activeCamera);
     console.log(this.scene.activeCamera.position);
 
+    if (this.scene.activeCamera === this.vrHelper.webVRCamera) {
+      console.log("true");
+    }
+
     // console.log(this.vrHelper.webVRCamera);
     // console.log(this.vrHelper.webVRCamera.devicePosition);
     // console.log(this.vrHelper.webVRCamera.deviceRotationQuaternion);
@@ -319,59 +323,59 @@ export class CameraService {
 
 
     // ANIMATION
-    // ------------------------------------------------------------------------------------------
-    // const name = 'animCam',
-    //   frames = 30;
+    const name = 'animCam',
+      frames = 30;
 
-    // const animCamAlpha = new BABYLON.Animation(name, 'alpha', frames,
-    //   BABYLON.Animation.ANIMATIONTYPE_FLOAT,
-    //   BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+    const animCamAlpha = new BABYLON.Animation(name, 'alpha', frames,
+      BABYLON.Animation.ANIMATIONTYPE_FLOAT,
+      BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
 
-    // animCamAlpha.setKeys([
-    //   {
-    //     frame: 0,
-    //     value: this.vrHelper.webVRCamera.alpha
-    //   }, {
-    //     frame: 30,
-    //     value: positionVector.x
-    //   }
-    // ]);
-    // this.vrHelper.webVRCamera.animations.push(animCamAlpha);
+    animCamAlpha.setKeys([
+      {
+        frame: 0,
+        value: this.vrHelper.webVRCamera.position.x
+      }, {
+        frame: 30,
+        value: positionVector.x
+      }
+    ]);
+    this.vrHelper.webVRCamera.animations.push(animCamAlpha);
 
-    // const animCamBeta = new BABYLON.Animation(name, 'beta', frames,
-    //   BABYLON.Animation.ANIMATIONTYPE_FLOAT,
-    //   BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+    const animCamBeta = new BABYLON.Animation(name, 'beta', frames,
+      BABYLON.Animation.ANIMATIONTYPE_FLOAT,
+      BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
 
-    // animCamBeta.setKeys([
-    //   {
-    //     frame: 0,
-    //     value: this.vrHelper.webVRCamera.beta
-    //   }, {
-    //     frame: 30,
-    //     value: positionVector.y
-    //   }]);
-    // this.vrHelper.webVRCamera.animations.push(animCamBeta);
+    animCamBeta.setKeys([
+      {
+        frame: 0,
+        value: this.vrHelper.webVRCamera.position.y
+      }, {
+        frame: 30,
+        value: positionVector.y
+      }]);
+    this.vrHelper.webVRCamera.animations.push(animCamBeta);
 
-    // const animCamRadius = new BABYLON.Animation(name, 'radius', frames,
-    //   BABYLON.Animation.ANIMATIONTYPE_FLOAT,
-    //   BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+    const animCamRadius = new BABYLON.Animation(name, 'radius', frames,
+      BABYLON.Animation.ANIMATIONTYPE_FLOAT,
+      BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
 
-    // animCamRadius.setKeys([
-    //   {
-    //     frame: 0,
-    //     value: this.vrHelper.webVRCamera.radius
-    //   }, {
-    //     frame: 30,
-    //     value: positionVector.z
-    //   }]);
-    // this.vrHelper.webVRCamera.animations.push(animCamRadius);
+    animCamRadius.setKeys([
+      {
+        frame: 0,
+        value: this.vrHelper.webVRCamera.position.z
+      }, {
+        frame: 30,
+        value: positionVector.z
+      }]);
+    this.vrHelper.webVRCamera.animations.push(animCamRadius);
 
     // this.vrHelper.webVRCamera.setTarget(BABYLON.Vector3.Zero());
 
-    // this.scene.beginAnimation(this.vrHelper.webVRCamera, 0, 30, false, 1, function () {
-    // });
+    this.scene.beginAnimation(this.vrHelper.webVRCamera, 0, 30, false, 1, function () {
+    });
     
   }
+
 
   public getActualCameraPosAnnotation() {
     const cameraPosition = [{dimension: 'x', value: this.arcRotateCamera.alpha},
@@ -379,6 +383,7 @@ export class CameraService {
       {dimension: 'z', value: this.arcRotateCamera.radius}];
     return cameraPosition;
   }
+
 
   public getActualCameraPosInitialView() {
     return {
