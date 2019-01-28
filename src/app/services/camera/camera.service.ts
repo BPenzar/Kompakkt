@@ -308,17 +308,18 @@ export class CameraService {
     console.log(positionVector);
     console.log(this.scene.activeCamera);
     console.log(this.scene.activeCamera.position);
+
     // console.log(this.vrHelper.webVRCamera);
     // console.log(this.vrHelper.webVRCamera.devicePosition);
     // console.log(this.vrHelper.webVRCamera.deviceRotationQuaternion);
 
-    
-
-    this.scene.activeCamera = this.vrHelper.webVRCamera;
+  
+    // this.scene.activeCamera = this.vrHelper.webVRCamera;
     this.vrHelper.webVRCamera.attachControl(this.canvas, false);
 
 
     // ANIMATION
+    // ------------------------------------------------------------------------------------------
     // const name = 'animCam',
     //   frames = 30;
 
@@ -365,7 +366,7 @@ export class CameraService {
     //   }]);
     // this.vrHelper.webVRCamera.animations.push(animCamRadius);
 
-    this.vrHelper.webVRCamera.setTarget(BABYLON.Vector3.Zero());
+    // this.vrHelper.webVRCamera.setTarget(BABYLON.Vector3.Zero());
 
     // this.scene.beginAnimation(this.vrHelper.webVRCamera, 0, 30, false, 1, function () {
     // });
