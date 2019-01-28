@@ -309,6 +309,7 @@ export class CameraService {
     console.log("VR-CAMERA - Info");
     console.log(positionVector);
     console.log(this.scene.activeCamera);
+    console.log(this.scene.activeCamera.position);
     console.log(this.vrHelper.webVRCamera);
 
     this.vrHelper.webVRCamera.attachControl(this.canvas, false);
@@ -363,6 +364,12 @@ export class CameraService {
 
     this.scene.beginAnimation(this.vrHelper.webVRCamera, 0, 30, false, 1, function () {
     });
+
+    console.log("VR-CAMERA - Info-2");
+    console.log(positionVector);
+    console.log(this.scene.activeCamera);
+    console.log(this.scene.activeCamera.position);
+    console.log(this.vrHelper.webVRCamera);
   }
 
   public getActualCameraPosAnnotation() {
