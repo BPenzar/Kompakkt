@@ -312,17 +312,10 @@ export class CameraService {
     // console.log(this.vrHelper.webVRCamera.devicePosition);
     // console.log(this.vrHelper.webVRCamera.deviceRotationQuaternion);
 
-    // Create DeviceOrientationCamera
-    // ------------------------------
-    // // Parameters: name, alpha, beta, radius, target, scene, compensateDistortion, vrCameraMetrics
-    let camera = new BABYLON.VRDeviceOrientationArcRotateCamera ("Camera", positionVector.x, positionVector.y, positionVector.z, new BABYLON.Vector3 (0, 0, 0), this.babylonService.getScene());   
-    this.scene.activeCamera = camera;
     
 
-    // this.scene.activeCamera = this.vrHelper.webVRCamera;
-    // this.vrHelper.webVRCamera.attachControl(this.canvas, false);
-
-
+    this.scene.activeCamera = this.vrHelper.webVRCamera;
+    this.vrHelper.webVRCamera.attachControl(this.canvas, false);
 
 
     // ANIMATION
@@ -372,15 +365,11 @@ export class CameraService {
     //   }]);
     // this.vrHelper.webVRCamera.animations.push(animCamRadius);
 
-    // this.vrHelper.webVRCamera.setTarget(BABYLON.Vector3.Zero());
+    this.vrHelper.webVRCamera.setTarget(BABYLON.Vector3.Zero());
 
     // this.scene.beginAnimation(this.vrHelper.webVRCamera, 0, 30, false, 1, function () {
     // });
-
-    console.log("VR-CAMERA - Info-2");
-    console.log(positionVector);
-    console.log(this.scene.activeCamera);
-    console.log(this.scene.activeCamera.position);
+    
   }
 
   public getActualCameraPosAnnotation() {
