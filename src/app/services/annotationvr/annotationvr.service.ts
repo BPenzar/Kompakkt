@@ -269,11 +269,19 @@ export class AnnotationvrService {
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
 
-      // const cameraVector = new BABYLON.Vector3(this.annotationService.annotations[index].cameraPosition[0].value,
-      //   this.annotationService.annotations[index].cameraPosition[1].value,
-      //   this.annotationService.annotations[index].cameraPosition[2].value);
-      // this.cameraService.moveVRCameraToTarget(cameraVector);
+
+      // VR CAMERA
+      const cameraVector = new BABYLON.Vector3(this.annotationService.annotations[index].cameraPosition[0].value,
+        this.annotationService.annotations[index].cameraPosition[1].value,
+        this.annotationService.annotations[index].cameraPosition[2].value);
+      
+      console.log(cameraVector);
+      this.cameraService.moveVRCameraToTarget(cameraVector);
+      
+      // HUD 
       this.moveVRcontrols();
+
+
     } else {
       this.actualRanking = 0;
     }
