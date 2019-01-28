@@ -319,7 +319,7 @@ export class CameraService {
 
   
     // this.scene.activeCamera = this.vrHelper.webVRCamera;
-    this.vrHelper.webVRCamera.attachControl(this.canvas, false);
+    // this.vrHelper.webVRCamera.attachControl(this.canvas, false);
 
 
     // ANIMATION
@@ -333,7 +333,7 @@ export class CameraService {
     animCamAlpha.setKeys([
       {
         frame: 0,
-        value: this.vrHelper.webVRCamera.position.x
+        value: this.scene.activeCamera.position.x
       }, {
         frame: 30,
         value: positionVector.x
@@ -348,7 +348,7 @@ export class CameraService {
     animCamBeta.setKeys([
       {
         frame: 0,
-        value: this.vrHelper.webVRCamera.position.y
+        value: this.scene.activeCamera.position.y
       }, {
         frame: 30,
         value: positionVector.y
@@ -362,16 +362,16 @@ export class CameraService {
     animCamRadius.setKeys([
       {
         frame: 0,
-        value: this.vrHelper.webVRCamera.position.z
+        value: this.scene.activeCamera.position.z
       }, {
         frame: 30,
         value: positionVector.z
       }]);
-    this.vrHelper.webVRCamera.animations.push(animCamRadius);
+      this.scene.activeCamera.animations.push(animCamRadius);
 
     // this.vrHelper.webVRCamera.setTarget(BABYLON.Vector3.Zero());
 
-    this.scene.beginAnimation(this.vrHelper.webVRCamera, 0, 30, false, 1, function () {
+    this.scene.beginAnimation(this.scene.activeCamera, 0, 30, false, 1, function () {
     });
     
   }

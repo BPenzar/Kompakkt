@@ -273,9 +273,9 @@ export class AnnotationvrService {
         this.annotationService.annotations[index].cameraPosition[1].value,
         this.annotationService.annotations[index].cameraPosition[2].value);
       
-      console.log("Annotation Info");
+      // console.log("Annotation Info");
       console.log(this.annotationService.annotations[index]);
-      console.log(cameraVector);
+      // console.log(cameraVector);
       this.cameraService.moveVRCameraToTarget(cameraVector);
       
       // HUD 
