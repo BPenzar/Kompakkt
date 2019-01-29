@@ -301,17 +301,14 @@ export class CameraService {
     });
   }
 
-  public moveVRCameraToTarget(positionVector: BABYLON.Vector3) {
 
+
+  public moveVRCameraToTarget(positionVector: BABYLON.Vector3) {
 
     console.log("VR-CAMERA - Info");
     console.log(positionVector);
     console.log(this.scene.activeCamera);
     console.log(this.scene.activeCamera.position);
-
-    if (this.scene.activeCamera == this.vrHelper.webVRCamera) {
-      console.log("true");
-    }
 
   
     // this.scene.activeCamera = this.vrHelper.webVRCamera;
@@ -322,7 +319,7 @@ export class CameraService {
     const name = 'animCam',
       frames = 30;
 
-    const animCamAlpha = new BABYLON.Animation(name, 'alpha', frames,
+    const animCamAlpha = new BABYLON.Animation(name, 'position.x', frames,
       BABYLON.Animation.ANIMATIONTYPE_FLOAT,
       BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
 
@@ -337,7 +334,7 @@ export class CameraService {
     ]);
     this.vrHelper.webVRCamera.animations.push(animCamAlpha);
 
-    const animCamBeta = new BABYLON.Animation(name, 'beta', frames,
+    const animCamBeta = new BABYLON.Animation(name, 'position.y', frames,
       BABYLON.Animation.ANIMATIONTYPE_FLOAT,
       BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
 
@@ -351,7 +348,7 @@ export class CameraService {
       }]);
     this.vrHelper.webVRCamera.animations.push(animCamBeta);
 
-    const animCamRadius = new BABYLON.Animation(name, 'radius', frames,
+    const animCamRadius = new BABYLON.Animation(name, 'position.z', frames,
       BABYLON.Animation.ANIMATIONTYPE_FLOAT,
       BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
 
