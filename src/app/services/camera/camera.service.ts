@@ -306,8 +306,8 @@ export class CameraService {
   public moveVRCameraToTarget(positionVector: BABYLON.Vector3) {
 
     // FOR VR-HUD
-    this.scene.activeCamera = this.vrHelper.webVRCamera;
-    this.vrHelper.webVRCamera.attachControl(this.canvas, false);
+    // this.scene.activeCamera = this.vrHelper.webVRCamera;
+    // this.vrHelper.webVRCamera.attachControl(this.canvas, false);
 
 
     // ANIMATION
@@ -327,7 +327,7 @@ export class CameraService {
         value: positionVector.x
       }
     ]);
-    this.vrHelper.webVRCamera.animations.push(animCamAlpha);
+    this.scene.activeCamera.animations.push(animCamAlpha);
 
     const animCamBeta = new BABYLON.Animation(name, 'position.y', frames,
       BABYLON.Animation.ANIMATIONTYPE_FLOAT,
@@ -341,7 +341,7 @@ export class CameraService {
         frame: 30,
         value: positionVector.y
       }]);
-    this.vrHelper.webVRCamera.animations.push(animCamBeta);
+      this.scene.activeCamera.animations.push(animCamBeta);
 
     const animCamRadius = new BABYLON.Animation(name, 'position.z', frames,
       BABYLON.Animation.ANIMATIONTYPE_FLOAT,

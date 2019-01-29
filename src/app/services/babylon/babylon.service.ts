@@ -134,8 +134,8 @@ export class BabylonService {
                 break;
             }
 
-            console.log(mesh.position);
-            console.log(this.getScene().activeCamera.position);
+            // console.log(mesh.position);
+            // console.log(this.getScene().activeCamera.position);
           });
 
         });
