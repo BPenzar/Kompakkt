@@ -99,15 +99,19 @@ export class BabylonService {
             this.actualControl = false;
           }
 
+
           // Annotation_Marker -- Fixed_Size_On_Zoom
           const radius = Math.abs(this.scene.getCameraByName('arcRotateCamera')['radius']);
           this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius / 35);
           this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = radius / 35);
 
-
           // FOR VR-HUD
-          this.cameraWrapper.position = this.scene.activeCamera.position;
-		      // this.cameraWrapper.rotation = this.scene.activeCamera.rotation;
+          this.scene.getMeshesByTags('control', mesh => {
+            console.log("control-mesh");
+            console.log(mesh);
+            console.log(mesh.parent);
+          });
+
         });
 
         this.engine.runRenderLoop(() => {
