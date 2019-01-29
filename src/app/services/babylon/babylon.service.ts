@@ -113,21 +113,21 @@ export class BabylonService {
             switch (mesh.name) {
 
               case 'controlPrevious':
-                // mesh.position.x = this.getActiveCamera().position.x;
-                // mesh.position.y = this.getActiveCamera().position.y;  
-                // mesh.position.z = this.getActiveCamera().position.z;
+                // mesh.position.x = this.getActiveCamera().position.x - 1.5;
+                // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
+                // mesh.position.z = this.getActiveCamera().position.z + 3;
                 break;
       
               case 'controlNext':
-                // mesh.position.x = this.getActiveCamera().position.x;
-                // mesh.position.y = this.getActiveCamera().position.y;  
-                // mesh.position.z = this.getActiveCamera().position.z;
+                // mesh.position.x = this.getActiveCamera().position.x + 1.5;
+                // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
+                // mesh.position.z = this.getActiveCamera().position.z + 3;
                 break;
       
               case 'annotationTextGround':
                 // mesh.position.x = this.getActiveCamera().position.x; 
-                // mesh.position.y = this.getActiveCamera().position.y;  
-                // mesh.position.z = this.getActiveCamera().position.z;
+                // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
+                // mesh.position.z = this.getActiveCamera().position.z + 3;
                 break;
       
               default:

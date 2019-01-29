@@ -61,7 +61,7 @@ export class AnnotationvrService {
     // ?
     this.actualRanking = 0;
     
-    
+
     // FOR VR-HUD
     // Previous-Annotation-Mesh 
     this.posXcontrolPrevious = this.babylonService.getActiveCamera().position.x - 1.5;
@@ -76,7 +76,7 @@ export class AnnotationvrService {
     // Annotation-Text-Mesh 
     this.posXtextfield = this.babylonService.getActiveCamera().position.x + 0;
     this.posYtextfield = this.babylonService.getActiveCamera().position.y - 0.9;
-    this.posZtextfield = this.babylonService.getActiveCamera().position.x + 3;
+    this.posZtextfield = this.babylonService.getActiveCamera().position.z + 3;
 
 
     // // Previous-Annotation-Mesh 
