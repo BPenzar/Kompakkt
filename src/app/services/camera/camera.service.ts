@@ -309,13 +309,9 @@ export class CameraService {
     console.log(this.scene.activeCamera);
     console.log(this.scene.activeCamera.position);
 
-    if (this.scene.activeCamera === this.vrHelper.webVRCamera) {
+    if (this.scene.activeCamera == this.vrHelper.webVRCamera) {
       console.log("true");
     }
-
-    // console.log(this.vrHelper.webVRCamera);
-    // console.log(this.vrHelper.webVRCamera.devicePosition);
-    // console.log(this.vrHelper.webVRCamera.deviceRotationQuaternion);
 
   
     // this.scene.activeCamera = this.vrHelper.webVRCamera;
@@ -373,7 +369,11 @@ export class CameraService {
 
     this.scene.beginAnimation(this.scene.activeCamera, 0, 30, false, 1, function () {
     });
-    
+
+    console.log("VR-CAMERA - Info-2");
+    console.log(positionVector);
+    console.log(this.scene.activeCamera);
+    console.log(this.scene.activeCamera.position);
   }
 
 
