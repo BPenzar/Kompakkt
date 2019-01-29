@@ -106,14 +106,36 @@ export class BabylonService {
           this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius / 35);
           this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = radius / 35);
 
+
           // FOR VR-HUD
           this.scene.getMeshesByTags('control', mesh => {
+            
+            switch (mesh.name) {
+
+              case 'controlPrevious':
+                mesh.position.x += this.getActiveCamera().position.x;
+                mesh.position.y += this.getActiveCamera().position.y;  
+                mesh.position.z += this.getActiveCamera().position.z;
+                break;
+      
+              case 'controlNext':
+                mesh.position.x += this.getActiveCamera().position.x;
+                mesh.position.y += this.getActiveCamera().position.y;  
+                mesh.position.z += this.getActiveCamera().position.z;
+                break;
+      
+              case 'annotationTextGround':
+                mesh.position.x += this.getActiveCamera().position.x; 
+                mesh.position.y += this.getActiveCamera().position.y;  
+                mesh.position.z += this.getActiveCamera().position.z;
+                break;
+      
+              default:
+                break;
+            }
+
             console.log(mesh.position);
             console.log(this.getActiveCamera().position);
-
-            mesh.position.x = this.getActiveCamera().position.x;
-            mesh.position.y = this.getActiveCamera().position.y;
-            // mesh.position.z = this.getActiveCamera().position.z;
           });
 
         });
