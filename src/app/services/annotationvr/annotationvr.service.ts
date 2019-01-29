@@ -284,10 +284,7 @@ export class AnnotationvrService {
     // ----------------------------------------------------------------------------------------------------
     console.log("VR-CAMERA - Info");
     console.log("--------------------");
-    console.log("Annotation Position");
-    console.log(new BABYLON.Vector3(this.annotationService.annotations[index].cameraPosition[0].value,
-      this.annotationService.annotations[index].cameraPosition[1].value,
-      this.annotationService.annotations[index].cameraPosition[2].value));
+
     console.log("Actiove Camera Position");
     console.log(this.babylonService.getScene().activeCamera.position);
 
@@ -302,21 +299,23 @@ export class AnnotationvrService {
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
 
-
-      // VR CAMERA
       // const cameraVector = new BABYLON.Vector3(this.annotationService.annotations[index].cameraPosition[0].value,
       //   this.annotationService.annotations[index].cameraPosition[1].value,
       //   this.annotationService.annotations[index].cameraPosition[2].value);
 
       // GET POSITION OF ANNOTATION-MARKER-MESH IN VR-SCENE
+      const checkAnnotation = this.babylonService.getScene().getMeshByName(this.annotationService.annotations[index].title).name;
       let cameraVector;
       this.babylonService.getScene().getMeshesByTags('plane', mesh => {
         
-        cameraVector = mesh.position;
-      });
-      
+        if (checkAnnotation === mesh.name){
 
-      this.cameraService.moveVRCameraToTarget(cameraVector);
+          cameraVector = mesh.position;
+          this.cameraService.moveVRCameraToTarget(cameraVector);
+        }
+      });
+
+      // this.cameraService.moveVRCameraToTarget(cameraVector);
       
       // VR_HUD 
       this.moveVRcontrols();
