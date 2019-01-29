@@ -304,9 +304,16 @@ export class AnnotationvrService {
 
 
       // VR CAMERA
-      const cameraVector = new BABYLON.Vector3(this.annotationService.annotations[index].cameraPosition[0].value,
-        this.annotationService.annotations[index].cameraPosition[1].value,
-        this.annotationService.annotations[index].cameraPosition[2].value);
+      // const cameraVector = new BABYLON.Vector3(this.annotationService.annotations[index].cameraPosition[0].value,
+      //   this.annotationService.annotations[index].cameraPosition[1].value,
+      //   this.annotationService.annotations[index].cameraPosition[2].value);
+
+      let cameraVector;
+      this.babylonService.getScene().getMeshesByTags('plane', mesh => {
+        
+        cameraVector = mesh.position;
+      });
+      
       
       this.cameraService.moveVRCameraToTarget(cameraVector);
       
