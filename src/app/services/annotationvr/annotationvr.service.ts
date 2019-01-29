@@ -283,10 +283,19 @@ export class AnnotationvrService {
     // KONSOLE LOG
     // ----------------------------------------------------------------------------------------------------
     console.log("VR-CAMERA - Info");
+    console.log("--------------------");
+    console.log("Annotation Position");
     console.log(new BABYLON.Vector3(this.annotationService.annotations[index].cameraPosition[0].value,
       this.annotationService.annotations[index].cameraPosition[1].value,
       this.annotationService.annotations[index].cameraPosition[2].value));
+    console.log("Actiove Camera Position");
     console.log(this.babylonService.getScene().activeCamera.position);
+
+    this.babylonService.getScene().getMeshesByTags('plane', mesh => {
+      console.log("Mesh position");
+      console.log(mesh.position);
+    });
+
     // ----------------------------------------------------------------------------------------------------
   
     
