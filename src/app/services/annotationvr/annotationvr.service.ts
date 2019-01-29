@@ -62,37 +62,37 @@ export class AnnotationvrService {
     this.actualRanking = 0;
     
 
-    // FOR VR-HUD
-    // Previous-Annotation-Mesh 
-    this.posXcontrolPrevious = this.babylonService.getActiveCamera().position.x - 1.5;
-    this.posYcontrolPrevious = this.babylonService.getActiveCamera().position.y - 0.9;
-    this.posZcontrolPrevious = this.babylonService.getActiveCamera().position.z + 3;
-
-    // Next-Annotation-Mesh 
-    this.posXcontrolNext = this.babylonService.getActiveCamera().position.x + 1.5;
-    this.posYcontrolNext = this.babylonService.getActiveCamera().position.y - 0.9;
-    this.posZcontrolNext = this.babylonService.getActiveCamera().position.z + 3;
-
-    // Annotation-Text-Mesh 
-    this.posXtextfield = this.babylonService.getActiveCamera().position.x + 0;
-    this.posYtextfield = this.babylonService.getActiveCamera().position.y - 0.9;
-    this.posZtextfield = this.babylonService.getActiveCamera().position.z + 3;
-
-
+    // // FOR VR-HUD
     // // Previous-Annotation-Mesh 
-    // this.posXcontrolPrevious = -1.5;
-    // this.posYcontrolPrevious = -0.9;
-    // this.posZcontrolPrevious = 3;
+    // this.posXcontrolPrevious = this.babylonService.getActiveCamera().position.x - 1.5;
+    // this.posYcontrolPrevious = this.babylonService.getActiveCamera().position.y - 0.9;
+    // this.posZcontrolPrevious = this.babylonService.getActiveCamera().position.z + 3;
 
     // // Next-Annotation-Mesh 
-    // this.posXcontrolNext = 1.5;
-    // this.posYcontrolNext = -0.9;
-    // this.posZcontrolNext = 3;
+    // this.posXcontrolNext = this.babylonService.getActiveCamera().position.x + 1.5;
+    // this.posYcontrolNext = this.babylonService.getActiveCamera().position.y - 0.9;
+    // this.posZcontrolNext = this.babylonService.getActiveCamera().position.z + 3;
 
     // // Annotation-Text-Mesh 
-    // this.posXtextfield = 0;
-    // this.posYtextfield = -0.9;
-    // this.posZtextfield = 3;
+    // this.posXtextfield = this.babylonService.getActiveCamera().position.x + 0;
+    // this.posYtextfield = this.babylonService.getActiveCamera().position.y - 0.9;
+    // this.posZtextfield = this.babylonService.getActiveCamera().position.z + 3;
+
+
+    // Previous-Annotation-Mesh 
+    this.posXcontrolPrevious = -1.5;
+    this.posYcontrolPrevious = -0.9;
+    this.posZcontrolPrevious = 3;
+
+    // Next-Annotation-Mesh 
+    this.posXcontrolNext = 1.5;
+    this.posYcontrolNext = -0.9;
+    this.posZcontrolNext = 3;
+
+    // Annotation-Text-Mesh 
+    this.posXtextfield = 0;
+    this.posYtextfield = -0.9;
+    this.posZtextfield = 3;
 
     // Event Emitter
     // wenn VR-Mode-Event (Ereignis) stattfinden 
