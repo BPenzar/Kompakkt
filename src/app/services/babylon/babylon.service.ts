@@ -56,6 +56,9 @@ export class BabylonService {
   private background: BABYLON.Layer;
   private isBackground: boolean;
 
+  // FOR VR-HUD
+  public cameraWrapper: BABYLON.Mesh;
+
   constructor(private message: MessageService,
               private loadingScreenHandler: LoadingscreenhandlerService,
               @Inject(DOCUMENT) private document: any) {
@@ -68,6 +71,9 @@ export class BabylonService {
         this.scene = new BABYLON.Scene(this.engine);
         this.engine.loadingScreen = new LoadingScreen(newCanvas, '',
           '#111111', 'assets/img/kompakkt-icon.png', this.loadingScreenHandler);
+
+        // FOR VR-HUD
+        this.cameraWrapper = BABYLON.Mesh.CreateBox("cameraWrapper", 2, this.scene);
 
         this.scene.registerBeforeRender(() => {
 
@@ -97,6 +103,11 @@ export class BabylonService {
           const radius = Math.abs(this.scene.getCameraByName('arcRotateCamera')['radius']);
           this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius / 35);
           this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = radius / 35);
+
+
+          // FOR VR-HUD
+          this.cameraWrapper.position = this.scene.activeCamera.position;
+		      this.cameraWrapper.rotation = this.scene.activeCamera.rotation;
         });
 
         this.engine.runRenderLoop(() => {

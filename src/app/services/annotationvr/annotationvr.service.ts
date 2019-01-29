@@ -96,7 +96,9 @@ export class AnnotationvrService {
 
     // Previous Control
     this.controlPrevious = BABYLON.MeshBuilder.CreatePlane('controlPrevious', {height: 1, width: 1}, this.babylonService.getScene());
-    this.controlPrevious.parent = this.babylonService.getScene().activeCamera;
+    // FOR VR-HUD
+    this.controlPrevious.parent = this.babylonService.cameraWrapper;
+    // this.controlPrevious.parent = this.babylonService.getScene().activeCamera;
     this.controlPrevious.position.x = this.posXcontrolPrevious;
     this.controlPrevious.position.y = this.posYcontrolPrevious;
     this.controlPrevious.position.z = this.posZcontrolPrevious;
@@ -111,7 +113,9 @@ export class AnnotationvrService {
     
     // Next Control
     this.controlNext = BABYLON.MeshBuilder.CreatePlane('controlNext', {height: 1, width: 1}, this.babylonService.getScene());
-    this.controlNext.parent = this.babylonService.getScene().activeCamera;
+    // FOR VR-HUD
+    this.controlPrevious.parent = this.babylonService.cameraWrapper;
+    // this.controlNext.parent = this.babylonService.getScene().activeCamera;
     this.controlNext.position.x = this.posXcontrolNext;
     this.controlNext.position.y = this.posYcontrolNext;
     this.controlNext.position.z = this.posZcontrolNext;
@@ -178,7 +182,9 @@ export class AnnotationvrService {
     this.annotationTextGround.material = new BABYLON.StandardMaterial('contentMat', this.babylonService.getScene());
     this.annotationTextGround.material.alpha = 1;
     this.annotationTextGround.renderingGroupId = 1;
-    this.annotationTextGround.parent = this.babylonService.getScene().activeCamera;
+    // FOR VR-HUD
+    this.controlPrevious.parent = this.babylonService.cameraWrapper;
+    // this.annotationTextGround.parent = this.babylonService.getScene().activeCamera;
     this.annotationTextGround.position.x = this.posXtextfield;
     this.annotationTextGround.position.y = this.posYtextfield;
     this.annotationTextGround.position.z = this.posZtextfield;
@@ -261,8 +267,16 @@ export class AnnotationvrService {
     const test = this.annotationService.annotations[index];
     const test2 = this.annotationService.annotations.length;
 
-    // console.log('annotation an der Stelle ' + index + ' ist ' + test + 'Array länge ' + test2);
-    // console.log('annotationen: ' + this.annotationService.annotations);
+
+    // KONSOLE LOG
+    // ----------------------------------------------------------------------------------------------------
+    console.log("VR-CAMERA - Info");
+    console.log(new BABYLON.Vector3(this.annotationService.annotations[index].cameraPosition[0].value,
+      this.annotationService.annotations[index].cameraPosition[1].value,
+      this.annotationService.annotations[index].cameraPosition[2].value));
+    console.log(this.babylonService.getScene().activeCamera.position);
+    // ----------------------------------------------------------------------------------------------------
+  
     
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
@@ -273,19 +287,9 @@ export class AnnotationvrService {
         this.annotationService.annotations[index].cameraPosition[1].value,
         this.annotationService.annotations[index].cameraPosition[2].value);
       
-      // console.log("Annotation Info");
-      // console.log(this.annotationService.annotations[index]);
-      // console.log(cameraVector);
-
-
-      console.log("VR-CAMERA - Info");
-      console.log(cameraVector);
-      console.log(this.babylonService.getScene().activeCamera);
-      console.log(this.babylonService.getScene().activeCamera.position);
-
       this.cameraService.moveVRCameraToTarget(cameraVector);
       
-      // HUD 
+      // VR_HUD 
       this.moveVRcontrols();
 
 
