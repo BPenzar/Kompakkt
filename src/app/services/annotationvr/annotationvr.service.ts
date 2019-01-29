@@ -277,6 +277,7 @@ export class AnnotationvrService {
       // console.log(this.annotationService.annotations[index]);
       // console.log(cameraVector);
 
+
       console.log("VR-CAMERA - Info");
       console.log(cameraVector);
       console.log(this.babylonService.getScene().activeCamera);
