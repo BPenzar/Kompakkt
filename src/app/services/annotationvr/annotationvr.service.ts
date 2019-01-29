@@ -308,13 +308,14 @@ export class AnnotationvrService {
       //   this.annotationService.annotations[index].cameraPosition[1].value,
       //   this.annotationService.annotations[index].cameraPosition[2].value);
 
+      // GET POSITION OF ANNOTATION-MARKER-MESH IN VR-SCENE
       let cameraVector;
       this.babylonService.getScene().getMeshesByTags('plane', mesh => {
         
         cameraVector = mesh.position;
       });
       
-      
+
       this.cameraService.moveVRCameraToTarget(cameraVector);
       
       // VR_HUD 
