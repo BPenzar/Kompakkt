@@ -11,6 +11,7 @@ import {LoadingscreenhandlerService} from '../loadingscreenhandler/loadingscreen
 
 import {BehaviorSubject} from 'rxjs';
 import ActionEvent = BABYLON.ActionEvent;
+import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 /**
  * @author Zoe Schubert
@@ -107,9 +108,9 @@ export class BabylonService {
 
           // FOR VR-HUD
           this.scene.getMeshesByTags('control', mesh => {
-            console.log("control-mesh");
-            console.log(mesh);
-            console.log(mesh.parent);
+            mesh.position.x = this.getActiveCamera().position.x;
+            mesh.position.y = this.getActiveCamera().position.y;
+            mesh.position.z = this.getActiveCamera().position.z;
           });
 
         });
