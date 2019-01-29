@@ -310,6 +310,7 @@ export class AnnotationvrService {
       this.babylonService.getScene().getMeshesByTags('plane', mesh => {
         
         console.log(mesh);
+        console.log(this.annotationService.annotations[index]);
         // if (checkAnnotation === mesh.name){
 
           // cameraVector = mesh.position;
