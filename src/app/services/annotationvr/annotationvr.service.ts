@@ -303,16 +303,18 @@ export class AnnotationvrService {
       //   this.annotationService.annotations[index].cameraPosition[1].value,
       //   this.annotationService.annotations[index].cameraPosition[2].value);
 
+      // VR_CAMERA_TO_ANNOTATION
       // GET POSITION OF ANNOTATION-MARKER-MESH IN VR-SCENE
-      const checkAnnotation = this.babylonService.getScene().getMeshByName(this.annotationService.annotations[index].title).name;
+      // const Annotation = this.babylonService.getScene().getMeshByName(this.annotationService.annotations[index].title);
       let cameraVector;
       this.babylonService.getScene().getMeshesByTags('plane', mesh => {
         
-        if (checkAnnotation === mesh.name){
+        console.log(mesh);
+        // if (checkAnnotation === mesh.name){
 
-          cameraVector = mesh.position;
-          this.cameraService.moveVRCameraToTarget(cameraVector);
-        }
+          // cameraVector = mesh.position;
+          // this.cameraService.moveVRCameraToTarget(cameraVector);
+        // }
       });
 
       // this.cameraService.moveVRCameraToTarget(cameraVector);
