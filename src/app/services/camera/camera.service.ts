@@ -376,6 +376,7 @@ export class CameraService {
     console.log(this.scene.activeCamera.position);
   }
 
+  
 
   public getActualCameraPosAnnotation() {
     const cameraPosition = [{dimension: 'x', value: this.arcRotateCamera.alpha},
