@@ -107,7 +107,7 @@ export class BabylonService {
 
           // FOR VR-HUD
           this.cameraWrapper.position = this.scene.activeCamera.position;
-		      this.cameraWrapper.rotation = this.scene.activeCamera.rotation;
+		      // this.cameraWrapper.rotation = this.scene.activeCamera.rotation;
         });
 
         this.engine.runRenderLoop(() => {
