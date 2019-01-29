@@ -353,7 +353,7 @@ export class CameraService {
         value: this.scene.activeCamera.position.z
       }, {
         frame: 30,
-        value: positionVector.z
+        value: positionVector.z - 10
       }]);
       this.scene.activeCamera.animations.push(animCamRadius);
 
