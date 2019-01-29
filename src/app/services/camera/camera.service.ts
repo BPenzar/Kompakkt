@@ -305,12 +305,7 @@ export class CameraService {
 
   public moveVRCameraToTarget(positionVector: BABYLON.Vector3) {
 
-    console.log("VR-CAMERA - Info");
-    console.log(positionVector);
-    console.log(this.scene.activeCamera);
-    console.log(this.scene.activeCamera.position);
-
-  
+    
     // this.scene.activeCamera = this.vrHelper.webVRCamera;
     // this.vrHelper.webVRCamera.attachControl(this.canvas, false);
 
