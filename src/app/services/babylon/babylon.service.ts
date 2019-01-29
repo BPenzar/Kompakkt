@@ -110,9 +110,9 @@ export class BabylonService {
           this.scene.getMeshesByTags('control', mesh => {
             console.log(mesh.position);
             console.log(this.getActiveCamera().position);
-            
-            mesh.position.x = this.getActiveCamera().position.x;
-            mesh.position.y = this.getActiveCamera().position.y;
+
+            // mesh.position.x = this.getActiveCamera().position.x;
+            // mesh.position.y = this.getActiveCamera().position.y;
             mesh.position.z = this.getActiveCamera().position.z;
           });
 
