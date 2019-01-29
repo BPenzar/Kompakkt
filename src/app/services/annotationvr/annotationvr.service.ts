@@ -314,11 +314,11 @@ export class AnnotationvrService {
         const annoID = this.annotationService.annotations[index]["_id"] + "_pick"
         console.log(mesh.name);
         console.log(annoID);
-        // if (checkAnnotation === mesh.name){
+        if (annoID === mesh.name){
 
-          // cameraVector = mesh.position;
-          // this.cameraService.moveVRCameraToTarget(cameraVector);
-        // }
+          cameraVector = mesh.position;
+          this.cameraService.moveVRCameraToTarget(cameraVector);
+        }
       });
 
       // this.cameraService.moveVRCameraToTarget(cameraVector);
