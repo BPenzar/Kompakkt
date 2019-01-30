@@ -112,8 +112,8 @@ export class BabylonService {
           this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = radius / 35);
 
 
-          console.log(this.vrCameraRidePreviousPositionX);
           // FOR VR-HUD
+          // console.log(this.vrCameraRidePreviousPositionX);
           if (this.vrJump){
 
             console.log("-----");
