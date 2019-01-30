@@ -305,10 +305,8 @@ export class CameraService {
 
   public moveVRCameraToTarget(positionVector: BABYLON.Vector3) {
 
-    // FOR VR-HUD
-    this.scene.activeCamera = this.vrHelper.webVRCamera;
-    this.vrHelper.webVRCamera.attachControl(this.canvas, false);
-
+    // this.scene.activeCamera = this.vrHelper.webVRCamera;
+    // this.vrHelper.webVRCamera.attachControl(this.canvas, false);
 
     // ANIMATION
     const name = 'animCam',
