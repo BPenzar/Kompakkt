@@ -365,9 +365,9 @@ export class CameraService {
     this.babylonService.vrCameraRideDifferenceY = this.scene.activeCamera.position.y - this.babylonService.vrCameraRidePreviousPositionY;
     this.babylonService.vrCameraRideDifferenceZ = this.scene.activeCamera.position.z - this.babylonService.vrCameraRidePreviousPositionZ;
     this.babylonService.vrJump = true;
-    this.babylonService.vrCameraRidePreviousPositionX = this.scene.activeCamera.position.x;
-    this.babylonService.vrCameraRidePreviousPositionY = this.scene.activeCamera.position.y;
-    this.babylonService.vrCameraRidePreviousPositionZ = this.scene.activeCamera.position.z;
+    // this.babylonService.vrCameraRidePreviousPositionX = this.scene.activeCamera.position.x;
+    // this.babylonService.vrCameraRidePreviousPositionY = this.scene.activeCamera.position.y;
+    // this.babylonService.vrCameraRidePreviousPositionZ = this.scene.activeCamera.position.z;
 
 
     console.log("VR-CAMERA - Info - After Animation");
