@@ -127,6 +127,8 @@ export class BabylonService {
             }
           });
 
+          console.log(this.getActiveCamera().position.x);
+
 
           this.scene.getMeshesByTags('control', mesh => {
             
