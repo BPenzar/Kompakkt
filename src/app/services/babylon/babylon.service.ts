@@ -58,7 +58,11 @@ export class BabylonService {
   private isBackground: boolean;
 
   // FOR VR-HUD
-  public cameraWrapper: BABYLON.Mesh;
+  public vrCameraRidePreviousPosition: BABYLON.Vector3;
+  public vrCameraRideDifferenceX: number;
+  public vrCameraRideDifferenceY: number;
+  public vrCameraRideDifferenceZ: number;
+
 
   constructor(private message: MessageService,
               private loadingScreenHandler: LoadingscreenhandlerService,
@@ -73,8 +77,6 @@ export class BabylonService {
         this.engine.loadingScreen = new LoadingScreen(newCanvas, '',
           '#111111', 'assets/img/kompakkt-icon.png', this.loadingScreenHandler);
 
-        // FOR VR-HUD
-        this.cameraWrapper = BABYLON.Mesh.CreateBox("cameraWrapper", 2, this.scene);
 
         this.scene.registerBeforeRender(() => {
 
@@ -108,35 +110,47 @@ export class BabylonService {
 
 
           // FOR VR-HUD
+
+          this.vrModeIsActive.subscribe(vrModeIsActive => {
+            if (vrModeIsActive){
+              this.vrCameraRidePreviousPosition = this.getActiveCamera().position;
+              console.log(this.vrCameraRidePreviousPosition.x + this.vrCameraRidePreviousPosition.y + this.vrCameraRidePreviousPosition.z);
+            }
+          });
+
+
           this.scene.getMeshesByTags('control', mesh => {
             
-            switch (mesh.name) {
+            // switch (mesh.name) {
 
-              case 'controlPrevious':
-                // mesh.position.x = this.getActiveCamera().position.x - 1.5;
-                // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
-                // mesh.position.z = this.getActiveCamera().position.z + 3;
-                break;
+            //   case 'controlPrevious':
+            //     // mesh.position.x = this.getActiveCamera().position.x - 1.5;
+            //     // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
+            //     // mesh.position.z = this.getActiveCamera().position.z + 3;
+            //     break;
       
-              case 'controlNext':
-                // mesh.position.x = this.getActiveCamera().position.x + 1.5;
-                // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
-                // mesh.position.z = this.getActiveCamera().position.z + 3;
-                break;
+            //   case 'controlNext':
+            //     // mesh.position.x = this.getActiveCamera().position.x + 1.5;
+            //     // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
+            //     // mesh.position.z = this.getActiveCamera().position.z + 3;
+            //     break;
       
-              case 'annotationTextGround':
-                // mesh.position.x = this.getActiveCamera().position.x; 
-                // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
-                // mesh.position.z = this.getActiveCamera().position.z + 3;
-                break;
+            //   case 'annotationTextGround':
+            //     // mesh.position.x = this.getActiveCamera().position.x; 
+            //     // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
+            //     // mesh.position.z = this.getActiveCamera().position.z + 3;
+            //     break;
       
-              default:
-                break;
-            }
+            //   default:
+            //     break;
+            // }
 
             // console.log(mesh.position);
             // console.log(this.getScene().activeCamera.position);
           });
+
+
+
 
         });
 
