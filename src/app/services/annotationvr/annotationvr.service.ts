@@ -277,11 +277,7 @@ export class AnnotationvrService {
           console.log("Active-Camera - Before Animation");
           console.log(this.babylonService.getActiveCamera());
 
-          setTimeout(function () {
-
-            this.cameraService.moveVRCameraToTarget(cameraVector);
-          }, 1000);
-          // this.cameraService.moveVRCameraToTarget(cameraVector);
+          this.cameraService.moveVRCameraToTarget(cameraVector);
         }
       });
     

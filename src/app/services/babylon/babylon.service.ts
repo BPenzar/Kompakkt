@@ -117,11 +117,9 @@ export class BabylonService {
 
             this.vrJump = false;
 
-            setTimeout(function () {
 
-              console.log("Active-Camera - 1 Sek After Animation");
-              console.log(this.scene.activeCamera);
-            }, 1000);
+            // console.log("Active-Camera - 1 Sek After Animation");
+            // console.log(this.scene.activeCamera);
             
             // console.log(this.vrCameraRidePreviousPositionX);
 

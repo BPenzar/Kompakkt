@@ -356,20 +356,23 @@ export class CameraService {
       this.scene.activeCamera.animations.push(animCamRadius);
 
     this.scene.beginAnimation(this.scene.activeCamera, 0, 30, false, 1, function () {
+    }).onAnimationEndObservable.add(() => {
+      
+      console.log("Active-Camera - 0 Sek After Animation");
+      console.log(this.scene.activeCamera);
+
+      // FOR VR-HUD
+      this.babylonService.vrCameraRideDifferenceX = this.scene.activeCamera.position.x - this.babylonService.vrCameraRidePreviousPositionX;
+      this.babylonService.vrCameraRideDifferenceY = this.scene.activeCamera.position.y - this.babylonService.vrCameraRidePreviousPositionY;
+      this.babylonService.vrCameraRideDifferenceZ = this.scene.activeCamera.position.z - this.babylonService.vrCameraRidePreviousPositionZ;
+      this.babylonService.vrJump = true;
     });
 
-    // FOR VR-HUD
-    this.babylonService.vrCameraRideDifferenceX = this.scene.activeCamera.position.x - this.babylonService.vrCameraRidePreviousPositionX;
-    this.babylonService.vrCameraRideDifferenceY = this.scene.activeCamera.position.y - this.babylonService.vrCameraRidePreviousPositionY;
-    this.babylonService.vrCameraRideDifferenceZ = this.scene.activeCamera.position.z - this.babylonService.vrCameraRidePreviousPositionZ;
-    this.babylonService.vrJump = true;
     
     // this.babylonService.vrCameraRidePreviousPositionX = this.scene.activeCamera.position.x;
     // this.babylonService.vrCameraRidePreviousPositionY = this.scene.activeCamera.position.y;
     // this.babylonService.vrCameraRidePreviousPositionZ = this.scene.activeCamera.position.z;
 
-    console.log("Active-Camera - 0 Sek After Animation");
-    console.log(this.scene.activeCamera);
   }
 
   
