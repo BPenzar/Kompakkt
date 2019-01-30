@@ -258,8 +258,7 @@ export class AnnotationvrService {
 
   private getAction(index: number) {
 
-    // const test = this.annotationService.annotations[index];
-    // const test2 = this.annotationService.annotations.length;  
+    console.log("CCC");
     
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
@@ -272,10 +271,12 @@ export class AnnotationvrService {
 
         if (annoID === mesh.name){
 
+          console.log(" 0 ");
+
           cameraVector = mesh.position;
 
           console.log("Active-Camera - Before Animation");
-          console.log(this.babylonService.getActiveCamera());
+          console.log(this.babylonService.getActiveCamera().position);
 
           this.cameraService.moveVRCameraToTarget(cameraVector);
         }

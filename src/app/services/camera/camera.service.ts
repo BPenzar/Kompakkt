@@ -359,7 +359,7 @@ export class CameraService {
     }).onAnimationEndObservable.add(() => {
 
       console.log("Active-Camera - 0 Sek After Animation");
-      console.log(this.scene.activeCamera);
+      console.log(this.scene.activeCamera.position);
 
       // FOR VR-HUD
       this.babylonService.vrCameraRideDifferenceX = (positionVector.x - 10) - this.babylonService.vrCameraRidePreviousPositionX;
