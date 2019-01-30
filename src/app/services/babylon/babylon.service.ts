@@ -112,9 +112,18 @@ export class BabylonService {
           // FOR VR-HUD
 
           this.vrModeIsActive.subscribe(vrModeIsActive => {
+            
             if (vrModeIsActive){
+
               this.vrCameraRidePreviousPosition = this.getActiveCamera().position;
-              console.log(this.vrCameraRidePreviousPosition.x + this.vrCameraRidePreviousPosition.y + this.vrCameraRidePreviousPosition.z);
+              console.log(this.vrCameraRidePreviousPosition.x);
+
+              // 100 101   ==> 101 - 100    ==>  1  (correct)
+              // 100 99    ==> 99 - 100     ==> -1  (correct)
+              // -100 -101 ==> -101 - -100  ==> -1  (correct)
+              // -100 -99 ==> -99 - -100    ==>  1  (correct)
+              // 
+              //         x0  x1  ==>   x1 - x0        
             }
           });
 
