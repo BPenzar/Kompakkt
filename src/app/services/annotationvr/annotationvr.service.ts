@@ -257,8 +257,6 @@ export class AnnotationvrService {
   }
 
   private getAction(index: number) {
-
-    console.log("CCC");
     
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
@@ -272,6 +270,7 @@ export class AnnotationvrService {
         if (annoID === mesh.name){
 
           console.log(" 0 ");
+          console.log(mesh);
 
           cameraVector = mesh.position;
 
