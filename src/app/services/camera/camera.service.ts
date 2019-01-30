@@ -307,7 +307,7 @@ export class CameraService {
 
     // FOR VR-HUD
     this.scene.activeCamera = this.vrHelper.webVRCamera;
-    // this.vrHelper.webVRCamera.attachControl(this.canvas, false);
+    this.vrHelper.webVRCamera.attachControl(this.canvas, false);
 
 
     // ANIMATION
