@@ -258,19 +258,8 @@ export class AnnotationvrService {
 
   private getAction(index: number) {
 
-    const test = this.annotationService.annotations[index];
-    const test2 = this.annotationService.annotations.length;
-
-
-    // KONSOLE LOG
-    // ----------------------------------------------------------------------------------------------------
-    console.log("VR-CAMERA - Info");
-    console.log("--------------------");
-
-    console.log("Actiove Camera Position");
-    console.log(this.babylonService.getScene().activeCamera.position);
-    // ----------------------------------------------------------------------------------------------------
-  
+    // const test = this.annotationService.annotations[index];
+    // const test2 = this.annotationService.annotations.length;  
     
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
@@ -284,7 +273,15 @@ export class AnnotationvrService {
         if (annoID === mesh.name){
 
           cameraVector = mesh.position;
-          this.cameraService.moveVRCameraToTarget(cameraVector);
+
+          console.log("Active-Camera - Before Animation");
+          console.log(this.babylonService.getActiveCamera());
+
+          setTimeout(function () {
+
+            this.cameraService.moveVRCameraToTarget(cameraVector);
+          }, 1000);
+          // this.cameraService.moveVRCameraToTarget(cameraVector);
         }
       });
     

@@ -368,10 +368,8 @@ export class CameraService {
     // this.babylonService.vrCameraRidePreviousPositionY = this.scene.activeCamera.position.y;
     // this.babylonService.vrCameraRidePreviousPositionZ = this.scene.activeCamera.position.z;
 
+    console.log("Active-Camera - 0 Sek After Animation");
     console.log(this.scene.activeCamera);
-    console.log("VR-CAMERA - Info - After Animation");
-    console.log(positionVector);
-    console.log(this.scene.activeCamera.position);
   }
 
   

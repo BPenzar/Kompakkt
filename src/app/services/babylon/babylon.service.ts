@@ -113,13 +113,17 @@ export class BabylonService {
 
 
           // FOR VR-HUD
-          // console.log(this.vrCameraRidePreviousPositionX);
           if (this.vrJump){
 
-            console.log("-----");
-            console.log(this.vrCameraRidePreviousPositionX);
-            console.log(this.getActiveCamera().position.x);
             this.vrJump = false;
+
+            setTimeout(function () {
+
+              console.log("Active-Camera - 1 Sek After Animation");
+              console.log(this.scene.activeCamera);
+            }, 1000);
+            
+            // console.log(this.vrCameraRidePreviousPositionX);
 
             // 100 101   ==> 101 - 100    ==>  1  (correct)
             // 100 99    ==> 99 - 100     ==> -1  (correct)
