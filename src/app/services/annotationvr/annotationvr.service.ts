@@ -287,12 +287,6 @@ export class AnnotationvrService {
 
     console.log("Actiove Camera Position");
     console.log(this.babylonService.getScene().activeCamera.position);
-
-    // this.babylonService.getScene().getMeshesByTags('plane', mesh => {
-    //   console.log("Mesh position");
-    //   console.log(mesh.position);
-    // });
-
     // ----------------------------------------------------------------------------------------------------
   
     
@@ -304,10 +298,7 @@ export class AnnotationvrService {
       this.babylonService.getScene().getMeshesByTags('plane', mesh => {
         
         const annoID = this.annotationService.annotations[index]["_id"] + "_pick"
-        // console.log(mesh);
-        // console.log(this.annotationService.annotations[index]);
-        // console.log(mesh.name);
-        // console.log(annoID);
+
         if (annoID === mesh.name){
 
           cameraVector = mesh.position;

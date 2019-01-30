@@ -58,10 +58,13 @@ export class BabylonService {
   private isBackground: boolean;
 
   // FOR VR-HUD
-  public vrCameraRidePreviousPosition: BABYLON.Vector3;
+  public vrCameraRidePreviousPositionX: number;
+  public vrCameraRidePreviousPositionY: number;
+  public vrCameraRidePreviousPositionZ: number;
   public vrCameraRideDifferenceX: number;
   public vrCameraRideDifferenceY: number;
   public vrCameraRideDifferenceZ: number;
+  public vrJump: boolean;
 
 
   constructor(private message: MessageService,
@@ -110,24 +113,20 @@ export class BabylonService {
 
 
           // FOR VR-HUD
+          if (this.vrJump){
 
-          this.vrModeIsActive.subscribe(vrModeIsActive => {
-            
-            if (vrModeIsActive){
+            console.log(this.vrCameraRideDifferenceX);
+            console.log(this.vrCameraRideDifferenceY);
+            console.log(this.vrCameraRideDifferenceZ);
+            this.vrJump = false;
 
-              this.vrCameraRidePreviousPosition = this.getActiveCamera().position;
-              console.log(this.vrCameraRidePreviousPosition.x);
-
-              // 100 101   ==> 101 - 100    ==>  1  (correct)
-              // 100 99    ==> 99 - 100     ==> -1  (correct)
-              // -100 -101 ==> -101 - -100  ==> -1  (correct)
-              // -100 -99 ==> -99 - -100    ==>  1  (correct)
-              // 
-              //         x0  x1  ==>   x1 - x0        
-            }
-          });
-
-          console.log(this.getActiveCamera().position.x);
+            // 100 101   ==> 101 - 100    ==>  1  (correct)
+            // 100 99    ==> 99 - 100     ==> -1  (correct)
+            // -100 -101 ==> -101 - -100  ==> -1  (correct)
+            // -100 -99 ==> -99 - -100    ==>  1  (correct)
+            // 
+            //         x0  x1  ==>   x1 - x0        
+          }
 
 
           this.scene.getMeshesByTags('control', mesh => {
@@ -217,21 +216,15 @@ export class BabylonService {
 
     this.VRHelper.onNewMeshSelected.add((mesh) => {
 
-      // const material = new BABYLON.StandardMaterial('meshMaterial', this.scene);
-
       switch (mesh.name) {
 
         case 'controlPrevious':
-          // material.diffuseColor = BABYLON.Color3.Blue();
-          //  mesh.material = material;
           this.selectingControl = true;
           this.actualControl = mesh;
           this.selectingControl = true;
           break;
 
         case 'controlNext':
-          //  material.diffuseColor = BABYLON.Color3.Red();
-          //  mesh.material = material;
           this.selectingControl = true;
           this.actualControl = mesh;
           this.selectingControl = true;
@@ -242,8 +235,6 @@ export class BabylonService {
           this.selectedControl = false;
 
           if (this.actualControl !== false) {
-            //   material.diffuseColor = BABYLON.Color3.White();
-            //  this.actualControl.material = material;
             this.actualControl.scaling.x = 1;
             this.actualControl.scaling.y = 1;
             this.actualControl = false;
@@ -253,13 +244,16 @@ export class BabylonService {
       }
 
     });
-
-    // // VR BUTTON
-    // this.VRHelper.enterVR();
     
     this.VRHelper.onEnteringVRObservable.add(() => {
       this.vrModeIsActive.emit(true);
+
+      // FOR VR-HUD
+      this.vrCameraRidePreviousPositionX = this.getActiveCamera().position.x;
+      this.vrCameraRidePreviousPositionY = this.getActiveCamera().position.y;
+      this.vrCameraRidePreviousPositionZ = this.getActiveCamera().position.z;
     });
+
     this.VRHelper.onExitingVRObservable.add(() => {
       this.vrModeIsActive.emit(false);
     });
