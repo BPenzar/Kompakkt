@@ -117,50 +117,13 @@ export class BabylonService {
 
             this.vrJump = false;
 
+            this.scene.getMeshesByTags('control', mesh => {
 
-            // console.log("Active-Camera - 1 Sek After Animation");
-            // console.log(this.scene.activeCamera);
-            
-            // console.log(this.vrCameraRidePreviousPositionX);
-
-            // 100 101   ==> 101 - 100    ==>  1  (correct)
-            // 100 99    ==> 99 - 100     ==> -1  (correct)
-            // -100 -101 ==> -101 - -100  ==> -1  (correct)
-            // -100 -99 ==> -99 - -100    ==>  1  (correct)
-            // 
-            //         x0  x1  ==>   x1 - x0        
+                mesh.position.x += this.vrCameraRideDifferenceX;
+                mesh.position.y += this.vrCameraRideDifferenceY;
+                mesh.position.z += this.vrCameraRideDifferenceZ;
+            });
           }
-
-
-          this.scene.getMeshesByTags('control', mesh => {
-            
-            // switch (mesh.name) {
-
-            //   case 'controlPrevious':
-            //     // mesh.position.x = this.getActiveCamera().position.x - 1.5;
-            //     // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
-            //     // mesh.position.z = this.getActiveCamera().position.z + 3;
-            //     break;
-      
-            //   case 'controlNext':
-            //     // mesh.position.x = this.getActiveCamera().position.x + 1.5;
-            //     // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
-            //     // mesh.position.z = this.getActiveCamera().position.z + 3;
-            //     break;
-      
-            //   case 'annotationTextGround':
-            //     // mesh.position.x = this.getActiveCamera().position.x; 
-            //     // mesh.position.y = this.getActiveCamera().position.y - 0.9;  
-            //     // mesh.position.z = this.getActiveCamera().position.z + 3;
-            //     break;
-      
-            //   default:
-            //     break;
-            // }
-
-            // console.log(mesh.position);
-            // console.log(this.getScene().activeCamera.position);
-          });
 
 
 

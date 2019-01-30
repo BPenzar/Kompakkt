@@ -322,7 +322,7 @@ export class CameraService {
         value: this.scene.activeCamera.position.x
       }, {
         frame: 30,
-        value: positionVector.x
+        value: positionVector.x -10
       }
     ]);
     this.scene.activeCamera.animations.push(animCamAlpha);
@@ -337,7 +337,7 @@ export class CameraService {
         value: this.scene.activeCamera.position.y
       }, {
         frame: 30,
-        value: positionVector.y
+        value: positionVector.y - 10
       }]);
       this.scene.activeCamera.animations.push(animCamBeta);
 
@@ -357,21 +357,19 @@ export class CameraService {
 
     this.scene.beginAnimation(this.scene.activeCamera, 0, 30, false, 1, function () {
     }).onAnimationEndObservable.add(() => {
-      
+
       console.log("Active-Camera - 0 Sek After Animation");
       console.log(this.scene.activeCamera);
 
       // FOR VR-HUD
-      this.babylonService.vrCameraRideDifferenceX = this.scene.activeCamera.position.x - this.babylonService.vrCameraRidePreviousPositionX;
-      this.babylonService.vrCameraRideDifferenceY = this.scene.activeCamera.position.y - this.babylonService.vrCameraRidePreviousPositionY;
-      this.babylonService.vrCameraRideDifferenceZ = this.scene.activeCamera.position.z - this.babylonService.vrCameraRidePreviousPositionZ;
+      this.babylonService.vrCameraRideDifferenceX = (positionVector.x - 10) - this.babylonService.vrCameraRidePreviousPositionX;
+      this.babylonService.vrCameraRideDifferenceY = (positionVector.y - 10) - this.babylonService.vrCameraRidePreviousPositionY;
+      this.babylonService.vrCameraRideDifferenceZ = (positionVector.z - 10) - this.babylonService.vrCameraRidePreviousPositionZ;
+      this.babylonService.vrCameraRidePreviousPositionX = (positionVector.x - 10);
+      this.babylonService.vrCameraRidePreviousPositionY = (positionVector.y - 10);
+      this.babylonService.vrCameraRidePreviousPositionZ = (positionVector.z - 10);
       this.babylonService.vrJump = true;
     });
-
-    
-    // this.babylonService.vrCameraRidePreviousPositionX = this.scene.activeCamera.position.x;
-    // this.babylonService.vrCameraRidePreviousPositionY = this.scene.activeCamera.position.y;
-    // this.babylonService.vrCameraRidePreviousPositionZ = this.scene.activeCamera.position.z;
 
   }
 
