@@ -288,10 +288,10 @@ export class AnnotationvrService {
     console.log("Actiove Camera Position");
     console.log(this.babylonService.getScene().activeCamera.position);
 
-    this.babylonService.getScene().getMeshesByTags('plane', mesh => {
-      console.log("Mesh position");
-      console.log(mesh.position);
-    });
+    // this.babylonService.getScene().getMeshesByTags('plane', mesh => {
+    //   console.log("Mesh position");
+    //   console.log(mesh.position);
+    // });
 
     // ----------------------------------------------------------------------------------------------------
   
@@ -299,33 +299,23 @@ export class AnnotationvrService {
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
 
-      // const cameraVector = new BABYLON.Vector3(this.annotationService.annotations[index].cameraPosition[0].value,
-      //   this.annotationService.annotations[index].cameraPosition[1].value,
-      //   this.annotationService.annotations[index].cameraPosition[2].value);
-
       // VR_CAMERA_TO_ANNOTATION
-      // GET POSITION OF ANNOTATION-MARKER-MESH IN VR-SCENE
-      // const Annotation = this.babylonService.getScene().getMeshByName(this.annotationService.annotations[index].title);
       let cameraVector;
       this.babylonService.getScene().getMeshesByTags('plane', mesh => {
         
-        console.log(mesh);
-        console.log(this.annotationService.annotations[index]);
         const annoID = this.annotationService.annotations[index]["_id"] + "_pick"
-        console.log(mesh.name);
-        console.log(annoID);
+        // console.log(mesh);
+        // console.log(this.annotationService.annotations[index]);
+        // console.log(mesh.name);
+        // console.log(annoID);
         if (annoID === mesh.name){
 
           cameraVector = mesh.position;
           this.cameraService.moveVRCameraToTarget(cameraVector);
         }
       });
-
-      // this.cameraService.moveVRCameraToTarget(cameraVector);
-      
-      // VR_HUD 
-      this.moveVRcontrols();
-
+    
+      // this.moveVRcontrols();
 
     } else {
       this.actualRanking = 0;
