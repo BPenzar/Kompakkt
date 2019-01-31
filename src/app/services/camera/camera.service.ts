@@ -57,9 +57,6 @@ export class CameraService {
         this.yRot = this.universalCamera.rotation.y;
 
         this.arcRotateCamera.attachControl(newCanvas, false);
-
-        // // VR BUTTON
-        // this.vrHelper = this.babylonService.createVRHelper();
       }
     });
   }

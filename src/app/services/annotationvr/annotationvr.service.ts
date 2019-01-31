@@ -92,20 +92,7 @@ export class AnnotationvrService {
     BABYLON.Tags.AddTagsTo(this.controlNext, 'control');
     
     const label2 = this.createLabel2();    
-    GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(label2);
-
-    
-    const textLabelPrevious = new GUI.TextBlock('Previous Annotation');
-    textLabelPrevious.text = 'Previous Annotation';
-    textLabelPrevious.fontSize = 16;
-    textLabelPrevious.color = 'white';
-    GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(textLabelPrevious);
-    const textLabelNext = new GUI.TextBlock('Next Annotation');
-    textLabelNext.text = 'Next Annotation';
-    textLabelNext.fontSize = 16;
-    textLabelNext.color = 'white';
-    GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(textLabelNext);
-    
+    GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(label2); 
   }
 
   private createLabel() {
@@ -113,9 +100,9 @@ export class AnnotationvrService {
     const label = new GUI.Ellipse('controlPreviousLabel');
     label.width = '100%';
     label.height = '100%';
-    label.color = 'white';
+    label.color = 'black';
     label.thickness = 1;
-    label.background = 'black';
+    label.background = 'white';
     label.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_TOP;
 
     label.onPointerMoveObservable.add(() => {
@@ -215,6 +202,7 @@ export class AnnotationvrService {
   private getAction(index: number) {
 
     if (this.annotationService.annotations.length) {
+      
       // FOR VR-HUD
       this.text1.text = this.annotationService.annotations[index].title;
 
