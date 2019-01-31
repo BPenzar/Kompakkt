@@ -264,23 +264,38 @@ export class AnnotationvrService {
 
       // VR_CAMERA_TO_ANNOTATION
       let cameraVector;
+      let i = 1;
       this.babylonService.getScene().getMeshesByTags('plane', mesh => {
 
-        console.log("DOUBLE MESH???");
-        console.log(mesh);
-        
-        const annoID = this.annotationService.annotations[index]["_id"] + "_pick";
+        // DEBUG
+        if (Math.abs(i % 2) != 1){
 
-        if (annoID === mesh.name){
+          console.log(i);
+          i++;
+        }
+        else {
 
-          console.log(" 0 ");
+          i++;
 
-          cameraVector = mesh.position;
+          console.log("DOUBLE MESH???");
+          console.log(i);
+          console.log(mesh);
+          
+          const annoID = this.annotationService.annotations[index]["_id"] + "_pick";
 
-          console.log("Active-Camera - Before Animation");
-          console.log(this.babylonService.getActiveCamera().position);
+          if (annoID === mesh.name){
 
-          this.cameraService.moveVRCameraToTarget(cameraVector);
+            console.log(" 0 ");
+
+            cameraVector = mesh.position;
+
+            console.log("Active-Camera - Before Animation");
+            console.log(this.babylonService.getActiveCamera().position);
+
+            this.cameraService.moveVRCameraToTarget(cameraVector);
+          }
+
+
         }
       });
     
