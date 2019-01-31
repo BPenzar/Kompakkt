@@ -64,12 +64,15 @@ export class BabylonService {
   public vrCameraRideDifferenceX: number;
   public vrCameraRideDifferenceY: number;
   public vrCameraRideDifferenceZ: number;
-  public vrJump = false;
+  public vrJump: boolean;
 
 
   constructor(private message: MessageService,
               private loadingScreenHandler: LoadingscreenhandlerService,
               @Inject(DOCUMENT) private document: any) {
+
+    // FOR VR-HUD
+    this.vrJump = false;
 
     this.CanvasObservable.subscribe(newCanvas => {
 
