@@ -258,59 +258,31 @@ export class AnnotationvrService {
 
   private getAction(index: number) {
 
-    console.log("CCC");
     
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
 
-
-      // V1
-      // // VR_CAMERA_TO_ANNOTATION
-      // let cameraVector;
-      // this.babylonService.getScene().getMeshesByTags('plane', mesh => {
-        
-      //   const annoID = this.annotationService.annotations[index]["_id"] + "_pick";
-
-      //   if (annoID === mesh.name){
-
-      //     console.log(" 0 ");
-
-      //     cameraVector = mesh.position;
-
-      //     console.log("Active-Camera - Before Animation");
-      //     console.log(this.babylonService.getActiveCamera().position);
-
-      //     this.cameraService.moveVRCameraToTarget(cameraVector);
-      //   }
-      // });
-
-      // V2
       // VR_CAMERA_TO_ANNOTATION
       let cameraVector;
-      let annoMash = this.babylonService.getScene().getMeshesByTags('plane');
+      this.babylonService.getScene().getMeshesByTags('plane', mesh => {
+
+        console.log("DOUBLE MESH???");
+        console.log(mesh);
         
-      const annoID = this.annotationService.annotations[index]["_id"] + "_pick";
+        const annoID = this.annotationService.annotations[index]["_id"] + "_pick";
 
-      for (let i = 0; i <= annoMash.length; i++){
-
-        console.log("annoMash.length");
-        console.log(annoMash.length);
-        console.log(annoMash);
-
-        if (annoID === annoMash[i].name){
+        if (annoID === mesh.name){
 
           console.log(" 0 ");
-          console.log(annoMash[i]);
-  
-          cameraVector = annoMash[i].position;
-  
+
+          cameraVector = mesh.position;
+
           console.log("Active-Camera - Before Animation");
           console.log(this.babylonService.getActiveCamera().position);
-  
+
           this.cameraService.moveVRCameraToTarget(cameraVector);
         }
-
-      }
+      });
     
       // this.moveVRcontrols();
 

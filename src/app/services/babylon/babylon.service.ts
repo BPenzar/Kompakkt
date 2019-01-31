@@ -118,11 +118,13 @@ export class BabylonService {
             this.vrJump = false;
 
             this.scene.getMeshesByTags('control', mesh => {
-
               
-                mesh.position.x += this.vrCameraRideDifferenceX;
-                mesh.position.y += this.vrCameraRideDifferenceY;
-                mesh.position.z += this.vrCameraRideDifferenceZ;
+              console.log("VR-JUMP");
+              console.log(mesh);
+              mesh.position.x += this.vrCameraRideDifferenceX;
+              mesh.position.y += this.vrCameraRideDifferenceY;
+              mesh.position.z += this.vrCameraRideDifferenceZ;
+              console.log(mesh.position);
             });
           }
 
