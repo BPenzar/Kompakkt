@@ -17,11 +17,8 @@ export class AnnotationvrService {
 
   private controlPrevious: BABYLON.AbstractMesh;
   private controlNext: BABYLON.AbstractMesh;
-  private annotationTextGround: BABYLON.AbstractMesh;
-  private annotationTextField: GUI.TextBlock;
-
-  private previousTextField: GUI.TextBlock;
-  private nextTextField: GUI.TextBlock;
+  // private annotationTextGround: BABYLON.AbstractMesh;
+  // private annotationTextField: GUI.TextBlock;
 
   // FULLSCREEN_GUI
   private advancedTextureFullscreen: BABYLON.GUI.AdvancedDynamicTexture;
@@ -40,9 +37,9 @@ export class AnnotationvrService {
   private posXcontrolNext: number;
   private posYcontrolNext: number;
   private posZcontrolNext: number;
-  private posXtextfield: number;
-  private posYtextfield: number;
-  private posZtextfield: number;
+  // private posXtextfield: number;
+  // private posYtextfield: number;
+  // private posZtextfield: number;
 
   constructor(private babylonService: BabylonService,
               private annotationService: AnnotationService,
@@ -63,24 +60,20 @@ export class AnnotationvrService {
     this.posYcontrolNext = -0.9;
     this.posZcontrolNext = 3;
 
-    this.posXtextfield = 0;
-    this.posYtextfield = -0.9;
-    this.posZtextfield = 3;
+    // this.posXtextfield = 0;
+    // this.posYtextfield = -0.9;
+    // this.posZtextfield = 3;
     
     this.babylonService.vrModeIsActive.subscribe(vrModeIsActive => {
       if (vrModeIsActive) {
         
         // FULLSCREEN_GUI
         this.advancedTextureFullscreen = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myUI2");
-        console.log(this.advancedTextureFullscreen);
         this.advancedTextureFullscreen.isForeground = true;
 
         this.createVRAnnotationControls();
         this.createVRAnnotationContentField();
       } else {
-
-        // FULLSCREEN_GUI
-        this.advancedTextureFullscreen.isForeground = false;
  
         this.deleteVRElements();
       }
@@ -203,6 +196,7 @@ export class AnnotationvrService {
   public deleteVRElements() {
 
     // FULLSCREEN_GUI
+    this.advancedTextureFullscreen.isForeground = false;
     this.advancedTextureFullscreen.removeControl(this.text1);
 
     this.babylonService.getScene().getMeshesByTags('control').forEach(function (value) {
@@ -259,7 +253,7 @@ export class AnnotationvrService {
   private getAction(index: number) {
 
     if (this.annotationService.annotations.length) {
-      this.annotationTextField.text = this.annotationService.annotations[index].title;
+      // this.annotationTextField.text = this.annotationService.annotations[index].title;
 
       // FULLSCREEN_GUI
       this.text1.text = this.annotationService.annotations[index].title;
