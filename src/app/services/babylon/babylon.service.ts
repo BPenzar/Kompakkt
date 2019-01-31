@@ -116,6 +116,8 @@ export class BabylonService {
               
               console.log("VR-JUMP");
               console.log(this.getActiveCamera().position);
+              
+              console.log(mesh);
 
               mesh.absolutePosition.x += this.getActiveCamera().position.x + mesh.position.x;
               mesh.absolutePosition.y += this.getActiveCamera().position.y + mesh.position.y;
