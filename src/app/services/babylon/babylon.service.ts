@@ -117,17 +117,16 @@ export class BabylonService {
               
               let newPosition = new BABYLON.Vector3();
               if((i%2) != 0 ){
-                newPosition.x = this.getActiveCamera().position.x + 5;
-                newPosition.y = this.getActiveCamera().position.y + 5;
+                newPosition.x = this.getActiveCamera().position.x - 5;
+                newPosition.y = this.getActiveCamera().position.y;
                 newPosition.z = this.getActiveCamera().position.z ;
                 i++;
               }else {
-                newPosition.x = this.getActiveCamera().position.x - 5;
-                newPosition.y = this.getActiveCamera().position.y - 5;
+                newPosition.x = this.getActiveCamera().position.x + 5;
+                newPosition.y = this.getActiveCamera().position.y;
                 newPosition.z = this.getActiveCamera().position.z ;
               }
-              
-
+            
               mesh.setAbsolutePosition(newPosition);
             });
           }
