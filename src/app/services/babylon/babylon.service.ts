@@ -116,11 +116,16 @@ export class BabylonService {
               
               console.log("VR-JUMP");
               console.log(mesh.position);
+              console.log(mesh);
               console.log(this.getActiveCamera().position);
 
               mesh.position.x += this.getActiveCamera().position.x;
               mesh.position.y += this.getActiveCamera().position.y;
               mesh.position.z += this.getActiveCamera().position.z;
+
+              console.log("After-JUMP");
+              console.log(mesh.position);
+              console.log(mesh);
             });
           }
 
