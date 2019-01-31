@@ -52,13 +52,13 @@ export class AnnotationvrService {
 
     this.actualRanking = 0;
   
-    this.posXcontrolPrevious = -1.5;
-    this.posYcontrolPrevious = -0.9;
-    this.posZcontrolPrevious = 3;
+    this.posXcontrolPrevious = this.babylonService.getActiveCamera().position.x + 5;
+    this.posYcontrolPrevious = this.babylonService.getActiveCamera().position.y + 5;
+    this.posZcontrolPrevious = this.babylonService.getActiveCamera().position.z + 5;
 
-    this.posXcontrolNext = 1.5;
-    this.posYcontrolNext = -0.9;
-    this.posZcontrolNext = 3;
+    this.posXcontrolNext = this.babylonService.getActiveCamera().position.x - 5;
+    this.posYcontrolNext = this.babylonService.getActiveCamera().position.y + 5;
+    this.posZcontrolNext = this.babylonService.getActiveCamera().position.z + 5;
 
     // this.posXtextfield = 0;
     // this.posYtextfield = -0.9;
@@ -114,7 +114,6 @@ export class AnnotationvrService {
     GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(label2);
   }
 
-
   private createLabel() {
 
     const label = new GUI.Ellipse('controlPreviousLabel');
@@ -153,26 +152,8 @@ export class AnnotationvrService {
     return label;
   }
 
-  // Function -- create Mesh: AnnotationContent (TextMesh + TextFieldLabel)
+
   public createVRAnnotationContentField() {
-
-    // this.annotationTextGround = BABYLON.Mesh.CreatePlane('annotationTextGround', 1, this.babylonService.getScene());
-    // this.annotationTextGround.material = new BABYLON.StandardMaterial('contentMat', this.babylonService.getScene());
-    // this.annotationTextGround.material.alpha = 1;
-    // this.annotationTextGround.renderingGroupId = 1;
-    // this.annotationTextGround.parent = this.babylonService.getScene().activeCamera;
-    // this.annotationTextGround.position.x = this.posXtextfield;
-    // this.annotationTextGround.position.y = this.posYtextfield;
-    // this.annotationTextGround.position.z = this.posZtextfield;
-    // this.annotationTextGround.billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL;
-
-    // BABYLON.Tags.AddTagsTo(this.annotationTextGround, 'control');
-
-    // const rect1 = new GUI.Rectangle();
-    // rect1.cornerRadius = 45;
-    // rect1.thickness = 10;
-    // rect1.background = 'gray';
-    // rect1.alpha = 0.5;
 
     // FULLSCREEN_GUI
     this.text1 = new BABYLON.GUI.TextBlock();
@@ -181,15 +162,6 @@ export class AnnotationvrService {
     this.text1.fontSize = 24;
     this.text1.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
     this.advancedTextureFullscreen.addControl(this.text1);
-
-
-    // GUI.AdvancedDynamicTexture.CreateForMesh(this.annotationTextGround, 1024, 512).addControl(rect1);
-
-    // this.annotationTextField = new GUI.TextBlock();
-    // this.annotationTextField.text = 'Look around to start the annotation tour.';
-    // this.annotationTextField.fontFamily = 'Lucida Console';
-    // this.annotationTextField.fontSize = '50';
-    // rect1.addControl(this.annotationTextField);
   }
   
 
