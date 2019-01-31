@@ -37,9 +37,6 @@ export class AnnotationvrService {
   private posXcontrolNext: number;
   private posYcontrolNext: number;
   private posZcontrolNext: number;
-  // private posXtextfield: number;
-  // private posYtextfield: number;
-  // private posZtextfield: number;
 
   constructor(private babylonService: BabylonService,
               private annotationService: AnnotationService,
@@ -52,17 +49,13 @@ export class AnnotationvrService {
 
     this.actualRanking = 0;
   
-    this.posXcontrolPrevious = this.babylonService.getActiveCamera().position.x + 5;
-    this.posYcontrolPrevious = this.babylonService.getActiveCamera().position.y + 5;
-    this.posZcontrolPrevious = this.babylonService.getActiveCamera().position.z + 5;
+    this.posXcontrolPrevious = -1.5;
+    this.posYcontrolPrevious = -0.9;
+    this.posZcontrolPrevious = 3;
 
-    this.posXcontrolNext = this.babylonService.getActiveCamera().position.x - 5;
-    this.posYcontrolNext = this.babylonService.getActiveCamera().position.y + 5;
-    this.posZcontrolNext = this.babylonService.getActiveCamera().position.z + 5;
-
-    // this.posXtextfield = 0;
-    // this.posYtextfield = -0.9;
-    // this.posZtextfield = 3;
+    this.posXcontrolNext = 1.5;
+    this.posYcontrolNext = -0.9;
+    this.posZcontrolNext = 3;
     
     this.babylonService.vrModeIsActive.subscribe(vrModeIsActive => {
       if (vrModeIsActive) {
