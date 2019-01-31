@@ -58,12 +58,6 @@ export class BabylonService {
   private isBackground: boolean;
 
   // FOR VR-HUD
-  // public vrCameraRidePreviousPositionX: number;
-  // public vrCameraRidePreviousPositionY: number;
-  // public vrCameraRidePreviousPositionZ: number;
-  // public vrCameraRideDifferenceX: number;
-  // public vrCameraRideDifferenceY: number;
-  // public vrCameraRideDifferenceZ: number;
   public vrJump: boolean;
 
 
@@ -124,9 +118,9 @@ export class BabylonService {
               console.log(mesh.position);
               console.log(this.getActiveCamera().position);
 
-              // mesh.position.x += this.vrCameraRideDifferenceX;
-              // mesh.position.y += this.vrCameraRideDifferenceY;
-              // mesh.position.z += this.vrCameraRideDifferenceZ;
+              mesh.position.x += this.getActiveCamera().position.x;
+              mesh.position.y += this.getActiveCamera().position.y;
+              mesh.position.z += this.getActiveCamera().position.z;
             });
           }
 
