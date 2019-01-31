@@ -34,13 +34,13 @@ export class AnnotationvrService {
 
     this.actualRanking = 0;
 
-    this.posXcontrolPrevious = -1.5;
-    this.posYcontrolPrevious = -0.9;
-    this.posZcontrolPrevious = 3;
+    this.posXcontrolPrevious = -2;
+    this.posYcontrolPrevious = -1;
+    this.posZcontrolPrevious = 2.5;
 
-    this.posXcontrolNext = 1.5;
-    this.posYcontrolNext = -0.9;
-    this.posZcontrolNext = 3;
+    this.posXcontrolNext = 2;
+    this.posYcontrolNext = -1;
+    this.posZcontrolNext = 2.5;
     
     this.babylonService.vrModeIsActive.subscribe(vrModeIsActive => {
       if (vrModeIsActive) {
@@ -66,9 +66,9 @@ export class AnnotationvrService {
     
     console.log("position of Camera before Controls are positioned ");
     console.log(this.babylonService.getActiveCamera().position);
-    this.controlPrevious.position.x = this.babylonService.getActiveCamera().position.x + this.posXcontrolPrevious;
-    this.controlPrevious.position.y = this.babylonService.getActiveCamera().position.y + this.posYcontrolPrevious;
-    this.controlPrevious.position.z = this.babylonService.getActiveCamera().position.z + this.posZcontrolPrevious;
+    this.controlPrevious.position.x = this.posXcontrolPrevious;
+    this.controlPrevious.position.y = this.posYcontrolPrevious;
+    this.controlPrevious.position.z = this.posZcontrolPrevious;
     this.controlPrevious.material = new BABYLON.StandardMaterial('controlMat', this.babylonService.getScene());
     this.controlPrevious.material.alpha = 1;
     this.controlPrevious.renderingGroupId = 1;

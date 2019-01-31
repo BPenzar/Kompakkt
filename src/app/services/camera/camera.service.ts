@@ -365,7 +365,7 @@ export class CameraService {
       // this.babylonService.vrCameraRidePreviousPositionX = (positionVector.x);
       // this.babylonService.vrCameraRidePreviousPositionY = (positionVector.y - 10);
       // this.babylonService.vrCameraRidePreviousPositionZ = (positionVector.z - 10);
-      // this.babylonService.vrJump = true;
+      this.babylonService.vrJump = true;
     });
 
   }
