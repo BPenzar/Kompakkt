@@ -100,7 +100,7 @@ export class AnnotationvrService {
     const label = new GUI.Ellipse('controlPreviousLabel');
     label.width = '100%';
     label.height = '100%';
-    label.color = 'black';
+    label.color = 'white';
     label.thickness = 1;
     label.background = 'white';
     label.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_TOP;
