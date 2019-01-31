@@ -209,6 +209,7 @@ export class AnnotationvrService {
     this.text1.text = "Look around to start the annotation tour.";
     this.text1.color = "white";
     this.text1.fontSize = 24;
+    this.text1.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
     this.advancedTextureFullscreen.addControl(this.text1);
 
 
@@ -284,7 +285,7 @@ export class AnnotationvrService {
       this.text1.text = this.annotationService.annotations[index].title;
 
 
-      
+
       let cameraVector;
       let i = 1;
       this.babylonService.getScene().getMeshesByTags('plane', mesh => {
