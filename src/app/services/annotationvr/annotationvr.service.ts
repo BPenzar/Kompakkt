@@ -42,10 +42,6 @@ export class AnnotationvrService {
   private posZtextfield: number;
 
 
-  // FULLSCREEN GUI
-  public advancedTextureFullscreen: BABYLON.GUI.AdvancedDynamicTexture;
-
-
   // Constructor
   // Added Services -- BabylonService // AnnotationService // CameraService
   constructor(private babylonService: BabylonService,
@@ -54,8 +50,6 @@ export class AnnotationvrService {
 
     // INITIALIZATION
 
-    // FULLSCREEN GUI
-    this.advancedTextureFullscreen = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("Fullscreen_UI");
 
     // Boolean-Selections for Control-Meshes of Annotation -- in process ("selectingControl...") // selected ("selectedControl...")
     // NOT IN USE   
@@ -89,10 +83,12 @@ export class AnnotationvrService {
     // (Boolean) rückgabewert true/false
     this.babylonService.vrModeIsActive.subscribe(vrModeIsActive => {
       if (vrModeIsActive) {
+        
         // Create Meshes (Previous-Annotation // Next.Annotation // AnnotationTextFeld(+Text) -- wenn rein in VRMode (vrModeIsActive = true)
         this.createVRAnnotationControls();
         this.createVRAnnotationContentField();
       } else {
+
         // Delete Meshes -- wenn raus aus VRMode (vrModeIsActive = false)
         this.deleteVRElements();
       }
@@ -103,6 +99,7 @@ export class AnnotationvrService {
   public createVRAnnotationControls() {
 
     var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Click Me");
+    button1.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
     button1.width = "150px"
     button1.height = "40px";
     button1.color = "white";
@@ -111,7 +108,7 @@ export class AnnotationvrService {
     button1.onPointerUpObservable.add(function() {
         alert("you did it!");
     });
-    this.advancedTextureFullscreen.addControl(button1);
+    // this.babylonService.advancedTextureFullscreen.addControl(button1);
 
     // Previous Control
     this.controlPrevious = BABYLON.MeshBuilder.CreatePlane('controlPrevious', {height: 1, width: 1}, this.babylonService.getScene());

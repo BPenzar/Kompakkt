@@ -66,11 +66,16 @@ export class BabylonService {
   // public vrCameraRideDifferenceZ: number;
   // public vrJump: boolean;
 
+  // FULLSCREEN GUI
+  public advancedTextureFullscreen: BABYLON.GUI.AdvancedDynamicTexture;
+
 
   constructor(private message: MessageService,
               private loadingScreenHandler: LoadingscreenhandlerService,
               @Inject(DOCUMENT) private document: any) {
 
+    // FULLSCREEN GUI
+    this.advancedTextureFullscreen = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myFullscreenUI");
     
 
     this.CanvasObservable.subscribe(newCanvas => {
