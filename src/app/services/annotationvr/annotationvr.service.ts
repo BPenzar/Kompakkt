@@ -33,7 +33,7 @@ export class AnnotationvrService {
               private cameraService: CameraService) {
 
     this.actualRanking = 0;
-  
+
     this.posXcontrolPrevious = -1.5;
     this.posYcontrolPrevious = -0.9;
     this.posZcontrolPrevious = 3;
@@ -63,6 +63,9 @@ export class AnnotationvrService {
     // Previous Control
     this.controlPrevious = BABYLON.MeshBuilder.CreatePlane('controlPrevious', {height: 1, width: 1}, this.babylonService.getScene());
     this.controlPrevious.parent = this.babylonService.getScene().activeCamera;
+    
+    console.log("position of Camera before Controls are positioned ");
+    console.log(this.babylonService.getActiveCamera().position);
     this.controlPrevious.position.x = this.posXcontrolPrevious;
     this.controlPrevious.position.y = this.posYcontrolPrevious;
     this.controlPrevious.position.z = this.posZcontrolPrevious;
