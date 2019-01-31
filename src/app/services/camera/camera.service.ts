@@ -362,13 +362,13 @@ export class CameraService {
       console.log(this.scene.activeCamera.position);
 
       // FOR VR-HUD
-      this.babylonService.vrCameraRideDifferenceX = (positionVector.x) - this.babylonService.vrCameraRidePreviousPositionX;
-      this.babylonService.vrCameraRideDifferenceY = (positionVector.y -10 ) - this.babylonService.vrCameraRidePreviousPositionY;
-      this.babylonService.vrCameraRideDifferenceZ = (positionVector.z - 10) - this.babylonService.vrCameraRidePreviousPositionZ;
-      this.babylonService.vrCameraRidePreviousPositionX = (positionVector.x);
-      this.babylonService.vrCameraRidePreviousPositionY = (positionVector.y - 10);
-      this.babylonService.vrCameraRidePreviousPositionZ = (positionVector.z - 10);
-      this.babylonService.vrJump = true;
+      // this.babylonService.vrCameraRideDifferenceX = (positionVector.x) - this.babylonService.vrCameraRidePreviousPositionX;
+      // this.babylonService.vrCameraRideDifferenceY = (positionVector.y -10 ) - this.babylonService.vrCameraRidePreviousPositionY;
+      // this.babylonService.vrCameraRideDifferenceZ = (positionVector.z - 10) - this.babylonService.vrCameraRidePreviousPositionZ;
+      // this.babylonService.vrCameraRidePreviousPositionX = (positionVector.x);
+      // this.babylonService.vrCameraRidePreviousPositionY = (positionVector.y - 10);
+      // this.babylonService.vrCameraRidePreviousPositionZ = (positionVector.z - 10);
+      // this.babylonService.vrJump = true;
     });
 
   }

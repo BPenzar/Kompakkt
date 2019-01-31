@@ -58,13 +58,15 @@ export class BabylonService {
   private isBackground: boolean;
 
   // FOR VR-HUD
-  public vrCameraRidePreviousPositionX: number;
-  public vrCameraRidePreviousPositionY: number;
-  public vrCameraRidePreviousPositionZ: number;
-  public vrCameraRideDifferenceX: number;
-  public vrCameraRideDifferenceY: number;
-  public vrCameraRideDifferenceZ: number;
-  public vrJump: boolean;
+  // public vrCameraRidePreviousPositionX: number;
+  // public vrCameraRidePreviousPositionY: number;
+  // public vrCameraRidePreviousPositionZ: number;
+  // public vrCameraRideDifferenceX: number;
+  // public vrCameraRideDifferenceY: number;
+  // public vrCameraRideDifferenceZ: number;
+  // public vrJump: boolean;
+
+  public advancedTextureFullscreen = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("Fullscreen_UI");
 
 
   constructor(private message: MessageService,
@@ -113,24 +115,24 @@ export class BabylonService {
 
 
           // FOR VR-HUD
-          if (this.vrJump){
+          // if (this.vrJump){
 
-            this.vrJump = false;
+          //   this.vrJump = false;
 
-            this.scene.getMeshesByTags('control', mesh => {
+          //   this.scene.getMeshesByTags('control', mesh => {
               
-              console.log("VR-JUMP");
-              console.log(mesh.position);
-              mesh.position.x += this.vrCameraRideDifferenceX;
-              mesh.position.y += this.vrCameraRideDifferenceY;
-              mesh.position.z += this.vrCameraRideDifferenceZ;
+          //     console.log("VR-JUMP");
+          //     console.log(mesh.position);
+          //     mesh.position.x += this.vrCameraRideDifferenceX;
+          //     mesh.position.y += this.vrCameraRideDifferenceY;
+          //     mesh.position.z += this.vrCameraRideDifferenceZ;
 
-              console.log(this.vrCameraRideDifferenceX);
-              console.log(this.vrCameraRideDifferenceY);
-              console.log(this.vrCameraRideDifferenceZ);
-              console.log(mesh.position);
-            });
-          }
+          //     console.log(this.vrCameraRideDifferenceX);
+          //     console.log(this.vrCameraRideDifferenceY);
+          //     console.log(this.vrCameraRideDifferenceZ);
+          //     console.log(mesh.position);
+          //   });
+          // }
 
 
 
