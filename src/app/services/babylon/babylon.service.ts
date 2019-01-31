@@ -66,12 +66,12 @@ export class BabylonService {
   // public vrCameraRideDifferenceZ: number;
   // public vrJump: boolean;
 
-  public advancedTextureFullscreen = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("Fullscreen_UI");
-
 
   constructor(private message: MessageService,
               private loadingScreenHandler: LoadingscreenhandlerService,
               @Inject(DOCUMENT) private document: any) {
+
+    
 
     this.CanvasObservable.subscribe(newCanvas => {
 
@@ -223,10 +223,10 @@ export class BabylonService {
     this.VRHelper.onEnteringVRObservable.add(() => {
       this.vrModeIsActive.emit(true);
 
-      // FOR VR-HUD
-      this.vrCameraRidePreviousPositionX = this.getActiveCamera().position.x;
-      this.vrCameraRidePreviousPositionY = this.getActiveCamera().position.y;
-      this.vrCameraRidePreviousPositionZ = this.getActiveCamera().position.z;
+      // // FOR VR-HUD
+      // this.vrCameraRidePreviousPositionX = this.getActiveCamera().position.x;
+      // this.vrCameraRidePreviousPositionY = this.getActiveCamera().position.y;
+      // this.vrCameraRidePreviousPositionZ = this.getActiveCamera().position.z;
     });
 
     this.VRHelper.onExitingVRObservable.add(() => {

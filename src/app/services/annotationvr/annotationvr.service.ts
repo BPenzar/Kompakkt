@@ -42,6 +42,10 @@ export class AnnotationvrService {
   private posZtextfield: number;
 
 
+  // FULLSCREEN GUI
+  public advancedTextureFullscreen: BABYLON.GUI.AdvancedDynamicTexture;
+
+
   // Constructor
   // Added Services -- BabylonService // AnnotationService // CameraService
   constructor(private babylonService: BabylonService,
@@ -49,6 +53,9 @@ export class AnnotationvrService {
               private cameraService: CameraService) {
 
     // INITIALIZATION
+
+    // FULLSCREEN GUI
+    this.advancedTextureFullscreen = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("Fullscreen_UI");
 
     // Boolean-Selections for Control-Meshes of Annotation -- in process ("selectingControl...") // selected ("selectedControl...")
     // NOT IN USE   
@@ -104,7 +111,7 @@ export class AnnotationvrService {
     button1.onPointerUpObservable.add(function() {
         alert("you did it!");
     });
-    this.babylonService.advancedTextureFullscreen.addControl(button1);
+    this.advancedTextureFullscreen.addControl(button1);
 
     // Previous Control
     this.controlPrevious = BABYLON.MeshBuilder.CreatePlane('controlPrevious', {height: 1, width: 1}, this.babylonService.getScene());

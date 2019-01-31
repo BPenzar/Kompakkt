@@ -305,9 +305,6 @@ export class CameraService {
 
   public moveVRCameraToTarget(positionVector: BABYLON.Vector3) {
 
-    // this.scene.activeCamera = this.vrHelper.webVRCamera;
-    // this.vrHelper.webVRCamera.attachControl(this.canvas, false);
-
     // ANIMATION
     const name = 'animCam',
       frames = 30;
@@ -322,7 +319,7 @@ export class CameraService {
         value: this.scene.activeCamera.position.x
       }, {
         frame: 30,
-        value: positionVector.x
+        value: positionVector.x + 2
       }
     ]);
     this.scene.activeCamera.animations.push(animCamAlpha);
@@ -337,7 +334,7 @@ export class CameraService {
         value: this.scene.activeCamera.position.y
       }, {
         frame: 30,
-        value: positionVector.y - 10
+        value: positionVector.y + 2
       }]);
       this.scene.activeCamera.animations.push(animCamBeta);
 
@@ -351,7 +348,7 @@ export class CameraService {
         value: this.scene.activeCamera.position.z
       }, {
         frame: 30,
-        value: positionVector.z - 10
+        value: positionVector.z + 2 
       }]);
       this.scene.activeCamera.animations.push(animCamRadius);
 
