@@ -20,6 +20,8 @@ export class AnnotationvrService {
   private annotationTextGround: BABYLON.AbstractMesh;
   private annotationTextField: GUI.TextBlock;
 
+  private text1: BABYLON.GUI.TextBlock;
+
   // FULLSCREEN_GUI
   private advancedTextureFullscreen: BABYLON.GUI.AdvancedDynamicTexture;
   
@@ -102,9 +104,9 @@ export class AnnotationvrService {
     GUI.AdvancedDynamicTexture.CreateForMesh(this.controlPrevious).addControl(label);
 
     // FULLSCREEN_GUI
-    const labelFullscreen = this.createLabelFullscreen();
-    BABYLON.Tags.AddTagsTo(label, 'control');
-    this.advancedTextureFullscreen.addControl(labelFullscreen);
+    // const labelFullscreen = this.createLabelFullscreen();
+    // BABYLON.Tags.AddTagsTo(labelFullscreen, 'control');
+    // this.advancedTextureFullscreen.addControl(labelFullscreen);
     
     // Next Control
     this.controlNext = BABYLON.MeshBuilder.CreatePlane('controlNext', {height: 1, width: 1}, this.babylonService.getScene());
@@ -122,25 +124,25 @@ export class AnnotationvrService {
     GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(label2);
   }
 
-  private createLabelFullscreen(){
+  // private createLabelFullscreen(){
 
-    const label = BABYLON.GUI.Button.CreateSimpleButton("but1", "Next Annotation");
-    label.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    label.width = '5%';
-    label.height = '5%';
-    label.color = 'black';
-    label.thickness = 1;
-    label.background = 'black';
-    label.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+  //   const label = BABYLON.GUI.Button.CreateSimpleButton("but1", "Next Annotation");
+  //   label.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+  //   label.width = '5%';
+  //   label.height = '5%';
+  //   label.color = 'black';
+  //   label.thickness = 1;
+  //   label.background = 'black';
+  //   label.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
 
-    label.onPointerMoveObservable.add(() => {
-      if(this.controlPrevious.metadata){
-        this.controlPrevious.metadata = null;
-        this.previousAnnotation();
-      }
-    });
-   return label;
-  }
+  //   label.onPointerMoveObservable.add(() => {
+  //     if(this.controlPrevious.metadata){
+  //       this.controlPrevious.metadata = null;
+  //       this.previousAnnotation();
+  //     }
+  //   });
+  //  return label;
+  // }
 
   private createLabel() {
 
@@ -201,6 +203,15 @@ export class AnnotationvrService {
     rect1.background = 'gray';
     rect1.alpha = 0.5;
 
+
+    // FULLSCREEN_GUI
+    this.text1 = new BABYLON.GUI.TextBlock();
+    this.text1.text = "Look around to start the annotation tour.";
+    this.text1.color = "white";
+    this.text1.fontSize = 24;
+    this.advancedTextureFullscreen.addControl(this.text1);
+
+
     GUI.AdvancedDynamicTexture.CreateForMesh(this.annotationTextGround, 1024, 512).addControl(rect1);
 
     this.annotationTextField = new GUI.TextBlock();
@@ -209,6 +220,7 @@ export class AnnotationvrService {
     this.annotationTextField.fontSize = '50';
     rect1.addControl(this.annotationTextField);
   }
+  
 
   public deleteVRElements() {
 
@@ -268,6 +280,11 @@ export class AnnotationvrService {
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
 
+      // FULLSCREEN_GUI
+      this.text1.text = this.annotationService.annotations[index].title;
+
+
+      
       let cameraVector;
       let i = 1;
       this.babylonService.getScene().getMeshesByTags('plane', mesh => {
