@@ -114,19 +114,14 @@ export class BabylonService {
 
             this.scene.getMeshesByTags('control', mesh => {
               
-              console.log("VR-JUMP");
-              console.log(this.getActiveCamera().position);
-              console.log(mesh);
-
               let newPosition = new BABYLON.Vector3();
               newPosition.x = this.getActiveCamera().position.x + mesh.position.x;
               newPosition.y = this.getActiveCamera().position.y + mesh.position.y;
               newPosition.z = this.getActiveCamera().position.z + mesh.position.z;
-              mesh.setAbsolutePosition(newPosition);
 
-              console.log("newMeshPositioned");
-              console.log(mesh);
-
+              if (newPosition.x != mesh.getAbsolutePosition().x){
+                mesh.setAbsolutePosition(newPosition);
+              }
             });
           }
 
@@ -217,11 +212,6 @@ export class BabylonService {
     
     this.VRHelper.onEnteringVRObservable.add(() => {
       this.vrModeIsActive.emit(true);
-
-      // // FOR VR-HUD
-      // this.vrCameraRidePreviousPositionX = this.getActiveCamera().position.x;
-      // this.vrCameraRidePreviousPositionY = this.getActiveCamera().position.y;
-      // this.vrCameraRidePreviousPositionZ = this.getActiveCamera().position.z;
     });
 
     this.VRHelper.onExitingVRObservable.add(() => {

@@ -6,6 +6,7 @@ import * as GUI from 'babylonjs-gui';
 import {BabylonService} from '../babylon/babylon.service';
 import {CameraService} from '../camera/camera.service';
 import {AnnotationService} from '../annotation/annotation.service';
+import { text } from '@angular/core/src/render3';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AnnotationvrService {
   private controlPrevious: BABYLON.AbstractMesh;
   private controlNext: BABYLON.AbstractMesh;
 
-  // FULLSCREEN_GUI
+  // FOR VR-HUD
   private advancedTextureFullscreen: BABYLON.GUI.AdvancedDynamicTexture;
   private text1: BABYLON.GUI.TextBlock;
 
@@ -34,18 +35,18 @@ export class AnnotationvrService {
 
     this.actualRanking = 0;
 
-    this.posXcontrolPrevious = -2;
+    this.posXcontrolPrevious = -5;
     this.posYcontrolPrevious = -1;
     this.posZcontrolPrevious = 2.5;
 
-    this.posXcontrolNext = 2;
+    this.posXcontrolNext = 5;
     this.posYcontrolNext = -1;
     this.posZcontrolNext = 2.5;
     
     this.babylonService.vrModeIsActive.subscribe(vrModeIsActive => {
       if (vrModeIsActive) {
         
-        // FULLSCREEN_GUI
+        // FOR VR-HUD
         this.advancedTextureFullscreen = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myUI2");
         this.advancedTextureFullscreen.isForeground = true;
 
@@ -92,6 +93,19 @@ export class AnnotationvrService {
     
     const label2 = this.createLabel2();    
     GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(label2);
+
+    
+    const textLabelPrevious = new GUI.TextBlock('Previous Annotation');
+    textLabelPrevious.text = 'Previous Annotation';
+    textLabelPrevious.fontSize = 16;
+    textLabelPrevious.color = 'white';
+    GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(textLabelPrevious);
+    const textLabelNext = new GUI.TextBlock('Next Annotation');
+    textLabelNext.text = 'Next Annotation';
+    textLabelNext.fontSize = 16;
+    textLabelNext.color = 'white';
+    GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(textLabelNext);
+    
   }
 
   private createLabel() {
@@ -135,7 +149,7 @@ export class AnnotationvrService {
 
   public createVRAnnotationContentField() {
 
-    // FULLSCREEN_GUI
+    // FOR VR-HUD
     this.text1 = new BABYLON.GUI.TextBlock();
     this.text1.text = "Look around to start the annotation tour.";
     this.text1.color = "white";
@@ -147,7 +161,7 @@ export class AnnotationvrService {
 
   public deleteVRElements() {
 
-    // FULLSCREEN_GUI
+    // FOR VR-HUD
     this.advancedTextureFullscreen.isForeground = false;
     this.advancedTextureFullscreen.removeControl(this.text1);
 
@@ -201,7 +215,7 @@ export class AnnotationvrService {
   private getAction(index: number) {
 
     if (this.annotationService.annotations.length) {
-      // FULLSCREEN_GUI
+      // FOR VR-HUD
       this.text1.text = this.annotationService.annotations[index].title;
 
       let cameraVector;
