@@ -115,14 +115,12 @@ export class BabylonService {
             this.scene.getMeshesByTags('control', mesh => {
               
               console.log("VR-JUMP");
-              console.log(mesh);
+              console.log(this.getActiveCamera().position);
 
               mesh.absolutePosition.x += this.getActiveCamera().position.x + mesh.position.x;
               mesh.absolutePosition.y += this.getActiveCamera().position.y + mesh.position.y;
               mesh.absolutePosition.z += this.getActiveCamera().position.z + mesh.position.z;
 
-              console.log("After-JUMP");              
-              console.log(mesh);
             });
           }
 
