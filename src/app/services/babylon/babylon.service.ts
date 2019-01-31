@@ -116,12 +116,16 @@ export class BabylonService {
               
               console.log("VR-JUMP");
               console.log(this.getActiveCamera().position);
-              
               console.log(mesh);
 
-              mesh.absolutePosition.x += this.getActiveCamera().position.x + mesh.position.x;
-              mesh.absolutePosition.y += this.getActiveCamera().position.y + mesh.position.y;
-              mesh.absolutePosition.z += this.getActiveCamera().position.z + mesh.position.z;
+              let newPosition = new BABYLON.Vector3();
+              newPosition.x = this.getActiveCamera().position.x + mesh.position.x;
+              newPosition.y = this.getActiveCamera().position.y + mesh.position.y;
+              newPosition.z = this.getActiveCamera().position.z + mesh.position.z;
+              mesh.setAbsolutePosition(newPosition);
+
+              console.log("newMeshPositioned");
+              console.log(mesh);
 
             });
           }
