@@ -319,7 +319,7 @@ export class CameraService {
         value: this.scene.activeCamera.position.x
       }, {
         frame: 30,
-        value: positionVector.x + 10
+        value: positionVector.x + 4
       }
     ]);
     this.scene.activeCamera.animations.push(animCamAlpha);
@@ -334,7 +334,7 @@ export class CameraService {
         value: this.scene.activeCamera.position.y
       }, {
         frame: 30,
-        value: positionVector.y + 10
+        value: positionVector.y + 4
       }]);
       this.scene.activeCamera.animations.push(animCamBeta);
 
@@ -348,7 +348,7 @@ export class CameraService {
         value: this.scene.activeCamera.position.z
       }, {
         frame: 30,
-        value: positionVector.z + 10
+        value: positionVector.z + 4
       }]);
       this.scene.activeCamera.animations.push(animCamRadius);
 
