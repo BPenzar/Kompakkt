@@ -262,44 +262,27 @@ export class AnnotationvrService {
     if (this.annotationService.annotations.length) {
       this.annotationTextField.text = this.annotationService.annotations[index].title;
 
-      // VR_CAMERA_TO_ANNOTATION
       let cameraVector;
       let i = 1;
       this.babylonService.getScene().getMeshesByTags('plane', mesh => {
 
         // DEBUG
         if (Math.abs(i % 2) != 1){
-
-          console.log(i);
           i++;
         }
         else {
-
           i++;
-
-          console.log("DOUBLE MESH???");
-          console.log(i);
-          console.log(mesh);
           
           const annoID = this.annotationService.annotations[index]["_id"] + "_pick";
 
           if (annoID === mesh.name){
 
-            console.log(" 0 ");
-
             cameraVector = mesh.position;
-
-            console.log("Active-Camera - Before Animation");
-            console.log(this.babylonService.getActiveCamera().position);
-
             this.cameraService.moveVRCameraToTarget(cameraVector);
           }
-
-
         }
       });
     
-      // this.moveVRcontrols();
 
     } else {
       this.actualRanking = 0;

@@ -121,10 +121,14 @@ export class BabylonService {
               
               console.log("VR-JUMP");
               console.log(mesh.position);
-              // mesh.position.x += this.vrCameraRideDifferenceX;
-              // mesh.position.y += this.vrCameraRideDifferenceY;
-              // mesh.position.z += this.vrCameraRideDifferenceZ;
-              // console.log(mesh.position);
+              mesh.position.x += this.vrCameraRideDifferenceX;
+              mesh.position.y += this.vrCameraRideDifferenceY;
+              mesh.position.z += this.vrCameraRideDifferenceZ;
+
+              console.log(this.vrCameraRideDifferenceX);
+              console.log(this.vrCameraRideDifferenceY);
+              console.log(this.vrCameraRideDifferenceZ);
+              console.log(mesh.position);
             });
           }
 
