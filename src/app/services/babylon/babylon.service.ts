@@ -112,16 +112,23 @@ export class BabylonService {
 
             this.vrJump = false;
 
+            let i = 1;
             this.scene.getMeshesByTags('control', mesh => {
               
               let newPosition = new BABYLON.Vector3();
-              newPosition.x = this.getActiveCamera().position.x + mesh.position.x;
-              newPosition.y = this.getActiveCamera().position.y + mesh.position.y;
-              newPosition.z = this.getActiveCamera().position.z + mesh.position.z;
-
-              if (newPosition.x != mesh.getAbsolutePosition().x){
-                mesh.setAbsolutePosition(newPosition);
+              if((i%2) != 0 ){
+                newPosition.x = this.getActiveCamera().position.x + 5;
+                newPosition.y = this.getActiveCamera().position.y + 5;
+                newPosition.z = this.getActiveCamera().position.z ;
+                i++;
+              }else {
+                newPosition.x = this.getActiveCamera().position.x - 5;
+                newPosition.y = this.getActiveCamera().position.y - 5;
+                newPosition.z = this.getActiveCamera().position.z ;
               }
+              
+
+              mesh.setAbsolutePosition(newPosition);
             });
           }
 
