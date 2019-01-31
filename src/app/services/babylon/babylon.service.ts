@@ -64,7 +64,7 @@ export class BabylonService {
   public vrCameraRideDifferenceX: number;
   public vrCameraRideDifferenceY: number;
   public vrCameraRideDifferenceZ: number;
-  public vrJump: boolean;
+  public vrJump = false;
 
 
   constructor(private message: MessageService,
