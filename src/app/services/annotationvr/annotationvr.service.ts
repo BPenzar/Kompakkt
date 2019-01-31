@@ -104,11 +104,6 @@ export class AnnotationvrService {
 
     const label = this.createLabel();
     GUI.AdvancedDynamicTexture.CreateForMesh(this.controlPrevious).addControl(label);
-
-    // FULLSCREEN_GUI
-    // const labelFullscreen = this.createLabelFullscreen();
-    // BABYLON.Tags.AddTagsTo(labelFullscreen, 'control');
-    // this.advancedTextureFullscreen.addControl(labelFullscreen);
     
     // Next Control
     this.controlNext = BABYLON.MeshBuilder.CreatePlane('controlNext', {height: 1, width: 1}, this.babylonService.getScene());
@@ -122,15 +117,8 @@ export class AnnotationvrService {
     this.controlNext.billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL;
     BABYLON.Tags.AddTagsTo(this.controlNext, 'control');
     
-    const label2 = this.createLabel2();
-
-    this.nextTextField = new GUI.TextBlock();
-    this.nextTextField.text = 'Next Annotation';
-    this.nextTextField.color = 'white';
-    // this.nextTextField.fontFamily = 'Lucida Console';
-    // this.nextTextField.fontSize = '0';
-    
-    GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(label2).addControl(this.nextTextField);
+    const label2 = this.createLabel2();    
+    GUI.AdvancedDynamicTexture.CreateForMesh(this.controlNext).addControl(label2);
   }
 
 
