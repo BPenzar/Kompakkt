@@ -71,9 +71,6 @@ export class BabylonService {
               private loadingScreenHandler: LoadingscreenhandlerService,
               @Inject(DOCUMENT) private document: any) {
 
-    // FOR VR-HUD
-    this.vrJump = false;
-
     this.CanvasObservable.subscribe(newCanvas => {
 
       if (newCanvas) {
@@ -123,7 +120,7 @@ export class BabylonService {
             this.scene.getMeshesByTags('control', mesh => {
               
               console.log("VR-JUMP");
-              console.log(mesh);
+              console.log(mesh.position);
               mesh.position.x += this.vrCameraRideDifferenceX;
               mesh.position.y += this.vrCameraRideDifferenceY;
               mesh.position.z += this.vrCameraRideDifferenceZ;
