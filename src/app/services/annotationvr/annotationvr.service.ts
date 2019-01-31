@@ -7,9 +7,6 @@ import {BabylonService} from '../babylon/babylon.service';
 import {CameraService} from '../camera/camera.service';
 import {AnnotationService} from '../annotation/annotation.service';
 
-import ActionEvent = BABYLON.ActionEvent;
-import { leave } from '@angular/core/src/profile/wtf_impl';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,17 +14,10 @@ export class AnnotationvrService {
 
   private controlPrevious: BABYLON.AbstractMesh;
   private controlNext: BABYLON.AbstractMesh;
-  // private annotationTextGround: BABYLON.AbstractMesh;
-  // private annotationTextField: GUI.TextBlock;
 
   // FULLSCREEN_GUI
   private advancedTextureFullscreen: BABYLON.GUI.AdvancedDynamicTexture;
   private text1: BABYLON.GUI.TextBlock;
-  
-  private selectingControlPrevious: boolean;
-  private selectedControlPrevious: boolean;
-  private selectingControlNext: boolean;
-  private selectedControlNext: boolean;
 
   public actualRanking: number;
 
@@ -41,11 +31,6 @@ export class AnnotationvrService {
   constructor(private babylonService: BabylonService,
               private annotationService: AnnotationService,
               private cameraService: CameraService) {
-
-    this.selectingControlPrevious = false;
-    this.selectedControlPrevious = false;
-    this.selectingControlNext = false;
-    this.selectedControlNext = false;
 
     this.actualRanking = 0;
   
@@ -73,7 +58,6 @@ export class AnnotationvrService {
     });
   }
 
-  // Function -- Create Annotation-Controls -- Mesh_Plane + Aktive_Camera-Connection + Label_Clickable -- Next-Annotation + Previous-Annotation
   public createVRAnnotationControls() {
 
     // Previous Control
@@ -169,10 +153,6 @@ export class AnnotationvrService {
     });
   }
 
-  // private moveVRcontrols() {
-
-  // }
-
   private previousAnnotation() {
 
     if (this.annotationService.annotations.length) {
@@ -218,12 +198,8 @@ export class AnnotationvrService {
   private getAction(index: number) {
 
     if (this.annotationService.annotations.length) {
-      // this.annotationTextField.text = this.annotationService.annotations[index].title;
-
       // FULLSCREEN_GUI
       this.text1.text = this.annotationService.annotations[index].title;
-
-
 
       let cameraVector;
       let i = 1;
@@ -239,6 +215,9 @@ export class AnnotationvrService {
           const annoID = this.annotationService.annotations[index]["_id"] + "_pick";
 
           if (annoID === mesh.name){
+
+            console.log("Active-Camera - Before Animation");
+            console.log(this.babylonService.getActiveCamera().position);
 
             cameraVector = mesh.position;
             this.cameraService.moveVRCameraToTarget(cameraVector);
