@@ -298,8 +298,6 @@ export class CameraService {
     });
   }
 
-
-
   public moveVRCameraToTarget(positionVector: BABYLON.Vector3) {
 
     // ANIMATION
@@ -352,16 +350,12 @@ export class CameraService {
     this.scene.beginAnimation(this.scene.activeCamera, 0, 30, false, 1, function () {
     }).onAnimationEndObservable.add(() => {
 
-      console.log("Active-Camera - 0 Sek After Animation");
-      console.log(this.scene.activeCamera.position);
-
       // FOR VR-HUD
+      // console.log("Active-Camera - 0 Sek After Animation");
+      // console.log(this.scene.activeCamera.position);
       this.babylonService.vrJump = true;
     });
-
   }
-
-  
 
   public getActualCameraPosAnnotation() {
     const cameraPosition = [{dimension: 'x', value: this.arcRotateCamera.alpha},

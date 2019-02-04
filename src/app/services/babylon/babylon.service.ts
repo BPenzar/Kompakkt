@@ -11,7 +11,6 @@ import {LoadingscreenhandlerService} from '../loadingscreenhandler/loadingscreen
 
 import {BehaviorSubject} from 'rxjs';
 import ActionEvent = BABYLON.ActionEvent;
-import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 /**
  * @author Zoe Schubert
@@ -60,11 +59,9 @@ export class BabylonService {
   // FOR VR-HUD
   public vrJump: boolean;
 
-
   constructor(private message: MessageService,
               private loadingScreenHandler: LoadingscreenhandlerService,
               @Inject(DOCUMENT) private document: any) {
-    
 
     this.CanvasObservable.subscribe(newCanvas => {
 
@@ -74,7 +71,6 @@ export class BabylonService {
         this.scene = new BABYLON.Scene(this.engine);
         this.engine.loadingScreen = new LoadingScreen(newCanvas, '',
           '#111111', 'assets/img/kompakkt-icon.png', this.loadingScreenHandler);
-
 
         this.scene.registerBeforeRender(() => {
 
@@ -105,7 +101,6 @@ export class BabylonService {
           this.scene.getMeshesByTags('plane', mesh => mesh.scalingDeterminant = radius / 35);
           this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = radius / 35);
 
-
           // FOR VR-HUD
           if (this.vrJump) {
 
@@ -129,7 +124,6 @@ export class BabylonService {
               mesh.setAbsolutePosition(newPosition);
             });
           }
-
         });
 
         this.engine.runRenderLoop(() => {
@@ -175,11 +169,9 @@ export class BabylonService {
       customVRButton: vrButton
     });
 
-
     // this.VRHelper.gazeTrackerMesh = BABYLON.Mesh.CreateSphere("sphere1", 32, 0.1, this.scene);
     this.VRHelper.enableInteractions();
     // this.VRHelper.displayGaze = true;
-
 
     this.VRHelper.onNewMeshSelected.add((mesh) => {
 
@@ -209,13 +201,11 @@ export class BabylonService {
           }
           break;
       }
-
     });
     
     this.VRHelper.onEnteringVRObservable.add(() => {
       this.vrModeIsActive.emit(true);
     });
-
     this.VRHelper.onExitingVRObservable.add(() => {
       this.vrModeIsActive.emit(false);
     });
@@ -226,7 +216,6 @@ export class BabylonService {
   public getVRHelper() {
     return this.VRHelper;
   }
-
 
   public loadModel(rootUrl: string, filename: string): Promise<any> {
 

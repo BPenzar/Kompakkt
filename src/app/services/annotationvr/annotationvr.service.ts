@@ -64,9 +64,8 @@ export class AnnotationvrService {
     // Previous Control
     this.controlPrevious = BABYLON.MeshBuilder.CreatePlane('controlPrevious', {height: 1, width: 1}, this.babylonService.getScene());
     this.controlPrevious.parent = this.babylonService.getScene().activeCamera;
-    
-    console.log("position of Camera before Controls are positioned ");
-    console.log(this.babylonService.getActiveCamera().position);
+    // console.log("position of Camera before Controls are positioned ");
+    // console.log(this.babylonService.getActiveCamera().position);
     this.controlPrevious.position.x = this.posXcontrolPrevious;
     this.controlPrevious.position.y = this.posYcontrolPrevious;
     this.controlPrevious.position.z = this.posZcontrolPrevious;
@@ -221,9 +220,8 @@ export class AnnotationvrService {
 
           if (annoID === mesh.name){
 
-            console.log("Active-Camera - Before Animation");
-            console.log(this.babylonService.getActiveCamera().position);
-
+            // console.log("Active-Camera - Before Animation");
+            // console.log(this.babylonService.getActiveCamera().position);
             cameraVector = mesh.position;
             this.cameraService.moveVRCameraToTarget(cameraVector);
           }
