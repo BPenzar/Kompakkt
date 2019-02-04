@@ -19,13 +19,13 @@ export class LoadModelService {
 
   private Subjects = {
     actualModel: new ReplaySubject<Model>(),
-    actualModelMesh: new ReplaySubject<BABYLON.Mesh>(),
+    actualModelMeshes: new ReplaySubject<BABYLON.Mesh[]>(),
     actualCollection: new ReplaySubject<any>(),
   };
 
   public Observables = {
     actualModel: this.Subjects.actualModel.asObservable(),
-    actualModelMesh: this.Subjects.actualModelMesh.asObservable(),
+    actualModelMeshes: this.Subjects.actualModelMeshes.asObservable(),
     actualCollection: this.Subjects.actualCollection.asObservable(),
   };
 
@@ -71,8 +71,8 @@ export class LoadModelService {
     this.Subjects.actualCollection.next(collection);
   }
 
-  public updateActiveModelMesh(mesh: BABYLON.Mesh) {
-    this.Subjects.actualModelMesh.next(mesh);
+  public updateActiveModelMeshes(meshes: BABYLON.Mesh[]) {
+    this.Subjects.actualModelMeshes.next(meshes);
   }
 
   public fetchModelData(query: string) {
@@ -163,15 +163,19 @@ export class LoadModelService {
     }
   }
 
-  public loadModel(newModel: Model, overrideUrl?: string) {
+  public async loadModel(newModel: Model, overrideUrl?: string) {
     const URL = (overrideUrl !== undefined) ? overrideUrl : this.baseUrl;
+
+    if (this.userOwnedModels.length === 0) {
+      await this.getUserData();
+    }
 
     if (!this.loadingScreenHandler.isLoading) {
       this.babylonService.loadModel(URL, newModel.processed[this.quality]).then(async (model) => {
         // Warte auf Antwort von loadModel, da loadModel ein Promise<object> von ImportMeshAync übergibt
         // model ist hier das neu geladene Model
         this.updateActiveModel(newModel);
-        this.updateActiveModelMesh(model.meshes[0]);
+        this.updateActiveModelMeshes(model.meshes);
 
         // Zentriere auf das neu geladene Model, bevor die SettingsEinstellung übernommen wird
         this.cameraService.setActiveCameraTarget(model.meshes[0]._boundingInfo.boundingBox.centerWorld);
@@ -183,24 +187,31 @@ export class LoadModelService {
     }
   }
 
-  public getUserData() {
-    this.mongohandlerService.getCurrentUserData().then(userData => {
-      if (userData.data.models.length > 0) {
-        this.userOwnedModels = userData.data.models;
-      } else {
-        console.log('User owns no models.');
-      }
-    }, error => {
-      this.message.error('Connection to object server refused.');
+  public async getUserData() {
+
+    return new Promise((resolve, reject) => {
+
+      this.mongohandlerService.getCurrentUserData().then(userData => {
+
+        if (userData.data) {
+
+          if (userData.data.models.length > 0) {
+            this.userOwnedModels = userData.data.models;
+          } else {
+            console.log('User owns no models.');
+          }
+        }
+        resolve();
+      }, error => {
+        this.message.error('Connection to object server refused.');
+        reject();
+      });
     });
   }
 
 
   private checkOwnerState(identifier: string) {
-
-    const model = this.userOwnedModels.filter(obj => obj._id === identifier)[0];
-
-    if (model !== undefined) {
+    if (this.userOwnedModels.filter(obj => obj && obj._id === identifier).length === 1) {
       this.isModelOwner = true;
       this.modelOwner.emit(true);
     } else {

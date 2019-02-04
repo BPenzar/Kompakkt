@@ -33,7 +33,7 @@ export class AnnotationComponent implements OnInit {
 
   ngOnInit() {
 
-    if (this.annotation){
+    if (this.annotation) {
       this.id = this.annotation._id;
     }
 
@@ -46,8 +46,13 @@ export class AnnotationComponent implements OnInit {
 
   public setPosition(annotation: Annotation) {
 
-    const scene = this.babylonService.getScene(),
-      getMesh = scene.getMeshByName(annotation._id + '_pick');
+    const scene = this.babylonService.getScene();
+
+    if (!scene) {
+      return false;
+    }
+
+    const getMesh = scene.getMeshByName(annotation._id + '_pick');
 
     if (getMesh != null) {
 
@@ -60,8 +65,8 @@ export class AnnotationComponent implements OnInit {
         scene.activeCamera.viewport.toGlobal(engine.getRenderWidth(), engine.getRenderHeight())
       );
 
-      this.positionTop = Math.round(p.y);
-      this.positionLeft = Math.round(p.x);
+      this.positionTop = Math.round(p.y) + 5;
+      this.positionLeft = Math.round(p.x) + 5;
     }
   }
 
