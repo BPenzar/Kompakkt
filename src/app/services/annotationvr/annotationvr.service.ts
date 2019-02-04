@@ -138,7 +138,7 @@ export class AnnotationvrService {
 
     // FOR VR-HUD
     this.text1 = new BABYLON.GUI.TextBlock();
-    this.text1.text = "Look around to start the annotation tour.";
+    this.text1.text = "Look around to start the annotation tour. \n Look at black button => next annotation \n Look at white button => previous annotation";
     this.text1.color = "white";
     this.text1.fontSize = 24;
     this.text1.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;

@@ -83,7 +83,7 @@ export class BabylonService {
 
             this.actualControl.scaling.x += 0.005;
             this.actualControl.scaling.y += 0.005;
-            this.actualControl.material.diffuseColor = BABYLON.Color3.Red();
+            // this.actualControl.material.diffuseColor = BABYLON.Color3.Red();
 
             if (this.actualControl.scaling.x >= 1.5) {
               this.selectedControl = true;
