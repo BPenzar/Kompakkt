@@ -106,33 +106,29 @@ export class BabylonService {
           this.scene.getMeshesByTags('label', mesh => mesh.scalingDeterminant = radius / 35);
 
 
-
           // FOR VR-HUD
-          if (this.vrJump){
+          if (this.vrJump) {
 
             this.vrJump = false;
-
             let i = 1;
             this.scene.getMeshesByTags('control', mesh => {
               
               let newPosition = new BABYLON.Vector3();
-              if((i%2) != 0 ){
+              if((i%2) != 0 ) {
+
                 newPosition.x = this.getActiveCamera().position.x - 5;
                 newPosition.y = this.getActiveCamera().position.y;
                 newPosition.z = this.getActiveCamera().position.z ;
                 i++;
               }else {
+
                 newPosition.x = this.getActiveCamera().position.x + 5;
                 newPosition.y = this.getActiveCamera().position.y;
                 newPosition.z = this.getActiveCamera().position.z ;
               }
-            
               mesh.setAbsolutePosition(newPosition);
             });
           }
-
-
-
 
         });
 
