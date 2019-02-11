@@ -16,9 +16,12 @@ export class AnnotationComponent implements OnInit {
 
   @Input() annotation: Annotation;
 
-  public editMode = false;
-  public labelMode = 'edit';
-  public labelModeText = 'edit';
+  // public editMode = false;
+  // public labelMode = 'edit';
+  // public labelModeText = 'edit';
+  public editMode = true;
+  public labelMode = 'remove_red_eye';
+  public labelModeText = 'view';
   public positionTop = 0;
   public positionLeft = 0;
   public visibility: boolean;
