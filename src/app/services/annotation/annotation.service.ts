@@ -67,8 +67,13 @@ export class AnnotationService {
     // Alle Marker, die eventuell vom vorherigen Modell noch da sind, sollen gelöscht werden
     await this.annotationmarkerService.deleteAllMarker();
 
-    // Beim ersten Laden eines Mdoells, werden alle in der PuchDB vorhandenen Annotationen in
+    // Beim ersten Laden eines Modells, werden alle in der PuchDB vorhandenen Annotationen in
     // das Array "allAnnotations" geladen
+    
+    // 11/02/19
+    // In Zukunft von der Datenbank...
+        // nur Annotationen die auch mit dem Modell (this.modelName bzw. id) und der Sammlung (etwa wie "this.collectionID" ???)
+        // in Verbindung stehen...
     if (this.initialLoading === true && this.isDefaultLoad === false) {
       await this.getAnnotations();
     } else {
@@ -80,13 +85,27 @@ export class AnnotationService {
     // Die Annotationen, die sich auf das aktuelle Model beziehen (also als relatedModel den Namen
     // des aktuellen Models aufweisen, werden raus gesucht und in das Array für unsortierte Annotationen
     // gepusht, da sie dort liegen ohne visuelle Elemente zu erzeugen
+    
+    // 11/02/19
+    // Muss/Soll auch an Benutzer//Sammlung gekoppelt werden?
+      // wenn wie oben beschrieben bei "getAnnotations()" schon die Datenbank-Annotationen
+      // in Abhängigkeit von Benutzer//Modell//Sammlung geladen werden
+      // muss hier nicht nochmal "annotation.relatedModel === modelName" geprüft werden
+          // Differenzierung von "this.allAnnotations" und "this.unsortedAnnotations" wird überflüssig 
+
+          // Außer es sollen wirklich zuerst alle Annotationen geladen werden,
+          // das scheint mir aber willkürlich...
     await this.getActualAnnotations(this.modelName);
 
+    
     // Jetzt sollen die Annotationen sortiert werden und in der richtigen Reihenfolge in das Array geschrieben werden
     // Achtung: dann gibt es auch direkt einen visuellen Output durch die Components!
     // Da die Labels erst im nächsten Schritt gezeichnet werden, hängen die Fenster der Annotationen dann kurz ohne Position
     // in der oberen linken Ecke.
     // Die Labels werden gezeichnet und die Fenster haben nun einen Orientierungspunkt
+
+    // 11/02/19
+      // ???
     await this.sortAnnotations();
 
     // Das neu geladene Modell wird annotierbar, ist aber noch nicht klickbar -> das soll erst passieren,
@@ -114,22 +133,26 @@ export class AnnotationService {
     this.initialLoading = false;
   }
 
-  // Das aktuelle Modell wird anklickbar und damit annotierbar
+  // Das aktuelle Modell wird (if 'true') anklickbar und damit annotierbar
   public annotationMode(value: boolean) {
     this.actualModelMeshes.forEach(mesh => {
       this.actionService.pickableModel(mesh, value);
     });
   }
 
-  // Die Annotationsfunktionalität wird zum aktuellen Modell hinzugefügt
+  // Die Annotationsfunktionalität wird zum aktuellen Modell hinzugefügt 
   public initializeAnnotationMode() {
     this.actualModelMeshes.forEach(mesh => {
       this.actionService.createActionManager(mesh, ActionManager.OnDoublePickTrigger, this.createNewAnnotation.bind(this));
     });
+    // anklickbarkeit des Meshes (durch doppelklick Annotierbar) wird zunächst 'false' gesetzt
     this.annotationMode(false);
   }
 
   // Die Annotationen werden in der richtigen Reihenfolge in das Array für den visuellen Output geschrieben
+  
+  // 11/02/19
+  // check ich nicht...
   private async sortAnnotations() {
 
     this.annotations = this.unsortedAnnotations;
@@ -158,11 +181,24 @@ export class AnnotationService {
 
     this.babylonService.createPreviewScreenshot(400).then(detailScreenshot => {
 
+      // 11/02/19
+      // Hier wird das Annotation Interface ausgefüllt// bzw.
+      // eine neue Annotation bei doppelklick-Trigger erstellt:
+          // die Parameter müssen nach Interface-Änderung + Datenbank integration
+          // angepasst werden...
       const newAnnotation: Annotation = {
+        // 11/02/19
+        // ID über Datenbank vergeben?
         _id: Math.random().toString(36).substr(2, 9),
         // relatedModel: BABYLON.Tags.GetTags(result.pickedMesh),
+        // 11/02/19
+        // Model ID statt Name?
         relatedModel: this.modelName,
+        // 11/02/19
+        // Ranking über Datenbank/Zeitstempel?
         ranking: String(this.annotations.length + 1),
+        // 11/02/19
+        // nicht als Array's...
         referencePoint: [{dimension: 'x', value: result.pickedPoint.x}, {dimension: 'y', value: result.pickedPoint.y}, {
           dimension: 'z', value: result.pickedPoint.z
         }],
@@ -174,10 +210,14 @@ export class AnnotationService {
           {dimension: 'y', value: camera.beta},
           {dimension: 'z', value: camera.radius}],
         preview: detailScreenshot,
+        // 11/02/19
+        // original User ID über Abfrage...
         originatorID: 'userID',
         validated: false,
         title: '',
         description: '',
+        // 11/02/19
+        // OK ??
         date: new Date().toISOString()
       };
       this.add(newAnnotation);
@@ -185,6 +225,8 @@ export class AnnotationService {
     });
   }
 
+  // 11/02/19
+  // Annotation in der Datenbank speichern, nicht zur lokalen PouchDB...
   private add(annotation): void {
     this.dataService.database.put(annotation);
     this.annotations.push(annotation);
@@ -195,6 +237,8 @@ export class AnnotationService {
     return JSON.stringify(this.annotations);
   }
 
+  // 11/02/19
+  // Annotationen in der Datenbank löschen...
   public deleteAllAnnotations() {
 
     this.annotationmarkerService.deleteAllMarker();
@@ -207,6 +251,12 @@ export class AnnotationService {
     });
   }
 
+  // 11/02/19
+  // was wird aus der PouchDB (-funktionalität) ???
+  
+
+  // 11/02/19  
+  // In Zukunft: Annotationen in Datenbank pushen und neue "getAnnotations()" + sort() abfrage ???
   public async importAnnotations(annotationsFile) {
 
     const annotations = JSON.parse(annotationsFile);
@@ -220,10 +270,14 @@ export class AnnotationService {
       this.annotationmarkerService.createAnnotationMarker(annotation);
     }
 
+    // 11/02/19 
+    // ?
     this.dataService.database.bulkDocs(this.unsortedAnnotations);
     await this.sortAnnotations();
   }
 
+  // 11/02/19 
+    // aus Datenbank mit spezifischen Such-Parametern (ModelID, CollectionID, Benutzer)...
   private async fetchData(): Promise<Array<any>> {
 
     return new Promise<any>((resolve, reject) => {
@@ -244,6 +298,8 @@ export class AnnotationService {
     });
   }
 
+  // 11/02/19 
+    // Aus Datenbank löschen...
   public deleteAnnotation(annotation: Annotation) {
 
     this.annotationmarkerService.deleteMarker(annotation._id);
@@ -263,6 +319,8 @@ export class AnnotationService {
     this.changedRankingPositions();
   }
 
+  // 11/02/19 
+  // Ranking !nach//in! Datenbank-Ranking...
   public changedRankingPositions() {
 
     let i = 0;
