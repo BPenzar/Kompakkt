@@ -28,6 +28,9 @@ export class AnnotationmarkerService {
 
   constructor(private babylonService: BabylonService, private cameraService: CameraService) {
 
+    // 11/02/19
+    this.isOpen.next(this.open_popup);
+
   }
 
   // Ein und Ausblenden des Markers
