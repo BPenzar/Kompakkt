@@ -25,7 +25,11 @@ export class AnnotationService {
   private unsortedAnnotations: Annotation[];
   private allAnnotations: Annotation[];
   private modelName: string;
-  private initialLoading: boolean;
+
+  // 11/02/19
+  public initialLoading: boolean;
+  // private initialLoading: boolean;
+  
   private actualModelMeshes: BABYLON.Mesh[];
   private isDefaultLoad: boolean;
 
