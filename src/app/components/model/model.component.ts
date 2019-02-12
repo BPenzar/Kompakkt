@@ -4,7 +4,7 @@ import {CatalogueService} from '../../services/catalogue/catalogue.service';
 import {LoadModelService} from '../../services/load-model/load-model.service';
 
 // 12/02/19
-import {AnnotationcardsComponent} from '../annotationcards/annotationcards.component';
+// import {AnnotationcardsComponent} from '../annotationcards/annotationcards.component';
 
 
 @Component({
@@ -19,7 +19,8 @@ export class ModelComponent implements OnInit {
   constructor(private catalogueService: CatalogueService,
               private loadModelService: LoadModelService,
               // 12/02/19
-              private annotationCardComp: AnnotationcardsComponent) {
+              // private annotationCardComp: AnnotationcardsComponent
+              ) {
   }
 
   ngOnInit() {
@@ -29,6 +30,6 @@ export class ModelComponent implements OnInit {
     this.loadModelService.loadModel(this.model);
 
     // 12/02/19
-    this.annotationCardComp.hideAllCards();
+    // this.annotationCardComp.hideAllCards();
   }
 }
