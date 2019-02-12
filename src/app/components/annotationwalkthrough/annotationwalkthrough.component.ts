@@ -80,7 +80,7 @@ export class AnnotationwalkthroughComponent implements OnInit {
     const test = annotations[index];
     const test2 = annotations.length;
 
-    console.log('annotation an der Stelle ' + index + ' ist ' + test + 'Array länge ' + test2);
+    // console.log('annotation an der Stelle ' + index + ' ist ' + test + 'Array länge ' + test2);
 
     if (annotations.length) {
 

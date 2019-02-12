@@ -43,6 +43,9 @@ export class AnnotationComponent implements OnInit {
     if (this.annotation) {
       this.id = this.annotation._id;
       // 12/02/19
+      console.log("this.id");
+      console.log(this.id);
+      console.log(this.annotation);
       this.annotationmarkerService.toggleCreatorPopup(this.id);
     }
 
