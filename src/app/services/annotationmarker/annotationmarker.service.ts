@@ -26,6 +26,7 @@ export class AnnotationmarkerService {
   }
 
 
+
   constructor(private babylonService: BabylonService, private cameraService: CameraService) {
   }
 
