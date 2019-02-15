@@ -33,6 +33,7 @@ export class AnnotationComponent implements OnInit {
     // 15/02/19
     // CLOSED ANNOTATION-CARDS ON LOADED-MODEL
     this.visibility = false;
+    console.log("annotation.component constructor()");
 
   }
 

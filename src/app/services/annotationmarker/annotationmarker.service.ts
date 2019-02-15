@@ -19,6 +19,7 @@ export class AnnotationmarkerService {
   public toggleCreatorPopup(id: string) {
     this.open_popup = id;
     this.isOpen.next(this.open_popup);
+    // 15/02/19
     console.log("boom");
     console.log(this.open_popup);
     console.log(this.popupIsOpen());
