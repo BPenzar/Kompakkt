@@ -179,8 +179,8 @@ export class AnnotationService {
     }
     // 15/02/19
     console.log("newAnnotation._id");
-    console.log(this.annotations[0]._id);
-    this.annotationmarkerService.toggleCreatorPopup(this.annotations[0]._id);
+    // console.log(this.annotations[0]._id);
+    // this.annotationmarkerService.toggleCreatorPopup(this.annotations[0]._id);
 
     // or hide all markers??
   }
@@ -233,6 +233,9 @@ export class AnnotationService {
       this.add(newAnnotation);
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
       // 15/02/19
+      // console.log("annotation._id");
+      // console.log(annotation._id);
+      // this.toggleCreatorPopup(annotation._id);
     });
   }
 

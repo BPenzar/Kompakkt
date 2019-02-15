@@ -24,7 +24,7 @@ export class ActionService {
         trigger, function (evt) {
           const pickResult = scene.pick(scene.pointerX, scene.pointerY,
             null, false, scene.activeCamera);
-          console.log(pickResult);
+          // console.log(pickResult);
           actionExecuted(pickResult);
         }));
     } else {
