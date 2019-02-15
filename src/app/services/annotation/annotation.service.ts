@@ -235,8 +235,6 @@ export class AnnotationService {
       };
       this.add(newAnnotation);
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
-      // 15/02/19
-      this.annotationmarkerService.openOnlyCreatedAnnotationWindow(newAnnotation);
     });
   }
 
