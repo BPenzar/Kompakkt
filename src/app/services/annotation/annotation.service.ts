@@ -177,6 +177,12 @@ export class AnnotationService {
     for (const annotation of this.annotations) {
       this.annotationmarkerService.createAnnotationMarker(annotation);
     }
+    // 15/02/19
+    // console.log("newAnnotation._id");
+    // console.log(this.annotations[0]._id);
+    // this.annotationmarkerService.toggleCreatorPopup(this.annotations[0]._id);
+
+    // or hide all markers??
   }
 
   public createNewAnnotation(result: any) {
@@ -227,9 +233,6 @@ export class AnnotationService {
       this.add(newAnnotation);
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
       // 15/02/19
-      console.log("newAnnotation._id");
-      console.log(newAnnotation._id);
-      this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
     });
   }
 
