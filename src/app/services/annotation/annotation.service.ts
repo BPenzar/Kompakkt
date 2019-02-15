@@ -178,14 +178,13 @@ export class AnnotationService {
       this.annotationmarkerService.createAnnotationMarker(annotation);
     }
     // 15/02/19
-    if (this.annotations.length > 0){
+    // if (this.annotations.length > 0){
       
-      console.log("newAnnotation._id");
-      console.log(this.annotations[0]._id);
-      this.annotationmarkerService.toggleCreatorPopup(this.annotations[0]._id);
-
-      // or hide all markers??
-    }
+    //   console.log("newAnnotation._id");
+    //   console.log(this.annotations[0]._id);
+    //   this.annotationmarkerService.toggleCreatorPopup(this.annotations[0]._id);
+    //   // or hide all markers??
+    // }
 
   }
 
@@ -237,9 +236,9 @@ export class AnnotationService {
       this.add(newAnnotation);
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
       // 15/02/19
-      console.log("newAnnotation._id");
-      console.log(newAnnotation._id);
-      this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
+      // console.log("newAnnotation._id");
+      // console.log(newAnnotation._id);
+      // this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
     });
   }
 
