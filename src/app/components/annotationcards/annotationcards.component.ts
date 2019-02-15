@@ -30,11 +30,17 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
 
     this.annotationsList.changes.subscribe(
-      () => this.annotationsList.forEach(function (value) {
+      () => {
         // 15/02/19
-        console.log(value);
-        // 
-        })
+        console.log(this.annotationmarkerService.open_popup);
+
+        this.annotationsList.forEach(function (value) {
+          // 15/02/19
+          console.log(value);
+  
+          // 
+          })
+        } 
       );
 
     this.annotationmarkerService.popupIsOpen().subscribe(
