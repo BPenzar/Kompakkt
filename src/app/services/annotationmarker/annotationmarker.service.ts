@@ -67,6 +67,10 @@ export class AnnotationmarkerService {
     plane2.material.alpha = 0.5;
     // TODO: click is not working if renderingGroup == 1 and Object is behind another object
     plane2.renderingGroupId = 1;
+  }
+
+  // 15/02/19
+  public openOnlyCreatedAnnotationWindow(annotation){
 
     // 15/02/19
     console.log("annotation._id");

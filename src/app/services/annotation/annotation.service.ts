@@ -236,9 +236,7 @@ export class AnnotationService {
       this.add(newAnnotation);
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
       // 15/02/19
-      // console.log("newAnnotation._id");
-      // console.log(newAnnotation._id);
-      // this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
+      this.annotationmarkerService.openOnlyCreatedAnnotationWindow(newAnnotation);
     });
   }
 
