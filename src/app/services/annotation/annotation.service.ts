@@ -156,7 +156,7 @@ export class AnnotationService {
   // Die Annotationen werden in der richtigen Reihenfolge in das Array für den visuellen Output geschrieben
   
   // 11/02/19
-  // check ich nicht...
+  // 15/02/19
   private async sortAnnotations() {
 
     this.annotations = this.unsortedAnnotations;
@@ -226,6 +226,10 @@ export class AnnotationService {
       };
       this.add(newAnnotation);
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
+      // 15/02/19
+      console.log("newAnnotation._id");
+      console.log(newAnnotation._id);
+      this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
     });
   }
 

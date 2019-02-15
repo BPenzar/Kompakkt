@@ -6,8 +6,8 @@ import {DataService} from '../../services/data/data.service';
 
 import {Vector3, Matrix} from 'babylonjs';
 
-// 12/02/19
-import {AnnotationmarkerService} from '../../services/annotationmarker/annotationmarker.service';
+// 15/02/19
+// import {AnnotationmarkerService} from '../../services/annotationmarker/annotationmarker.service';
 
 @Component({
   selector: 'app-annotation',
@@ -32,8 +32,9 @@ export class AnnotationComponent implements OnInit {
   constructor(private dataService: DataService,
               private annotationService: AnnotationService,
               private babylonService: BabylonService,
-              // 12/02/19
-              private annotationmarkerService: AnnotationmarkerService) {
+              // 15/02/19
+              // private annotationmarkerService: AnnotationmarkerService
+              ) {
     this.visibility = true;
 
   }
@@ -42,11 +43,10 @@ export class AnnotationComponent implements OnInit {
 
     if (this.annotation) {
       this.id = this.annotation._id;
-      // 12/02/19
-      console.log("this.id");
-      console.log(this.id);
-      console.log(this.annotation);
-      this.annotationmarkerService.toggleCreatorPopup(this.id);
+      // 15/02/19
+      // console.log("this.id");
+      // console.log(this.id);
+      // this.annotationmarkerService.toggleCreatorPopup(this.id);
     }
 
     this.opacity = '1';
