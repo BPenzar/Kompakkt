@@ -237,9 +237,9 @@ export class AnnotationService {
       this.add(newAnnotation);
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
       // 15/02/19
-      // console.log("annotation._id");
-      // console.log(annotation._id);
-      // this.toggleCreatorPopup(annotation._id);
+      console.log("newAnnotation._id");
+      console.log(newAnnotation._id);
+      this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
     });
   }
 
@@ -338,7 +338,6 @@ export class AnnotationService {
   }
 
   // 11/02/19 
-  // Ranking !nach//in! Datenbank-Ranking...
   public changedRankingPositions() {
 
     let i = 0;
