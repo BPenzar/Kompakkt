@@ -35,20 +35,21 @@ export class AnnotationComponent implements OnInit {
     // 15/02/19
     // CLOSED ANNOTATION-CARDS ON LOADED-MODEL
     this.visibility = false;
-
-    // 15/02/19
     console.log("annotation.component constructor()");
-    if (this.annotationmarkerService.open_popup === this.annotation._id){
-      this.visibility = true;
-      this.editMode = true;
-    }
-    
   }
 
   ngOnInit() {
 
     if (this.annotation) {
       this.id = this.annotation._id;
+
+      // 15/02/19
+      console.log(this.annotationmarkerService.open_popup);
+      console.log(this.annotation._id);
+      if (this.annotationmarkerService.open_popup === this.annotation._id){
+        this.visibility = true;
+        this.editMode = true;
+      }
     }
 
     this.opacity = '1';
