@@ -156,7 +156,6 @@ export class AnnotationService {
   // Die Annotationen werden in der richtigen Reihenfolge in das Array für den visuellen Output geschrieben
   
   // 11/02/19
-  // 15/02/19
   private async sortAnnotations() {
 
     this.annotations = this.unsortedAnnotations;
@@ -177,15 +176,6 @@ export class AnnotationService {
     for (const annotation of this.annotations) {
       this.annotationmarkerService.createAnnotationMarker(annotation);
     }
-    // 15/02/19
-    // if (this.annotations.length > 0){
-      
-    //   console.log("newAnnotation._id");
-    //   console.log(this.annotations[0]._id);
-    //   this.annotationmarkerService.toggleCreatorPopup(this.annotations[0]._id);
-    //   // or hide all markers??
-    // }
-
   }
 
   public createNewAnnotation(result: any) {
@@ -235,6 +225,10 @@ export class AnnotationService {
       };
       this.add(newAnnotation);
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
+      
+      // 15/02/19
+      console.log("ga");
+      this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
     });
   }
 

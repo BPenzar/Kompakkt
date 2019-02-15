@@ -3,10 +3,6 @@ import {Model} from '../../interfaces/model/model.interface';
 import {CatalogueService} from '../../services/catalogue/catalogue.service';
 import {LoadModelService} from '../../services/load-model/load-model.service';
 
-// 15/02/19
-// import {AnnotationcardsComponent} from '../annotationcards/annotationcards.component';
-
-
 @Component({
   selector: 'app-model',
   templateUrl: './model.component.html',
@@ -18,8 +14,6 @@ export class ModelComponent implements OnInit {
 
   constructor(private catalogueService: CatalogueService,
               private loadModelService: LoadModelService,
-              // 15/02/19
-              // private annotationCardComp: AnnotationcardsComponent
               ) {
   }
 
@@ -29,7 +23,5 @@ export class ModelComponent implements OnInit {
   public async changeModel() {
     this.loadModelService.loadModel(this.model);
 
-    // 15/02/19
-    // this.annotationCardComp.hideAllCards();
   }
 }
