@@ -227,7 +227,8 @@ export class AnnotationService {
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
       
       // 15/02/19
-      console.log("ga");
+      console.log("gag");
+      this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
     });
   }
 

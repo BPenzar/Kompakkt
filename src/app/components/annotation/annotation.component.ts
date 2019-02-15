@@ -22,10 +22,7 @@ export class AnnotationComponent implements OnInit {
 
   public positionTop = 0;
   public positionLeft = 0;
-  // 15/02/19
-  // CLOSED ANNOTATION-CARDS ON LOADED-MODEL
-  public visibility = false;
-  // public visibility: false;
+  public visibility: boolean;
   public id = '';
   public opacity = '0';
 
@@ -35,7 +32,7 @@ export class AnnotationComponent implements OnInit {
               ) {
     // 15/02/19
     // CLOSED ANNOTATION-CARDS ON LOADED-MODEL
-    // this.visibility = false;
+    this.visibility = false;
     console.log("annotation.component constructor()");
 
     
