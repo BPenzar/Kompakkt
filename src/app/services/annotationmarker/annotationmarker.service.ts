@@ -67,6 +67,10 @@ export class AnnotationmarkerService {
     // TODO: click is not working if renderingGroup == 1 and Object is behind another object
     plane2.renderingGroupId = 1;
 
+    // 15/02/19
+    // console.log("annotation._id");
+    // console.log(annotation._id);
+    // this.toggleCreatorPopup(annotation._id);
   }
 
   private createPlane(name: string, height: number, width: number, tag: string, position: BABYLON.Vector3, normal: BABYLON.Vector3) {

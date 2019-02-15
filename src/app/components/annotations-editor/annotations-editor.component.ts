@@ -85,7 +85,7 @@ export class AnnotationsEditorComponent implements OnInit {
   }
 
   public onSubmit(event) {
-    console.log(event);
+    // console.log(event);
   }
 }
 

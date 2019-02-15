@@ -89,7 +89,7 @@ export class CollectionsOverviewComponent implements OnInit {
   }
 
   handleCollectionChoice(event) {
-    console.log('Ausgewählt: ', event.value);
+    // console.log('Ausgewählt: ', event.value);
     this.singleCollectionSelected = true;
     this.singleModelSelected = true;
     this.catalogueService.selectCollection(event.value);
@@ -116,7 +116,7 @@ export class CollectionsOverviewComponent implements OnInit {
           break;
 
         case 'password':
-          console.log('password');
+          // console.log('password');
           this.passwordDialog();
           break;
 
@@ -156,7 +156,7 @@ export class CollectionsOverviewComponent implements OnInit {
     dialogConfig.data = {
       id: this.identifierCollection
     };
-    console.log('password');
+    // console.log('password');
 
     const dialogRef = this.dialog.open(PasswordComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(data => {

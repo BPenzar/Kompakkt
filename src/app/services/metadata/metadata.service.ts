@@ -29,7 +29,7 @@ export class MetadataService {
       return await new Promise((resolve, reject) => {
         this.mongohandlerService.getModelMetadata(metadata_id).then(result => {
           if (result['_id']) {
-            console.log('Metadaten: ', result);
+            // console.log('Metadaten: ', result);
             this.updateMetadata(result);
             this.actualModelMetadata = result;
             resolve(result);

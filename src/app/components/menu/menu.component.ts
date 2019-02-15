@@ -131,7 +131,7 @@ export class MenuComponent implements OnInit {
   }*/
 
   public saveScene() {
-    console.log(this.babylonService.saveScene());
+    // console.log(this.babylonService.saveScene());
   }
 
   public editScene(): void {

@@ -33,7 +33,7 @@ export class PasswordComponent implements OnInit {
 
         if (compilation['_id']) {
 
-          console.log('Antwort ist:', compilation, 'und ', compilation['_id']);
+          // console.log('Antwort ist:', compilation, 'und ', compilation['_id']);
           this.catalogueService.addAndLoadCollection(compilation);
           this.dialogRef.close(true);
 
@@ -50,7 +50,7 @@ export class PasswordComponent implements OnInit {
   }
 
   public withoutPassword() {
-    console.log('canceled');
+    // console.log('canceled');
     this.dialogRef.close();
   }
 

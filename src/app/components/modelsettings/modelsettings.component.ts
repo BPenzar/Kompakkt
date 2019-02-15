@@ -150,7 +150,7 @@ export class ModelsettingsComponent implements OnInit {
 
   public async saveActualSettings() {
 
-    console.log('save');
+    // console.log('save');
 
     const settings = {
       preview: this.preview,
@@ -183,7 +183,7 @@ export class ModelsettingsComponent implements OnInit {
     settings.lights.push(this.babylonService.getPointlightData());
     this.activeModel.settings = settings;
     this.mongohandlerService.updateSettings(this.activeModel._id, settings).subscribe(result => {
-      console.log(result);
+      // console.log(result);
     });
   }
 

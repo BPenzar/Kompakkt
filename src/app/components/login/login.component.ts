@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   public withoutlogin() {
-    console.log('username:' + this.username);
+    // console.log('username:' + this.username);
   }
 
 }
