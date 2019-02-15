@@ -5,6 +5,7 @@ import {Annotation} from '../../interfaces/annotation/annotation';
 import {DataService} from '../../services/data/data.service';
 
 import {Vector3, Matrix} from 'babylonjs';
+import { AnnotationmarkerService } from 'src/app/services/annotationmarker/annotationmarker.service';
 
 @Component({
   selector: 'app-annotation',
@@ -29,15 +30,18 @@ export class AnnotationComponent implements OnInit {
   constructor(private dataService: DataService,
               private annotationService: AnnotationService,
               private babylonService: BabylonService,
+              private annotationmarkerService: AnnotationmarkerService
               ) {
     // 15/02/19
     // CLOSED ANNOTATION-CARDS ON LOADED-MODEL
     this.visibility = false;
-    // 
-    // console.log(this.annotationmarkerService.open_popup
-    console.log("annotation.component constructor()");
-    console.log(this.annotation);
 
+    // 15/02/19
+    console.log("annotation.component constructor()");
+    if (this.annotationmarkerService.open_popup === this.annotation._id){
+      this.visibility = true;
+      this.editMode = true;
+    }
     
   }
 
