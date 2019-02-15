@@ -24,9 +24,7 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
-
-    // 15/02/19
-    this.hideAllCards();
+ 
   }
 
 
@@ -40,6 +38,9 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
     this.annotationmarkerService.popupIsOpen().subscribe(
       popup_is_open => this.setVisability(popup_is_open, true)
     );
+
+    // 15/02/19
+    this.hideAllCards();
   }
 
   public setVisability(id: string, visibility: boolean) {

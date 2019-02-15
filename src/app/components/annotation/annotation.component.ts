@@ -121,6 +121,6 @@ export class AnnotationComponent implements OnInit {
   }
 
   public onSumbit(event) {
-    // console.log(event);
+    console.log(event);
   }
 }
