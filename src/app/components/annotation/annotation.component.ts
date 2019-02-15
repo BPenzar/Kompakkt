@@ -35,7 +35,8 @@ export class AnnotationComponent implements OnInit {
               // 15/02/19
               // private annotationmarkerService: AnnotationmarkerService
               ) {
-    this.visibility = true;
+    // 15/02/19
+    this.visibility = false;
 
   }
 

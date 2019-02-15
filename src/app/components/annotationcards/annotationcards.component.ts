@@ -20,15 +20,10 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
 
   constructor(public annotationService: AnnotationService, private annotationmarkerService: AnnotationmarkerService) {
 
-    // 15/02/19
-    this.hideAllCards();
   }
 
 
   ngOnInit() {
-
-    // 15/02/19
-    this.hideAllCards();
   }
 
 
@@ -59,6 +54,5 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
       });
     }
   }
-
 
 }
