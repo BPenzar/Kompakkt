@@ -181,12 +181,12 @@ export class AnnotationService {
     if (this.annotations.length > 0){
       
       console.log("newAnnotation._id");
-      // console.log(this.annotations[0]._id);
-      // this.annotationmarkerService.toggleCreatorPopup(this.annotations[0]._id);
+      console.log(this.annotations[0]._id);
+      this.annotationmarkerService.toggleCreatorPopup(this.annotations[0]._id);
 
       // or hide all markers??
     }
-    
+
   }
 
   public createNewAnnotation(result: any) {

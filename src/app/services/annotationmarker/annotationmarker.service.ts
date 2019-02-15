@@ -19,6 +19,7 @@ export class AnnotationmarkerService {
   public toggleCreatorPopup(id: string) {
     this.open_popup = id;
     this.isOpen.next(this.open_popup);
+    console.log("boom");
   }
 
   popupIsOpen(): Observable<any> {
