@@ -228,7 +228,6 @@ export class AnnotationService {
       
       // 15/02/19
       console.log("ga");
-      this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
     });
   }
 

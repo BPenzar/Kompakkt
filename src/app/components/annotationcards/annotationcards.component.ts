@@ -31,6 +31,8 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
 
     this.annotationsList.changes.subscribe(
       () => this.annotationsList.forEach(function (value) {
+        // 15/02/19
+        console.log(value);
         })
       );
 
