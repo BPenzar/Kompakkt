@@ -69,15 +69,6 @@ export class AnnotationmarkerService {
     plane2.renderingGroupId = 1;
   }
 
-  // 15/02/19
-  public openOnlyCreatedAnnotationWindow(annotation){
-
-    // 15/02/19
-    console.log("annotation._id");
-    console.log(annotation._id);
-    this.toggleCreatorPopup(annotation._id);
-  }
-
   private createPlane(name: string, height: number, width: number, tag: string, position: BABYLON.Vector3, normal: BABYLON.Vector3) {
     const plane = BABYLON.MeshBuilder.CreatePlane(name,
       {height: height, width: width}, this.babylonService.getScene());

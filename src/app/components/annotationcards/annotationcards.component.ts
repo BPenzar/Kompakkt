@@ -29,8 +29,12 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    this.annotationsList.changes
-      .subscribe(() => this.annotationsList.forEach(function (value) {
+    
+    // 15/02/19
+    this.hideAllCards();
+
+    this.annotationsList.changes.subscribe(
+      () => this.annotationsList.forEach(function (value) {
         })
       );
 
