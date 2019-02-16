@@ -49,6 +49,8 @@ export class AnnotationComponent implements OnInit {
       if (this.annotationmarkerService.open_popup === this.annotation._id){
         this.visibility = true;
         this.editMode = true;
+        this.labelMode = 'remove_red_eye';
+        this.labelModeText = 'view';
       }
     }
 
