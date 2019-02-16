@@ -89,9 +89,6 @@ export class AnnotationwalkthroughComponent implements OnInit {
         annotations[index].cameraPosition[1].value,
         annotations[index].cameraPosition[2].value);
       this.cameraService.moveCameraToTarget(cameraVector);
-      // 15/02/19
-      // zum öffnen der über den Walkthrough angezielten Annotation
-      // console.log(annotations[index]._id);
       this.annotationmarkerService.toggleCreatorPopup(annotations[index]._id);
     } else {
       this.actualRanking = 0;

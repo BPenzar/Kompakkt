@@ -227,7 +227,7 @@ export class AnnotationService {
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
       
       // 15/02/19
-      console.log("gag");
+      // set created annotation as is_open in annotationmarker.service ((on double click) created annotation)
       this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
     });
   }

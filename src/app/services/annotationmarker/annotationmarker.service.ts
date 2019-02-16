@@ -12,22 +12,17 @@ import {Annotation} from '../../interfaces/annotation/annotation';
 })
 export class AnnotationmarkerService {
 
-
   public open_popup = '';
   private isOpen: BehaviorSubject<string> = new BehaviorSubject('');
 
   public toggleCreatorPopup(id: string) {
     this.open_popup = id;
     this.isOpen.next(this.open_popup);
-    // 15/02/19
-    console.log("gagaa");
   }
 
   popupIsOpen(): Observable<any> {
     return this.isOpen.asObservable();
   }
-
-
 
   constructor(private babylonService: BabylonService, private cameraService: CameraService) {
   }

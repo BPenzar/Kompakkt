@@ -32,13 +32,10 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
     this.annotationsList.changes.subscribe(
       () => {
         // 15/02/19
-        console.log(this.annotationmarkerService.open_popup);
+        // show only newly created annotation (double click on mesh)
         this.setVisability(this.annotationmarkerService.open_popup, true);
 
-
         this.annotationsList.forEach(function (value) {
-          // 15/02/19
-          console.log(value);
           })
         } 
       );
@@ -53,8 +50,6 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
     if (this.annotationsList.find(annotation => annotation.id === id) != null) {
       this.hideAllCards();
       this.annotationsList.find(annotation => annotation.id === id).visabilityAnnotationCard(visibility);
-      // 15/02/19
-      console.log("annotationcards.component setVisibility()");
     }
   }
 
