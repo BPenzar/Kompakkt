@@ -78,6 +78,7 @@ export class AnnotationsEditorComponent implements OnInit {
       this.editMode = false;
       this.labelMode = 'edit';
       this.labelModeText = 'edit';
+      this.collapsed = true;
       this.save();
     } else {
       this.collapsed = false;

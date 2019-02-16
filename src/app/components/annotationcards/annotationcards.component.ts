@@ -2,7 +2,8 @@ import {AfterViewInit, Component, Input, OnInit, QueryList, ViewChildren} from '
 import {AnnotationService} from '../../services/annotation/annotation.service';
 import {AnnotationComponent} from '../annotation/annotation.component';
 import {AnnotationmarkerService} from '../../services/annotationmarker/annotationmarker.service';
-
+// 15/02/19
+import {AnnotationsEditorComponent} from '../annotations-editor/annotations-editor.component';
 
 @Component({
   selector: 'app-annotationcards',
@@ -13,16 +14,15 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
 
   public popup_is_open = '';
 
-
   @ViewChildren(AnnotationComponent)
   annotationsList: QueryList<AnnotationComponent>;
 
   // 15/02/19
-
+  @ViewChildren(AnnotationsEditorComponent)
+  editorAnnotationsList: QueryList<AnnotationsEditorComponent>;
 
 
   constructor(public annotationService: AnnotationService, private annotationmarkerService: AnnotationmarkerService) {
-
   }
 
 
@@ -31,6 +31,15 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(): void {
+
+    // 15/02/19
+    this.editorAnnotationsList.changes.subscribe(
+      () => {
+
+        this.annotationsList.forEach(function (value) {
+          })
+        } 
+      );
 
     this.annotationsList.changes.subscribe(
       () => {
