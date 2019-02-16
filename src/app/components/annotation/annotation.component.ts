@@ -42,8 +42,6 @@ export class AnnotationComponent implements OnInit {
       this.id = this.annotation._id;
 
       // 15/02/19
-      console.log("annotation.component");
-      console.log(this.annotation);
       // EditMode on newly creaded annotation (double click)
       if (this.annotationmarkerService.open_popup === this.annotation._id){
         this.visibility = true;

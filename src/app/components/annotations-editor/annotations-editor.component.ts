@@ -23,7 +23,7 @@ export class AnnotationsEditorComponent implements OnInit {
   public collapsed = true;
   
   // 15/02/19
-  // public editMode = false;
+  public editMode = false;
   // public labelMode = 'edit';
   // public labelModeText = 'edit';
   
@@ -32,7 +32,7 @@ export class AnnotationsEditorComponent implements OnInit {
   constructor(private dataService: DataService, private annotationService: AnnotationService,
               private babylonService: BabylonService, private cameraService: CameraService,
               private annotationmarkerService: AnnotationmarkerService,
-              private annotationComponentService: AnnotationComponent
+              private annotationComponent: AnnotationComponent
               ) {
   }
 
@@ -47,9 +47,10 @@ export class AnnotationsEditorComponent implements OnInit {
         
         // 15/02/19
         this.collapsed = false;
-        this.annotationComponentService.editMode = true;
-        this.annotationComponentService.labelMode = 'remove_red_eye';
-        this.annotationComponentService.labelModeText = 'view';
+        this.editMode = true;
+        this.annotationComponent.editMode = true;
+        this.annotationComponent.labelMode = 'remove_red_eye';
+        this.annotationComponent.labelModeText = 'view';
       }
     }
   }
@@ -84,17 +85,17 @@ export class AnnotationsEditorComponent implements OnInit {
 
   // 15/02/19
   public toggleEditViewMode() {
-    if (this.annotationComponentService.editMode) {
-      this.annotationComponentService.editMode = false;
-      this.annotationComponentService.labelMode = 'edit';
-      this.annotationComponentService.labelModeText = 'edit';
+    if (this.annotationComponent.editMode) {
+      this.annotationComponent.editMode = false;
+      this.annotationComponent.labelMode = 'edit';
+      this.annotationComponent.labelModeText = 'edit';
       this.collapsed = true;
       this.save();
     } else {
       this.collapsed = false;
-      this.annotationComponentService.editMode = true;
-      this.annotationComponentService.labelMode = 'remove_red_eye';
-      this.annotationComponentService.labelModeText = 'view';
+      this.annotationComponent.editMode = true;
+      this.annotationComponent.labelMode = 'remove_red_eye';
+      this.annotationComponent.labelModeText = 'view';
     }
   }
 

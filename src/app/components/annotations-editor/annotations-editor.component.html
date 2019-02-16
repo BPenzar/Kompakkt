@@ -48,9 +48,9 @@
     <mat-card-actions>
 
       <button mat-icon-button (click)="toggleEditViewMode()"
-              matTooltip={{labelModeText}} matTooltipPosition="above"
+              matTooltip={{annotationComponent.labelModeText}} matTooltipPosition="above"
               type="button">
-        <mat-icon attr.aria-label={{labelModeText}}>{{labelMode}}</mat-icon>
+        <mat-icon attr.aria-label={{annotationComponent.labelModeText}}>{{annotationComponent.labelMode}}</mat-icon>
       </button>
 
       <button mat-icon-button (click)="deleteAnnotation()"
