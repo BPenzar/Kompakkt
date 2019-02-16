@@ -2,7 +2,7 @@
           [style.top.px]="positionTop"
           [style.left.px]="positionLeft"
           [style.opacity]="opacity"
-          [class.editmode]="editMode"
+          [class.editmode]="annotationmarkerService.editMode"
           *ngIf = "visibility"
           id = {{annotation._id}}>
 

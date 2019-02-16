@@ -17,6 +17,8 @@ export class AnnotationComponent implements OnInit {
 
   @Input() annotation: Annotation;
 
+  // @Input() markerserviece: AnnotationmarkerService;
+
   // 15/02/19
   // public editMode = false;
   // public labelMode = 'edit';
