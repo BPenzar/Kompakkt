@@ -7,6 +7,8 @@ import {BabylonService} from '../../services/babylon/babylon.service';
 import {CameraService} from '../../services/camera/camera.service';
 import {AnnotationmarkerService} from '../../services/annotationmarker/annotationmarker.service';
 
+// 15/02/19
+import {AnnotationComponent} from '../annotation/annotation.component';
 
 @Component({
   selector: 'app-annotations-editor',
@@ -17,15 +19,20 @@ export class AnnotationsEditorComponent implements OnInit {
 
   @Input() annotation: Annotation;
 
+  
   public collapsed = true;
-  public editMode = false;
-  public labelMode = 'edit';
-  public labelModeText = 'edit';
+  
+  // 15/02/19
+  // public editMode = false;
+  // public labelMode = 'edit';
+  // public labelModeText = 'edit';
+  
   public preview = '';
 
   constructor(private dataService: DataService, private annotationService: AnnotationService,
               private babylonService: BabylonService, private cameraService: CameraService,
-              private annotationmarkerService: AnnotationmarkerService
+              private annotationmarkerService: AnnotationmarkerService,
+              private annotationComponentService: AnnotationComponent
               ) {
   }
 
@@ -37,10 +44,12 @@ export class AnnotationsEditorComponent implements OnInit {
       // 15/02/19
       // EditMode -- OnInit -- newly creaded annotation (by double click)
       if (this.annotationmarkerService.open_popup === this.annotation._id){
+        
+        // 15/02/19
         this.collapsed = false;
-        this.editMode = true;
-        this.labelMode = 'remove_red_eye';
-        this.labelModeText = 'view';
+        this.annotationComponentService.editMode = true;
+        this.annotationComponentService.labelMode = 'remove_red_eye';
+        this.annotationComponentService.labelModeText = 'view';
       }
     }
   }
@@ -73,18 +82,19 @@ export class AnnotationsEditorComponent implements OnInit {
     this.annotationService.deleteAnnotation(this.annotation);
   }
 
+  // 15/02/19
   public toggleEditViewMode() {
-    if (this.editMode) {
-      this.editMode = false;
-      this.labelMode = 'edit';
-      this.labelModeText = 'edit';
+    if (this.annotationComponentService.editMode) {
+      this.annotationComponentService.editMode = false;
+      this.annotationComponentService.labelMode = 'edit';
+      this.annotationComponentService.labelModeText = 'edit';
       this.collapsed = true;
       this.save();
     } else {
       this.collapsed = false;
-      this.editMode = true;
-      this.labelMode = 'remove_red_eye';
-      this.labelModeText = 'view';
+      this.annotationComponentService.editMode = true;
+      this.annotationComponentService.labelMode = 'remove_red_eye';
+      this.annotationComponentService.labelModeText = 'view';
     }
   }
 
