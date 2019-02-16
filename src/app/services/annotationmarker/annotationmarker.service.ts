@@ -12,6 +12,13 @@ import {Annotation} from '../../interfaces/annotation/annotation';
 })
 export class AnnotationmarkerService {
 
+  // 15/02/19
+  // global edit variables for annotations
+  public collapsed = true;
+  public editMode = false;
+  public labelMode = 'edit';
+  public labelModeText = 'edit';
+
   public open_popup = '';
   private isOpen: BehaviorSubject<string> = new BehaviorSubject('');
 

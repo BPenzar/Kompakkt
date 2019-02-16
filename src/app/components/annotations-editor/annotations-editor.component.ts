@@ -17,7 +17,6 @@ export class AnnotationsEditorComponent implements OnInit {
 
   @Input() annotation: Annotation;
 
-
   public collapsed = true;
   public editMode = false;
   public labelMode = 'edit';
@@ -27,7 +26,7 @@ export class AnnotationsEditorComponent implements OnInit {
   constructor(private dataService: DataService, private annotationService: AnnotationService,
               private babylonService: BabylonService, private cameraService: CameraService,
               private annotationmarkerService: AnnotationmarkerService
-  ) {
+              ) {
   }
 
   ngOnInit() {
