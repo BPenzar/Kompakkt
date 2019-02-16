@@ -2,13 +2,13 @@
   <form class="annotation-form" (ngSubmit)="onSubmit($event)">
 
 
-    <mat-card-header (click)="!this.annotationComponentService.editMode ? collapsed = !collapsed : false">
+    <mat-card-header (click)="!editMode ? collapsed = !collapsed : false">
 
       <div mat-card-avatar class="annotation-header-image"><span>{{annotation.ranking}}</span></div>
 
       <mat-card-title>
-        <span *ngIf="!this.annotationComponentService.editMode">{{annotation.title | uppercase}}</span>
-        <mat-form-field *ngIf="this.annotationComponentService.editMode">
+        <span *ngIf="!editMode">{{annotation.title | uppercase}}</span>
+        <mat-form-field *ngIf="editMode">
           <input matInput name="title" #title="ngModel" type="text" placeholder="Title" [(ngModel)]="annotation.title">
         </mat-form-field>
 
@@ -22,21 +22,21 @@
 
     <mat-card-content *ngIf="!collapsed">
 
-      <p *ngIf="!this.annotationComponentService.editMode"> {{annotation.description}}</p>
+      <p *ngIf="!.editMode"> {{annotation.description}}</p>
 
-      <mat-form-field *ngIf="this.annotationComponentService.editMode" class="description">
+      <mat-form-field *ngIf="editMode" class="description">
         <textarea matInput name="description" #description="ngModel" type="text" placeholder="Description"
                   [(ngModel)]="annotation.description"></textarea>
       </mat-form-field>
 
-      <mat-checkbox class="validation" *ngIf="this.annotationComponentService.editMode" [checked]="annotation.validated"
+      <mat-checkbox class="validation" *ngIf="editMode" [checked]="annotation.validated"
                     (change)="annotation.validated = !annotation.validated">Validated
       </mat-checkbox>
 
       <button mat-icon-button (click)="selectPerspective()"
               matTooltip="Select Perspective"
               matTooltipPosition="right"
-              *ngIf="this.annotationComponentService.editMode"
+              *ngIf="editMode"
               type="button"
               class="perspective">
         <mat-icon aria-label="Select Perspective">camera</mat-icon> Select Perspective
@@ -48,9 +48,9 @@
     <mat-card-actions>
 
       <button mat-icon-button (click)="toggleEditViewMode()"
-              matTooltip={{this.annotationComponentService.labelModeText}} matTooltipPosition="above"
+              matTooltip={{labelModeText}} matTooltipPosition="above"
               type="button">
-        <mat-icon attr.aria-label={{this.annotationComponentService.labelModeText}}>{{this.annotationComponentService.labelMode}}</mat-icon>
+        <mat-icon attr.aria-label={{labelModeText}}>{{labelMode}}</mat-icon>
       </button>
 
       <button mat-icon-button (click)="deleteAnnotation()"
