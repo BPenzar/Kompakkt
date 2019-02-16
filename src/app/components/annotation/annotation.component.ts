@@ -114,6 +114,7 @@ export class AnnotationComponent implements OnInit {
 
   public toggleEditViewMode() {
 
+    // 15/02/19
     if (this.annotationmarkerService.editMode) {
 
       this.annotationmarkerService.editMode = false;
