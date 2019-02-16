@@ -33,6 +33,7 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
       () => {
         // 15/02/19
         // show only newly created annotation (double click on mesh)
+        console.log(this.annotationsList);
         this.setVisability(this.annotationmarkerService.open_popup, true);
 
         this.annotationsList.forEach(function (value) {
