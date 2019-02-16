@@ -33,6 +33,8 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
       () => {
         // 15/02/19
         console.log(this.annotationmarkerService.open_popup);
+        this.setVisability(this.annotationmarkerService.open_popup, true);
+
 
         this.annotationsList.forEach(function (value) {
           // 15/02/19
