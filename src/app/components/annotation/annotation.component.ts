@@ -17,13 +17,9 @@ export class AnnotationComponent implements OnInit {
 
   @Input() annotation: Annotation;
 
-  // @Input() markerserviece: AnnotationmarkerService;
-
-  // 15/02/19
-  // public editMode = false;
-  // public labelMode = 'edit';
-  // public labelModeText = 'edit';
-
+  public editMode = false;
+  public labelMode = 'edit';
+  public labelModeText = 'edit';
   public positionTop = 0;
   public positionLeft = 0;
   public visibility: boolean;
@@ -38,12 +34,6 @@ export class AnnotationComponent implements OnInit {
     // 15/02/19
     // CLOSED ANNOTATION-CARDS ON LOADED-MODEL
     this.visibility = false;
-
-    // 15/02/19
-    this.annotationmarkerService.collapsed = true;
-    this.annotationmarkerService.editMode = false;
-    this.annotationmarkerService.labelMode = 'edit';
-    this.annotationmarkerService.labelModeText = 'edit';
   }
 
   ngOnInit() {
@@ -52,12 +42,14 @@ export class AnnotationComponent implements OnInit {
       this.id = this.annotation._id;
 
       // 15/02/19
+      console.log("annotation.component");
+      console.log(this.annotation);
       // EditMode on newly creaded annotation (double click)
       if (this.annotationmarkerService.open_popup === this.annotation._id){
         this.visibility = true;
-        this.annotationmarkerService.editMode = true;
-        this.annotationmarkerService.labelMode = 'remove_red_eye';
-        this.annotationmarkerService.labelModeText = 'view';
+        this.editMode = true;
+        this.labelMode = 'remove_red_eye';
+        this.labelModeText = 'view';
       }
     }
 
@@ -114,18 +106,17 @@ export class AnnotationComponent implements OnInit {
 
   public toggleEditViewMode() {
 
-    // 15/02/19
-    if (this.annotationmarkerService.editMode) {
+    if (this.editMode) {
 
-      this.annotationmarkerService.editMode = false;
-      this.annotationmarkerService.labelMode = 'edit';
-      this.annotationmarkerService.labelModeText = 'edit';
+      this.editMode = false;
+      this.labelMode = 'edit';
+      this.labelModeText = 'edit';
       this.save();
     } else {
 
-      this.annotationmarkerService.editMode = true;
-      this.annotationmarkerService.labelMode = 'remove_red_eye';
-      this.annotationmarkerService.labelModeText = 'view';
+      this.editMode = true;
+      this.labelMode = 'remove_red_eye';
+      this.labelModeText = 'view';
     }
   }
 

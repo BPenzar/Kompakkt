@@ -2,7 +2,7 @@
           [style.top.px]="positionTop"
           [style.left.px]="positionLeft"
           [style.opacity]="opacity"
-          [class.editmode]="annotationmarkerService.editMode"
+          [class.editmode]="editMode"
           *ngIf = "visibility"
           id = {{annotation._id}}>
 
@@ -11,13 +11,13 @@
     <mat-card-header>
 
       <mat-card-title>
-        <span *ngIf="!annotationmarkerService.editMode">{{annotation.title}}</span>
-        <mat-form-field *ngIf="annotationmarkerService.editMode">
+        <span *ngIf="!editMode">{{annotation.title}}</span>
+        <mat-form-field *ngIf="editMode">
           <input matInput name="title" #title="ngModel" type="text" placeholder="Title" [(ngModel)]="annotation.title">
         </mat-form-field>
       </mat-card-title>
 
-    <!-- 15/02/19 -->
+
       <button id="closeButton"
               mat-icon-button
               (click)="closeAnnotation()"
@@ -29,8 +29,8 @@
 
     <mat-card-content>
 
-      <p *ngIf="!annotationmarkerService.editMode"> {{annotation.description}}</p>
-      <mat-form-field *ngIf="annotationmarkerService.editMode">
+      <p *ngIf="!editMode"> {{annotation.description}}</p>
+      <mat-form-field *ngIf="editMode">
         <textarea matInput name="description" #description="ngModel" type="text" placeholder="Description"
                   [(ngModel)]="annotation.description"></textarea>
       </mat-form-field>
@@ -41,9 +41,9 @@
     <mat-card-actions>
 
       <button mat-icon-button (click)="toggleEditViewMode()"
-              matTooltip={{annotationmarkerService.labelModeText}} matTooltipPosition="above"
+              matTooltip={{labelModeText}} matTooltipPosition="above"
               type="button">
-        <mat-icon attr.aria-label={{annotationmarkerService.labelModeText}}>{{annotationmarkerService.labelMode}}</mat-icon>
+        <mat-icon attr.aria-label={{labelModeText}}>{{labelMode}}</mat-icon>
       </button>
 
       <button mat-icon-button (click)="deleteAnnotation()"

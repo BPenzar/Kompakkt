@@ -14,9 +14,12 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
   public popup_is_open = '';
 
 
-  // @ViewChildren(AnnotationComponent) annotations : QueryList<AnnotationComponent>;
   @ViewChildren(AnnotationComponent)
   annotationsList: QueryList<AnnotationComponent>;
+
+  // 15/02/19
+
+
 
   constructor(public annotationService: AnnotationService, private annotationmarkerService: AnnotationmarkerService) {
 
@@ -39,6 +42,7 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
           })
         } 
       );
+    
 
     this.annotationmarkerService.popupIsOpen().subscribe(
       popup_is_open => this.setVisability(popup_is_open, true)

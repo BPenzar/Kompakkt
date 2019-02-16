@@ -17,24 +17,16 @@ export class AnnotationsEditorComponent implements OnInit {
 
   @Input() annotation: Annotation;
 
-  // 15/02/19
-  // public collapsed = true;
-  // public editMode = false;
-  // public labelMode = 'edit';
-  // public labelModeText = 'edit';
-
+  public collapsed = true;
+  public editMode = false;
+  public labelMode = 'edit';
+  public labelModeText = 'edit';
   public preview = '';
 
   constructor(private dataService: DataService, private annotationService: AnnotationService,
               private babylonService: BabylonService, private cameraService: CameraService,
               private annotationmarkerService: AnnotationmarkerService
               ) {
-
-    // 15/02/19
-    this.annotationmarkerService.collapsed = true;
-    this.annotationmarkerService.editMode = false;
-    this.annotationmarkerService.labelMode = 'edit';
-    this.annotationmarkerService.labelModeText = 'edit';
   }
 
   ngOnInit() {
@@ -43,17 +35,12 @@ export class AnnotationsEditorComponent implements OnInit {
       this.preview = this.annotation.preview;
 
       // 15/02/19
-      // EditMode -- OnInit -- newly creaded annotation (by sdouble click)
+      // EditMode -- OnInit -- newly creaded annotation (by double click)
       if (this.annotationmarkerService.open_popup === this.annotation._id){
-        // 15/02/19
-        this.annotationmarkerService.collapsed = false;
-        this.annotationmarkerService.editMode = true;
-        this.annotationmarkerService.labelMode = 'remove_red_eye';
-        this.annotationmarkerService.labelModeText = 'view';
-        // this.collapsed = false;
-        // this.editMode = true;
-        // this.labelMode = 'remove_red_eye';
-        // this.labelModeText = 'view';
+        this.collapsed = false;
+        this.editMode = true;
+        this.labelMode = 'remove_red_eye';
+        this.labelModeText = 'view';
       }
     }
   }
@@ -86,18 +73,17 @@ export class AnnotationsEditorComponent implements OnInit {
     this.annotationService.deleteAnnotation(this.annotation);
   }
 
-  // 15/02/19
   public toggleEditViewMode() {
-    if (this.annotationmarkerService.editMode) {
-      this.annotationmarkerService.editMode = false;
-      this.annotationmarkerService.labelMode = 'edit';
-      this.annotationmarkerService.labelModeText = 'edit';
+    if (this.editMode) {
+      this.editMode = false;
+      this.labelMode = 'edit';
+      this.labelModeText = 'edit';
       this.save();
     } else {
-      this.annotationmarkerService.collapsed = false;
-      this.annotationmarkerService.editMode = true;
-      this.annotationmarkerService.labelMode = 'remove_red_eye';
-      this.annotationmarkerService.labelModeText = 'view';
+      this.collapsed = false;
+      this.editMode = true;
+      this.labelMode = 'remove_red_eye';
+      this.labelModeText = 'view';
     }
   }
 
