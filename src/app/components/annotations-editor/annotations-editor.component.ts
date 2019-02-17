@@ -1,4 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+// 16/02/19
+import {AfterViewInit, Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
+// import {Component, Input, OnInit} from '@angular/core';
 import {Annotation} from '../../interfaces/annotation/annotation';
 
 import {DataService} from '../../services/data/data.service';
@@ -7,13 +9,23 @@ import {BabylonService} from '../../services/babylon/babylon.service';
 import {CameraService} from '../../services/camera/camera.service';
 import {AnnotationmarkerService} from '../../services/annotationmarker/annotationmarker.service';
 
+// 16/02/19
+import {AnnotationComponent} from '../annotation/annotation.component';
+
 
 @Component({
   selector: 'app-annotations-editor',
   templateUrl: './annotations-editor.component.html',
   styleUrls: ['./annotations-editor.component.scss']
 })
-export class AnnotationsEditorComponent implements OnInit {
+
+// 16/02/19
+export class AnnotationsEditorComponent implements OnInit, AfterViewInit {
+// export class AnnotationsEditorComponent implements OnInit {
+
+  // // 16/02/19
+  @ViewChildren(AnnotationComponent)
+  annotationsList: QueryList<AnnotationComponent>;
 
   @Input() annotation: Annotation;
 
@@ -41,11 +53,25 @@ export class AnnotationsEditorComponent implements OnInit {
         this.editMode = true;
         this.labelMode = 'remove_red_eye';
         this.labelModeText = 'view';
-        
+
       }
     }
 
     // ...
+  }
+
+
+  // 16/02/19
+  ngAfterViewInit(): void {
+
+    this.annotationsList.changes.subscribe(() => {
+      
+      this.annotationsList.forEach(function (value) {
+        console.log("A");
+        console.log(value);
+      })
+    });
+    
   }
 
 
