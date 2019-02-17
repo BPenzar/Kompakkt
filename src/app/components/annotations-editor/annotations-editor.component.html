@@ -22,7 +22,7 @@
 
     <mat-card-content *ngIf="!collapsed">
 
-      <p *ngIf="!.editMode"> {{annotation.description}}</p>
+      <p *ngIf="!editMode"> {{annotation.description}}</p>
 
       <mat-form-field *ngIf="editMode" class="description">
         <textarea matInput name="description" #description="ngModel" type="text" placeholder="Description"
@@ -48,9 +48,9 @@
     <mat-card-actions>
 
       <button mat-icon-button (click)="toggleEditViewMode()"
-              matTooltip={{annotationComponent.labelModeText}} matTooltipPosition="above"
+              matTooltip={{labelModeText}} matTooltipPosition="above"
               type="button">
-        <mat-icon attr.aria-label={{annotationComponent.labelModeText}}>{{annotationComponent.labelMode}}</mat-icon>
+        <mat-icon attr.aria-label={{labelModeText}}>{{labelMode}}</mat-icon>
       </button>
 
       <button mat-icon-button (click)="deleteAnnotation()"

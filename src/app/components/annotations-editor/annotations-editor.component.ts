@@ -21,12 +21,10 @@ export class AnnotationsEditorComponent implements OnInit {
 
   
   public collapsed = true;
-  
   // 15/02/19
-  public editMode = false;
+  // public editMode = false;
   // public labelMode = 'edit';
   // public labelModeText = 'edit';
-  
   public preview = '';
 
   constructor(private dataService: DataService, private annotationService: AnnotationService,
@@ -47,7 +45,6 @@ export class AnnotationsEditorComponent implements OnInit {
         
         // 15/02/19
         this.collapsed = false;
-        this.editMode = true;
         this.annotationComponent.editMode = true;
         this.annotationComponent.labelMode = 'remove_red_eye';
         this.annotationComponent.labelModeText = 'view';
