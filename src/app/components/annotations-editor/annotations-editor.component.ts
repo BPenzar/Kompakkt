@@ -22,9 +22,10 @@ export class AnnotationsEditorComponent implements OnInit {
   
   public collapsed = true;
   // 15/02/19
-  // public editMode = false;
-  // public labelMode = 'edit';
-  // public labelModeText = 'edit';
+  // 16/02/19
+  public editMode = false;
+  public labelMode = 'edit';
+  public labelModeText = 'edit';
   public preview = '';
 
   constructor(private dataService: DataService, private annotationService: AnnotationService,
@@ -39,6 +40,9 @@ export class AnnotationsEditorComponent implements OnInit {
     if (this.annotation) {
       this.preview = this.annotation.preview;
 
+      console.log("this.annotation");
+      console.log(this.annotation);
+
       // 15/02/19
       // EditMode -- OnInit -- newly creaded annotation (by double click)
       if (this.annotationmarkerService.open_popup === this.annotation._id){
@@ -48,6 +52,11 @@ export class AnnotationsEditorComponent implements OnInit {
         this.annotationComponent.editMode = true;
         this.annotationComponent.labelMode = 'remove_red_eye';
         this.annotationComponent.labelModeText = 'view';
+
+        // 16/02/19
+        this.editMode = true;
+        this.labelMode = 'remove_red_eye';
+        this.labelModeText = 'view';
       }
     }
   }
@@ -87,12 +96,20 @@ export class AnnotationsEditorComponent implements OnInit {
       this.annotationComponent.labelMode = 'edit';
       this.annotationComponent.labelModeText = 'edit';
       this.collapsed = true;
+      // 16/02/19
+      this.editMode = false;
+      this.labelMode = 'edit';
+      this.labelModeText = 'edit';
       this.save();
     } else {
       this.collapsed = false;
       this.annotationComponent.editMode = true;
       this.annotationComponent.labelMode = 'remove_red_eye';
       this.annotationComponent.labelModeText = 'view';
+      // 16/02/19
+      this.editMode = true;
+      this.labelMode = 'remove_red_eye';
+      this.labelModeText = 'view';
     }
   }
 
