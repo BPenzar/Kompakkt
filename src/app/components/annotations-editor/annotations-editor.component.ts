@@ -7,6 +7,9 @@ import {BabylonService} from '../../services/babylon/babylon.service';
 import {CameraService} from '../../services/camera/camera.service';
 import {AnnotationmarkerService} from '../../services/annotationmarker/annotationmarker.service';
 
+// 16/02/19
+import {AfterViewInit, QueryList, ViewChildren} from '@angular/core';
+
 // 15/02/19
 import {AnnotationComponent} from '../annotation/annotation.component';
 
@@ -19,6 +22,9 @@ export class AnnotationsEditorComponent implements OnInit {
 
   @Input() annotation: Annotation;
 
+  // 16/02/19
+  @ViewChildren(AnnotationComponent)
+  annotationsList: QueryList<AnnotationComponent>;
   
   public collapsed = true;
   // 15/02/19
@@ -40,8 +46,9 @@ export class AnnotationsEditorComponent implements OnInit {
     if (this.annotation) {
       this.preview = this.annotation.preview;
 
-      console.log("this.annotation");
-      console.log(this.annotation);
+      
+      console.log("this.annotationsList");
+      console.log(this.annotationsList);
 
       // 15/02/19
       // EditMode -- OnInit -- newly creaded annotation (by double click)
@@ -49,9 +56,9 @@ export class AnnotationsEditorComponent implements OnInit {
         
         // 15/02/19
         this.collapsed = false;
-        this.annotationComponent.editMode = true;
-        this.annotationComponent.labelMode = 'remove_red_eye';
-        this.annotationComponent.labelModeText = 'view';
+        // this.annotationComponent.editMode = true;
+        // this.annotationComponent.labelMode = 'remove_red_eye';
+        // this.annotationComponent.labelModeText = 'view';
 
         // 16/02/19
         this.editMode = true;
@@ -89,13 +96,13 @@ export class AnnotationsEditorComponent implements OnInit {
     this.annotationService.deleteAnnotation(this.annotation);
   }
 
-  // 15/02/19
   public toggleEditViewMode() {
-    if (this.annotationComponent.editMode) {
-      this.annotationComponent.editMode = false;
-      this.annotationComponent.labelMode = 'edit';
-      this.annotationComponent.labelModeText = 'edit';
+    // 15/02/19
+    if (this.editMode) {
       this.collapsed = true;
+      // this.annotationComponent.editMode = false;
+      // this.annotationComponent.labelMode = 'edit';
+      // this.annotationComponent.labelModeText = 'edit';
       // 16/02/19
       this.editMode = false;
       this.labelMode = 'edit';
@@ -103,9 +110,9 @@ export class AnnotationsEditorComponent implements OnInit {
       this.save();
     } else {
       this.collapsed = false;
-      this.annotationComponent.editMode = true;
-      this.annotationComponent.labelMode = 'remove_red_eye';
-      this.annotationComponent.labelModeText = 'view';
+      // this.annotationComponent.editMode = true;
+      // this.annotationComponent.labelMode = 'remove_red_eye';
+      // this.annotationComponent.labelModeText = 'view';
       // 16/02/19
       this.editMode = true;
       this.labelMode = 'remove_red_eye';

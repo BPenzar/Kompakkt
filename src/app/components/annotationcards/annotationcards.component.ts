@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {AnnotationService} from '../../services/annotation/annotation.service';
 import {AnnotationComponent} from '../annotation/annotation.component';
+import {AnnotationService} from '../../services/annotation/annotation.service';
 import {AnnotationmarkerService} from '../../services/annotationmarker/annotationmarker.service';
 
 
@@ -39,7 +39,6 @@ export class AnnotationcardsComponent implements OnInit, AfterViewInit {
     this.annotationmarkerService.popupIsOpen().subscribe(
       popup_is_open => this.setVisability(popup_is_open, true)
     );
-
   }
 
   public setVisability(id: string, visibility: boolean) {
