@@ -1,5 +1,5 @@
 // 16/02/19
-import {AfterViewInit, Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
 // import {Component, Input, OnInit} from '@angular/core';
 import {Annotation} from '../../interfaces/annotation/annotation';
 
@@ -20,7 +20,7 @@ import {AnnotationComponent} from '../annotation/annotation.component';
 })
 
 // 16/02/19
-export class AnnotationsEditorComponent implements OnInit, AfterViewInit {
+export class AnnotationsEditorComponent implements OnInit {
 // export class AnnotationsEditorComponent implements OnInit {
 
   // // 16/02/19
@@ -58,21 +58,9 @@ export class AnnotationsEditorComponent implements OnInit, AfterViewInit {
     }
 
     // ...
+    console.log(this.annotationsList);
   }
 
-
-  // 16/02/19
-  ngAfterViewInit(): void {
-
-    this.annotationsList.changes.subscribe(() => {
-      
-      this.annotationsList.forEach(function (value) {
-        console.log("A");
-        console.log(value);
-      })
-    });
-    
-  }
 
 
   public getValidation(validated) {
