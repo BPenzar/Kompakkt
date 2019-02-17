@@ -1,16 +1,10 @@
-// 16/02/19
-import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
-// import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Annotation} from '../../interfaces/annotation/annotation';
-
 import {DataService} from '../../services/data/data.service';
 import {AnnotationService} from '../../services/annotation/annotation.service';
 import {BabylonService} from '../../services/babylon/babylon.service';
 import {CameraService} from '../../services/camera/camera.service';
 import {AnnotationmarkerService} from '../../services/annotationmarker/annotationmarker.service';
-
-// 16/02/19
-import {AnnotationComponent} from '../annotation/annotation.component';
 
 
 @Component({
@@ -19,13 +13,7 @@ import {AnnotationComponent} from '../annotation/annotation.component';
   styleUrls: ['./annotations-editor.component.scss']
 })
 
-// 16/02/19
 export class AnnotationsEditorComponent implements OnInit {
-// export class AnnotationsEditorComponent implements OnInit {
-
-  // // 16/02/19
-  @ViewChildren(AnnotationComponent)
-  annotationsList: QueryList<AnnotationComponent>;
 
   @Input() annotation: Annotation;
 
@@ -49,16 +37,13 @@ export class AnnotationsEditorComponent implements OnInit {
       // EditMode -- OnInit -- newly creaded annotation (by double click)
       if (this.annotationmarkerService.open_popup === this.annotation._id){
               
-        this.collapsed = false;
-        this.editMode = true;
-        this.labelMode = 'remove_red_eye';
-        this.labelModeText = 'view';
+        this.collapsed = true;
+        this.editMode = false;
+        this.labelMode = 'edit';
+        this.labelModeText = 'edit';
 
       }
     }
-
-    // ...
-    console.log(this.annotationsList);
   }
 
 
