@@ -36,9 +36,7 @@ export class AnnotationsEditorComponent implements OnInit {
 
   constructor(private dataService: DataService, private annotationService: AnnotationService,
               private babylonService: BabylonService, private cameraService: CameraService,
-              private annotationmarkerService: AnnotationmarkerService,
-              private annotationComponent: AnnotationComponent
-              ) {
+              private annotationmarkerService: AnnotationmarkerService) {
   }
 
   ngOnInit() {
