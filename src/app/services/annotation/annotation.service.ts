@@ -137,6 +137,8 @@ export class AnnotationService {
 
     this.allAnnotations = [];
     this.allAnnotations = await this.fetchData();
+    // 18/02/19
+    console.log(this.allAnnotations);
     this.initialLoading = false;
   }
 
