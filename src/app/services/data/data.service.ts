@@ -25,7 +25,7 @@ export class DataService {
   }
 
   // 18/02/19
-  // Bugfix Update Annotation
+  // Bugfix updateAnnotation() for new annotation datamodel
   public updateAnnotation(id: string, title: string, description: string, preview?: string, cameraPosition?, validated?: boolean): void {
 
     const db = this.database;
