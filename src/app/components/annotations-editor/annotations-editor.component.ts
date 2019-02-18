@@ -45,7 +45,6 @@ export class AnnotationsEditorComponent implements OnInit {
         this.editMode = false;
         this.labelMode = 'edit';
         this.labelModeText = 'edit';
-
       }
     }
   }

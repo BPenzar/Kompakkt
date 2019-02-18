@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 // 11/02/19
-// import {Annotation} from 'src/app/interfaces/annotation/annotation';
 import {Annotation} from 'src/app/interfaces/annotation2/annotation2';
+// import {Annotation} from 'src/app/interfaces/annotation/annotation';
 import {DataService} from '../data/data.service';
 import {BabylonService} from '../babylon/babylon.service';
 import {ActionService} from '../action/action.service';
@@ -28,11 +28,9 @@ export class AnnotationService {
   private unsortedAnnotations: Annotation[];
   private allAnnotations: Annotation[];
   private modelName: string;
-
   // 11/02/19
   public initialLoading: boolean;
   // private initialLoading: boolean;
-  
   private actualModelMeshes: BABYLON.Mesh[];
   private isDefaultLoad: boolean;
 
@@ -160,7 +158,6 @@ export class AnnotationService {
 
   // Die Annotationen werden in der richtigen Reihenfolge in das Array für den visuellen Output geschrieben
   
-  // 11/02/19
   private async sortAnnotations() {
 
     this.annotations = this.unsortedAnnotations;
@@ -191,9 +188,6 @@ export class AnnotationService {
 
       // 11/02/19
       // Hier wird das Annotation Interface ausgefüllt -- die Parameter müssen nach Interface-Änderung + Datenbank integration angepasst werden.
-
-      // 11/02/19
-      console.log(this.loadModelService.getUserData());
       
       const newAnnotation: Annotation = {
         // 11/02/19
@@ -203,6 +197,7 @@ export class AnnotationService {
         // Semantische ID
         identifier: Math.random().toString(36).substr(2, 9),
         ranking: String(this.annotations.length + 1),
+        // User from DB?
         creator: {
           type: 'Person',
           name: 'Get User Name',
@@ -210,6 +205,7 @@ export class AnnotationService {
           role: ['Get User Roles[]'],
         },
         created: new Date().toISOString(),
+        // User from DB?
         generator: {
           type: 'Person',
           name: 'Get User Name',
@@ -219,6 +215,7 @@ export class AnnotationService {
         generated: 'Creation-Timestamp by Server',
         motivation: 'defaultMotivation',
         lastModificationDate: 'Last-Manipulation-Timestamp by Server',
+        // User from DB?
         lastModifiedBy: {
           type: 'Person',
           name: 'Get User Name',
@@ -332,9 +329,7 @@ export class AnnotationService {
       this.unsortedAnnotations.push(annotation);
       this.annotationmarkerService.createAnnotationMarker(annotation);
     }
-
-    // 11/02/19 
-    // ?
+    
     this.dataService.database.bulkDocs(this.unsortedAnnotations);
     await this.sortAnnotations();
   }
@@ -429,7 +424,6 @@ export class AnnotationService {
         id: 'Get User ID',
         role: ['Get User Roles[]'],
       },
-
       body: {
         type: 'annotation',
         content: {
