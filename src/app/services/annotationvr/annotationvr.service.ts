@@ -203,7 +203,7 @@ export class AnnotationvrService {
     if (this.annotationService.annotations.length) {
       
       // FOR VR-HUD
-      this.text1.text = this.annotationService.annotations[index].title;
+      this.text1.text = this.annotationService.annotations[index].body.content.title;
 
       let cameraVector;
       let i = 1;
