@@ -5,7 +5,9 @@ import {BabylonService} from '../babylon/babylon.service';
 import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
 import {Observable} from 'rxjs/internal/Observable';
 import {CameraService} from '../camera/camera.service';
-import {Annotation} from '../../interfaces/annotation/annotation';
+// 11/02/19
+import {Annotation} from 'src/app/interfaces/annotation2/annotation2';
+// import {Annotation} from '../../interfaces/annotation/annotation';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +34,7 @@ export class AnnotationmarkerService {
 
   public createAnnotationMarker(annotation) {
 
+    // 11/02/19
     const positionVector = new BABYLON.Vector3(annotation.referencePoint[0].value,
       annotation.referencePoint[1].value, annotation.referencePoint[2].value);
     const normalVector = new BABYLON.Vector3(annotation.referencePointNormal[0].value,
