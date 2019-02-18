@@ -12,6 +12,7 @@ import PouchDB from 'pouchdb';
 import * as BABYLON from 'babylonjs';
 import {LoadModelService} from '../load-model/load-model.service';
 
+
 /**
  * @author Zoe Schubert
  * @author Jan G. Wieners
@@ -190,6 +191,10 @@ export class AnnotationService {
 
       // 11/02/19
       // Hier wird das Annotation Interface ausgefüllt -- die Parameter müssen nach Interface-Änderung + Datenbank integration angepasst werden.
+
+      // 11/02/19
+      console.log(this.loadModelService.getUserData());
+      
       const newAnnotation: Annotation = {
         // 11/02/19
         // _id über Datenbank ersellen
