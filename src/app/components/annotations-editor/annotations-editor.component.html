@@ -10,7 +10,7 @@
         <!-- 11/02/19 -->
         <span *ngIf="!editMode">{{annotation.body.content.title | uppercase}}</span>
         <mat-form-field *ngIf="editMode">
-          <input matInput name="annotation.body.content.title" #annotation.body.content.title="ngModel" type="text" placeholder="Title" [(ngModel)]="annotation.body.content.title">
+          <input matInput name="title" #title="ngModel" type="text" placeholder="Title" [(ngModel)]="annotation.body.content.title">
         </mat-form-field>
 
       </mat-card-title>
@@ -29,7 +29,7 @@
 
       <mat-form-field *ngIf="editMode" class="description">
         <!-- 11/02/19 -->
-        <textarea matInput name="annotation.body.content.description" #annotation.body.content.description="ngModel" type="text" placeholder="Description"
+        <textarea matInput name="description" #description="ngModel" type="text" placeholder="Description"
                   [(ngModel)]="annotation.body.content.description"></textarea>
       </mat-form-field>
 

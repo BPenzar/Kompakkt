@@ -15,7 +15,7 @@
         <span *ngIf="!editMode">{{annotation.body.content.title}}</span>
         <mat-form-field *ngIf="editMode">
           <!-- 11/02/19 -->
-          <input matInput name="annotation.body.content.title" #annotation.body.content.title="ngModel" type="text" placeholder="Title" [(ngModel)]="annotation.body.content.title">
+          <input matInput name="title" #title="ngModel" type="text" placeholder="Title" [(ngModel)]="annotation.body.content.title">
         </mat-form-field>
       </mat-card-title>
 
@@ -35,7 +35,7 @@
       <p *ngIf="!editMode"> {{annotation.body.content.description}}</p>
       <mat-form-field *ngIf="editMode">
         <!-- 11/02/19 -->
-        <textarea matInput name="annotation.body.content.description" #annotation.body.content.description="ngModel" type="text" placeholder="Description"
+        <textarea matInput name="description" #description="ngModel" type="text" placeholder="Description"
                   [(ngModel)]="annotation.body.content.description"></textarea>
       </mat-form-field>
 

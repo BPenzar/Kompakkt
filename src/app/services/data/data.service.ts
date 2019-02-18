@@ -24,20 +24,27 @@ export class DataService {
     });
   }
 
+  // 18/02/19
+  // Bugfix Update Annotation
   public updateAnnotation(id: string, title: string, description: string, preview?: string, cameraPosition?, validated?: boolean): void {
 
     const db = this.database;
     db.get(id).then(function (doc) {
-      // update
-      doc.title = title;
-      doc.description = description;
+    
+      doc.body.content.title = title;
+      doc.body.content.description = description;
+      // doc.title = title;
+      // doc.description = description;
 
       if (!isUndefined(preview)) {
-        doc.preview = preview;
+
+        doc.body.content.relatedPerspective.preview = preview;
+        // doc.preview = preview;
       }
       if (!isUndefined(cameraPosition)) {
 
-        doc.cameraPosition = cameraPosition;
+        doc.body.content.relatedPerspective.vector;
+        // doc.cameraPosition = cameraPosition;
       }
       if (!isUndefined(validated)) {
         console.log(isUndefined(doc.validated));
