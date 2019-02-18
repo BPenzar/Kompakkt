@@ -71,8 +71,7 @@ export class AnnotationComponent implements OnInit {
 
     const getMesh = scene.getMeshByName(annotation._id + '_pick');
 
-    if (getMesh != null) {
-
+    if (getMesh && scene.activeCamera) {
       const engine = this.babylonService.getEngine();
 
       const p = Vector3.Project(
@@ -118,6 +117,21 @@ export class AnnotationComponent implements OnInit {
       this.editMode = true;
       this.labelMode = 'remove_red_eye';
       this.labelModeText = 'view';
+    }
+  }
+
+  public setEditMode(mode: boolean) {
+    if (!mode && this.editMode) {
+      this.editMode = false;
+      this.labelMode = 'edit';
+      this.labelModeText = 'edit';
+      this.save();
+    } else if (mode && !this.editMode) {
+      this.editMode = true;
+      this.labelMode = 'remove_red_eye';
+      this.labelModeText = 'view';
+    } else {
+      return;
     }
   }
 

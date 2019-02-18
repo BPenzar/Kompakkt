@@ -72,7 +72,9 @@ export class AnnotationService {
     // Alle Marker, die eventuell vom vorherigen Modell noch da sind, sollen gelöscht werden
     await this.annotationmarkerService.deleteAllMarker();
 
-    // Beim ersten Laden eines Modells, werden alle in der PuchDB vorhandenen Annotationen in
+    // 11/02/19
+    // In Zukunft von der Datenbank...?
+    // Beim ersten Laden eines Mdoells, werden alle in der PuchDB vorhandenen Annotationen in
     // das Array "allAnnotations" geladen
     
     // 11/02/19
@@ -87,6 +89,8 @@ export class AnnotationService {
       this.allAnnotations.push(this.createDefaultAnnotation());
     }
 
+    // 11/02/19
+    // Muss/Soll auch an Benutzer//Sammlung gekoppelt werden?
     // Die Annotationen, die sich auf das aktuelle Model beziehen (also als relatedModel den Namen
     // des aktuellen Models aufweisen, werden raus gesucht und in das Array für unsortierte Annotationen
     // gepusht, da sie dort liegen ohne visuelle Elemente zu erzeugen
@@ -277,11 +281,10 @@ export class AnnotationService {
         // title: '',
         // description: '',
         // date: new Date().toISOString()
-
       };
       this.add(newAnnotation);
       this.annotationmarkerService.createAnnotationMarker(newAnnotation);
-      
+
       // 15/02/19
       // set created annotation as is_open in annotationmarker.service ((on double click) created annotation)
       this.annotationmarkerService.toggleCreatorPopup(newAnnotation._id);
@@ -399,8 +402,8 @@ export class AnnotationService {
 
   public createDefaultAnnotation(): Annotation {
 
-    // 11/02/19
-    return {
+     // 11/02/19
+     return {
       _id: '7wz2vuqt8',
       validated: true,
       identifier: 'DefaultAnnotation',

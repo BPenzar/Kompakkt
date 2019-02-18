@@ -40,11 +40,15 @@ export class LoadModelService {
   public isSingleLoadCollection = true;
   public isDefaultLoad = true;
   public isModelOwner = false;
+  public isFinished = true;
+  public isLoaded = false;
 
   @Output() singleCollection: EventEmitter<boolean> = new EventEmitter();
   @Output() singleModel: EventEmitter<boolean> = new EventEmitter();
   @Output() defaultLoad: EventEmitter<boolean> = new EventEmitter();
   @Output() modelOwner: EventEmitter<boolean> = new EventEmitter();
+  @Output() finished: EventEmitter<boolean> = new EventEmitter();
+  @Output() loaded: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public babylonService: BabylonService,
               private actionService: ActionService,
@@ -77,16 +81,25 @@ export class LoadModelService {
 
   public fetchModelData(query: string) {
     this.mongohandlerService.getModel(query).then(resultModel => {
+      this.isLoaded = false;
+      this.loaded.emit(false);
       this.isSingleLoadModel = true;
       this.singleModel.emit(true);
       this.isDefaultLoad = false;
       this.defaultLoad.emit(false);
       this.quality = 'low';
-      this.loadModel(resultModel);
+      this.loadModel(resultModel).then(result => {
+        this.isLoaded = true;
+        this.loaded.emit(true);
+      }, error => {
+        this.message.error('Loading not possible');
+      });
     });
   }
 
   public fetchCollectionData(identifier: string) {
+    this.isLoaded = false;
+    this.loaded.emit(false);
     this.isSingleLoadCollection = true;
     this.singleCollection.emit(true);
     this.isDefaultLoad = false;
@@ -94,13 +107,20 @@ export class LoadModelService {
     this.quality = 'low';
     this.mongohandlerService.getCompilation(identifier).then(compilation => {
       this.updateActiveCollection(compilation);
-      this.loadModel(compilation.models[0]);
+      this.loadModel(compilation.models[0]).then(result => {
+        this.isLoaded = true;
+        this.loaded.emit(true);
+      }, error => {
+        this.message.error('Loading not possible');
+      });
     }, error => {
       this.message.error('Connection to object server refused.');
     });
   }
 
   public loadDefaultModelData() {
+    this.isLoaded = false;
+    this.loaded.emit(false);
     this.isDefaultLoad = true;
     this.defaultLoad.emit(true);
     this.isSingleLoadModel = false;
@@ -131,11 +151,18 @@ export class LoadModelService {
         raw: 'assets/models/kompakkt.babylon'
       }
     };
-    this.loadModel(this.defaultModel, '');
+    this.loadModel(this.defaultModel, '').then(result => {
+      this.isLoaded = true;
+      this.loaded.emit(true);
+    }, error => {
+      this.message.error('Loading not possible');
+    });
     this.metadataService.addDefaultMetadata();
   }
 
   public loadSelectedModel(model: Model, collection: boolean) {
+    this.isLoaded = false;
+    this.loaded.emit(false);
     this.isDefaultLoad = false;
     this.defaultLoad.emit(false);
     this.isSingleLoadModel = false;
@@ -146,15 +173,27 @@ export class LoadModelService {
       this.updateActiveCollection([]);
     }
     this.quality = 'low';
-    this.loadModel(model);
+    this.loadModel(model).then(result => {
+      this.isLoaded = true;
+      this.loaded.emit(true);
+    }, error => {
+      this.message.error('Loading not possible');
+    });
   }
 
   public updateModelQuality(quality: string) {
     if (this.quality !== quality) {
       this.quality = quality;
+      this.isLoaded = false;
+      this.loaded.emit(false);
       const _model = this.Observables.actualModel.source['_events'].slice(-1)[0];
       if (_model.processed[this.quality] !== undefined) {
-        this.loadModel(_model);
+        this.loadModel(_model).then(result => {
+          this.isLoaded = true;
+          this.loaded.emit(true);
+        }, error => {
+          this.message.error('Loading not possible');
+        });
       } else {
         this.message.error('Model quality is not available.');
       }
@@ -170,8 +209,8 @@ export class LoadModelService {
       await this.getUserData();
     }
 
-    if (!this.loadingScreenHandler.isLoading) {
-      this.babylonService.loadModel(URL, newModel.processed[this.quality]).then(async (model) => {
+    if (!this.loadingScreenHandler.isLoading && newModel.processed) {
+      await this.babylonService.loadModel(URL, newModel.processed[this.quality]).then(async (model) => {
         // Warte auf Antwort von loadModel, da loadModel ein Promise<object> von ImportMeshAync übergibt
         // model ist hier das neu geladene Model
         this.updateActiveModel(newModel);
@@ -180,7 +219,16 @@ export class LoadModelService {
         // Zentriere auf das neu geladene Model, bevor die SettingsEinstellung übernommen wird
         this.cameraService.setActiveCameraTarget(model.meshes[0]._boundingInfo.boundingBox.centerWorld);
 
-        this.checkOwnerState(newModel._id);
+        if (newModel._id) this.checkOwnerState(newModel._id);
+
+        if (!newModel.finished) {
+          this.finished.emit(false);
+          this.isFinished = false;
+        } else {
+          this.finished.emit(true);
+          this.isFinished = true;
+        }
+
       });
 
 

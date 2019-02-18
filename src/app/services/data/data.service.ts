@@ -25,7 +25,7 @@ export class DataService {
   }
 
   // 18/02/19
-  // Bugfix updateAnnotation() for new annotation datamodel
+  // Bugfix 'updateAnnotation()' for new annotation datamodel
   public updateAnnotation(id: string, title: string, description: string, preview?: string, cameraPosition?, validated?: boolean): void {
 
     const db = this.database;
@@ -57,6 +57,7 @@ export class DataService {
       return db.put(doc);
     });
   }
+
 
   public updateAnnotationRanking(id: string, ranking: string) {
 

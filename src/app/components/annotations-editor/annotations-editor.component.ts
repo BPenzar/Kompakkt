@@ -33,7 +33,7 @@ export class AnnotationsEditorComponent implements OnInit {
   ngOnInit() {
 
     if (this.annotation) {
-      // 11/02/19
+        // 11/02/19
       // this.preview = this.annotation.preview;
       this.preview = this.annotation.body.content.relatedPerspective.preview;
 
@@ -66,7 +66,6 @@ export class AnnotationsEditorComponent implements OnInit {
     this.annotation.body.content.relatedPerspective.vector = this.cameraService.getActualCameraPosAnnotation();
     // this.annotation.cameraPosition = this.cameraService.getActualCameraPosAnnotation();
     await this.babylonService.createPreviewScreenshot(400).then(detailScreenshot => {
-
       /*
       const i = new Image();
       i.onload = function() {
@@ -97,7 +96,6 @@ export class AnnotationsEditorComponent implements OnInit {
   }
 
   private save(): void {
-    // 11/02/19
     this.dataService.updateAnnotation(this.annotation._id, this.annotation.body.content.title, this.annotation.body.content.description,
       this.preview, this.annotation.body.content.relatedPerspective.vector, this.annotation.validated);
     // this.dataService.updateAnnotation(this.annotation._id, this.annotation.title, this.annotation.description,
@@ -105,6 +103,22 @@ export class AnnotationsEditorComponent implements OnInit {
   }
 
   public onSubmit(event) {
+  }
+
+  public setEditMode(mode: boolean) {
+    if (!mode && this.editMode) {
+      this.editMode = false;
+      this.labelMode = 'edit';
+      this.labelModeText = 'edit';
+      this.save();
+    } else if (mode && !this.editMode) {
+      this.collapsed = false;
+      this.editMode = true;
+      this.labelMode = 'remove_red_eye';
+      this.labelModeText = 'view';
+    } else {
+      return;
+    }
   }
 }
 
