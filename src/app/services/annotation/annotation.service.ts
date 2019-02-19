@@ -28,8 +28,7 @@ export class AnnotationService {
   private unsortedAnnotations: Annotation[];
   private allAnnotations: Annotation[];
   private modelName: string;
-  // 11/02/19
-  public initialLoading: boolean;
+  // 19/02/19
   // private initialLoading: boolean;
   private actualModelMeshes: BABYLON.Mesh[];
   private isDefaultLoad: boolean;
@@ -40,7 +39,8 @@ export class AnnotationService {
               private annotationmarkerService: AnnotationmarkerService,
               private loadModelService: LoadModelService) {
 
-    this.initialLoading = true;
+    // 19/02/19
+    // this.initialLoading = true;
     this.annotations = [];
     this.loadModelService.Observables.actualModel.subscribe(actualModel => {
       this.modelName = actualModel.name;
@@ -79,9 +79,11 @@ export class AnnotationService {
     
     // 11/02/19
     // In Zukunft von der Datenbank...
-        // nur Annotationen die auch mit dem Modell (this.modelName bzw. id) und der Sammlung (etwa wie "this.collectionID" ???)
-        // in Verbindung stehen...
-    if (this.initialLoading === true && this.isDefaultLoad === false) {
+            // nur Annotationen die auch mit dem Modell (this.modelName bzw. id) und der Sammlung (etwa wie "this.collectionID" ???)
+            // in Verbindung stehen...
+    // 19/02/19
+    if (this.isDefaultLoad === false) {
+    // if (this.initialLoading === true && this.isDefaultLoad === false) {
       await this.getAnnotations();
     } else {
 
@@ -144,7 +146,8 @@ export class AnnotationService {
     // 18/02/19
     console.log("this.allAnnotations");
     console.log(this.allAnnotations);
-    this.initialLoading = false;
+    // 19/02/19
+    // this.initialLoading = false;
   }
 
   // Das aktuelle Modell wird (if 'true') anklickbar und damit annotierbar
